@@ -1,0 +1,65 @@
+{
+  "name": "root",
+  "private": true,
+  "scripts": {
+    "start": "start-storybook",
+    "build": "build-storybook -c .storybook -o docs",
+    "prebuild": "rm -rf docs; mkdir docs;",
+    "publish-latest": "lerna publish --force-publish",
+    "publish-beta": "lerna publish --force-publish --dist-tag beta"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "standard": {
+    "parser": "babel-eslint"
+  },
+  "lint-staged": {
+    "./packages/**/*.js": [
+      "eslint --cache --fix",
+      "git add"
+    ],
+    "./packages/**/*.less": [
+      "stylelint --cache --fix",
+      "git add"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      "iOS >= 8",
+      "Android >= 5.0"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "@babel/core": "^7.8.6",
+    "@storybook/addon-info": "^5.3.14",
+    "@storybook/addon-notes": "^5.3.14",
+    "@storybook/addon-storysource": "^5.3.14",
+    "@storybook/react": "^5.3.14",
+    "@types/react": "^16.9.23",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.0.6",
+    "babel-preset-gm-react-app": "^1.1.1",
+    "eslint": "^6.8.0",
+    "eslint-plugin-gm-react-app": "^1.1.1",
+    "fingerprintjs2": "^2.1.0",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.8",
+    "lodash": "^4.17.15",
+    "prettier": "^1.18.2",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "webpack": "^4.41.6"
+  },
+  "devDependencies": {
+    "lerna": "^3.19.0"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "@gm-common/request",
+  "version": "0.0.1",
+  "description": "",
+  "author": "liyatang <liyatang@qq.com>",
+  "homepage": "https://github.com/gmfe/gm-common#readme",
+  "license": "ISC",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gmfe/gm-common.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/gmfe/gm-common/issues"
+  }
+}
