@@ -18,12 +18,7 @@
   },
   "lint-staged": {
     "./packages/**/*.js": [
-      "eslint --cache --fix",
-      "git add"
-    ],
-    "./packages/**/*.less": [
-      "stylelint --cache --fix",
-      "git add"
+      "eslint --cache --fix"
     ]
   },
   "browserslist": {
@@ -53,6 +48,8 @@
     "husky": "^4.2.3",
     "lint-staged": "^10.0.8",
     "lodash": "^4.17.15",
+    "mobx": "^5.15.4",
+    "mobx-react": "^6.1.8",
     "prettier": "^1.18.2",
     "prop-types": "^15.7.2",
     "react": "^16.13.0",

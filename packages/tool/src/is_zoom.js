@@ -1,7 +1,7 @@
 /**
  * 检测浏览器缩放. 文章: https://www.yuque.com/iyum9i/uur0qi/cup15r
  */
-export default function isZoom () {
+export default function isZoom() {
   const div = document.createElement('div')
   div.style.fontSize = '1px'
   div.innerText = 'test'

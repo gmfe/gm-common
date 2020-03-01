@@ -1,6 +1,6 @@
-export default function createChainedFunction () {
+export default function create_chained_function() {
   const args = arguments
-  return function chainedFunction () {
+  return function chainedFunction() {
     for (let i = 0; i < args.length; i++) {
       if (args[i] && args[i].apply) {
         args[i].apply(this, arguments)

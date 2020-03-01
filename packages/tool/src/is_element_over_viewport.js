@@ -1,4 +1,4 @@
-export default function (dom) {
+export default function(dom) {
   const rect = dom.getBoundingClientRect()
   return (
     rect.bottom >= 0 &&

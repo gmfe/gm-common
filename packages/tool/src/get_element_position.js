@@ -1,4 +1,4 @@
-export default function getElementPosition(element) {
+export default function get_element_position(element) {
   let top = element.offsetTop
   let left = element.offsetLeft
   let current = element.offsetParent

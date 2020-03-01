@@ -1,6 +1,6 @@
 import queryString from 'query-string'
 
-export default function processReactRouterProps (props) {
+export default function processReactRouterProps(props) {
   const newProps = Object.assign({}, props)
   newProps.location.query = queryString.parse(props.location.search)
   newProps.location.action = newProps.history.action

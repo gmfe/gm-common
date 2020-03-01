@@ -1,6 +1,6 @@
 import is from './is'
 
-function setTitle (title) {
+function setTitle(title) {
   window.document.title = title
 
   if (!is.weixin()) {
