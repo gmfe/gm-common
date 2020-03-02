@@ -1,13 +1,26 @@
 import React from 'react'
-import Request from './'
+import { Request } from './'
 
-
-const normal = () => {
+export const normal = () => {
   return (
     <div>
-      <button onClick={() => {
-        Request
-      }}>request</button>
+      <button
+        onClick={() => {
+          Request('/adfasdf')
+            .data({
+              id: 1
+            })
+            .get()
+            .then(json => {
+              console.log(json)
+            })
+            .catch(error => {
+              console.log(error)
+            })
+        }}
+      >
+        request get
+      </button>
     </div>
   )
 }

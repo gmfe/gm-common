@@ -10,6 +10,6 @@ const webpackFinal = config => {
 
 module.exports = {
   addons: ['@storybook/addon-storysource/register'],
-  stories: ['../packages/**/*.stories.js', '../demo/**/*.stories.js'],
+  stories: ['../packages/**/*stories.js', '../demo/**/*.stories.js'],
   webpackFinal
 }

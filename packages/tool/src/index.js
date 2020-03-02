@@ -21,6 +21,7 @@ import getScrollLeft from './get_scroll_left'
 import loadScript from './load_script'
 import to from './to'
 import isZoom from './is_zoom'
+import Storage from './storage'
 import { devWarnForHook, devWarn, warn } from './warn'
 
 export {
@@ -47,6 +48,7 @@ export {
   md5,
   getCharLength,
   to,
+  Storage,
   devWarn,
   devWarnForHook,
   warn
