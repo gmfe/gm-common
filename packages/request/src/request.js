@@ -8,6 +8,27 @@ const instance = axios.create({
   }
 })
 
+function httpReject(error) {
+  console.log(error.toJSON())
+
+  if (error.response) {
+    throw new Error(`${error.response.status} ${error.response.statusText}`)
+  } else if (error.request) {
+    throw new Error('no response')
+  } else {
+    throw new Error(error.message)
+  }
+}
+function httpResolve(res, sucCode) {
+  const json = res.data
+  if (!sucCode.includes(json.code)) {
+    console.log(res)
+    throw new Error(json.msg || 'Unknown Error')
+  }
+
+  return json
+}
+
 function RequestBase(url, config) {
   this._data = {}
   this.sucCode = [0]
@@ -53,34 +74,14 @@ RequestBase.prototype = {
 
     return instance
       .request(this.config)
-      .then(this._httpResolve, this._httpReject)
+      .then(res => httpResolve(res, this.sucCode), httpReject)
   },
   post: function() {
     this.config.data = this._data
     this.config.method = 'post'
     return instance
       .request(this.config)
-      .then(this._httpResolve, this._httpReject)
-  },
-  _httpReject: function(error) {
-    console.log(error.toJSON())
-
-    if (error.response) {
-      throw new Error(`${error.response.status} ${error.response.statusText}`)
-    } else if (error.request) {
-      throw new Error('no response')
-    } else {
-      throw new Error(error.message)
-    }
-  },
-  _httpResolve: function(res) {
-    const json = res.data
-    if (!this.sucCode.includes(json.code)) {
-      console.log(res)
-      throw new Error(json.msg || 'Unknown Error')
-    }
-
-    return json
+      .then(res => httpResolve(res, this.sucCode), httpReject)
   }
 }
 
