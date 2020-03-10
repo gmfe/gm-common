@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@gm-common/fingerprint": "^0.0.1",
+    "@gm-common/locales": "^0.0.1",
     "@gm-common/tool": "^0.0.1",
     "axios": "^0.19.2"
   }

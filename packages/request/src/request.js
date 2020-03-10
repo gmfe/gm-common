@@ -1,10 +1,12 @@
 import axios from 'axios'
 import _ from 'lodash'
+import { getLocale } from '@gm-common/locales'
 
 const instance = axios.create({
-  timeout: 3000,
+  timeout: 30000,
   headers: {
-    Accept: 'application/json'
+    Accept: 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
   }
 })
 
@@ -14,8 +16,12 @@ function httpReject(error) {
   if (error.response) {
     throw new Error(`${error.response.status} ${error.response.statusText}`)
   } else if (error.request) {
-    throw new Error('no response')
+    throw new Error(getLocale('服务器错误'))
   } else {
+    if (error.message && error.message.includes('timeout')) {
+      throw new Error(getLocale('连接超时'))
+    }
+
     throw new Error(error.message)
   }
 }
@@ -23,7 +29,7 @@ function httpResolve(res, sucCode) {
   const json = res.data
   if (!sucCode.includes(json.code)) {
     console.log(res)
-    throw new Error(json.msg || 'Unknown Error')
+    throw new Error(json.msg || getLocale('未知错误'))
   }
 
   return json
