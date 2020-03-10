@@ -11,7 +11,9 @@ export const normal = () => {
         onClick={() => {
           Request('https://www.google.com')
             .data({
-              id: 1
+              id: 1,
+              age: null,
+              address: undefined
             })
             .get()
             .then(json => {
@@ -30,7 +32,9 @@ export const normal = () => {
           Request('/afas')
             .data({
               id: 1,
-              name: '你好啊'
+              name: '你好啊',
+              age: null,
+              address: undefined
             })
             .post()
             .then(json => {
@@ -48,9 +52,10 @@ export const normal = () => {
         type='file'
         onChange={e => {
           const file = e.target.files[0]
-          Request('/asdfas', {
-            file
-          })
+          Request('/asdfas')
+            .data({
+              file
+            })
             .post()
             .then(json => {
               console.log(json)

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import _ from 'lodash'
 import { getLocale } from '@gm-common/locales'
+import { processPostData, hasFileData } from './util'
 
 const instance = axios.create({
   timeout: 30000,
@@ -8,6 +9,20 @@ const instance = axios.create({
     Accept: 'application/json',
     'Content-Type': 'application/x-www-form-urlencoded'
   }
+})
+
+// 处理下数据
+instance.interceptors.request.use(config => {
+  if (config.method === 'post') {
+    console.log(hasFileData(config.data))
+    if (hasFileData(config.data)) {
+      config.headers['Content-Type'] = 'multipart/form-data'
+    }
+
+    config.data = processPostData(config.data)
+  }
+
+  return config
 })
 
 function httpReject(error) {
@@ -60,14 +75,7 @@ RequestBase.prototype = {
     return this
   },
   data: function(data) {
-    if (toString.call(this._data) !== '[object Object]') {
-      // 过滤null  undefined 只Object 类型。
-      this._data = _.pickBy({ ...data }, value => {
-        return value !== null && value !== undefined
-      })
-    } else {
-      this._data = data
-    }
+    this._data = data
 
     return this
   },
