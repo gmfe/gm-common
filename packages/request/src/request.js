@@ -1,10 +1,10 @@
 import axios from 'axios'
 import _ from 'lodash'
 import { getLocale } from '@gm-common/locales'
-import { processPostData, hasFileData } from './util'
+import { processPostData, hasFileData, getErrorMessage } from './util'
 
 const instance = axios.create({
-  timeout: 30000,
+  timeout: 3000,
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/x-www-form-urlencoded',
@@ -27,20 +27,13 @@ instance.interceptors.request.use(config => {
 })
 
 function httpReject(error) {
-  console.warn(error)
+  console.error(error)
 
-  if (error.response) {
-    throw new Error(`${error.response.status} ${error.response.statusText}`)
-  } else if (error.request) {
-    throw new Error(getLocale('服务器错误'))
-  } else {
-    if (error.message && error.message.includes('timeout')) {
-      throw new Error(getLocale('连接超时'))
-    }
+  const message = getErrorMessage(error)
 
-    throw new Error(error.message)
-  }
+  throw new Error(message)
 }
+
 function httpResolve(res, sucCode) {
   const json = res.data
   if (!sucCode.includes(json.code)) {

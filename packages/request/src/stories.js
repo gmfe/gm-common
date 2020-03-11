@@ -1,8 +1,19 @@
 import React from 'react'
-import { Request, configTrace, configHeaders } from './'
+import { instance, Request, configTrace, configHeaders } from './'
 
 configTrace()
 configHeaders()
+
+instance.interceptors.response.use(
+  response => {
+    console.log(response)
+    return response
+  },
+  error => {
+    console.log(error)
+    return Promise.reject(error)
+  }
+)
 
 export const normal = () => {
   return (

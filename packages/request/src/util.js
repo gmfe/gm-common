@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import { getLocale } from '@gm-common/locales'
 
 const isFile = function(v) {
   return /\[object File\]|\[object Blob\]/.test(toString.call(v))
@@ -59,4 +60,21 @@ function processPostData(data) {
   return body
 }
 
-export { processPostData, hasFileData }
+function getErrorMessage(error) {
+  let message
+  if (error.response) {
+    message = `${error.response.status} ${error.response.statusText}`
+  } else if (error.request) {
+    if (error.message && error.message.includes('timeout')) {
+      message = getLocale('连接超时')
+    }
+
+    message = getLocale('服务器错误')
+  } else {
+    message = error.message
+  }
+
+  return message
+}
+
+export { processPostData, hasFileData, getErrorMessage }
