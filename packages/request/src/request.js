@@ -7,14 +7,15 @@ const instance = axios.create({
   timeout: 30000,
   headers: {
     Accept: 'application/json',
-    'Content-Type': 'application/x-www-form-urlencoded'
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'X-Guanmai-Timeout': '30000',
+    'X-Guanmai-Success-Code': '0'
   }
 })
 
 // 处理下数据
 instance.interceptors.request.use(config => {
   if (config.method === 'post') {
-    console.log(hasFileData(config.data))
     if (hasFileData(config.data)) {
       config.headers['Content-Type'] = 'multipart/form-data'
     }
@@ -26,7 +27,7 @@ instance.interceptors.request.use(config => {
 })
 
 function httpReject(error) {
-  console.log(error.toJSON())
+  console.warn(error)
 
   if (error.response) {
     throw new Error(`${error.response.status} ${error.response.statusText}`)
@@ -43,7 +44,6 @@ function httpReject(error) {
 function httpResolve(res, sucCode) {
   const json = res.data
   if (!sucCode.includes(json.code)) {
-    console.log(res)
     throw new Error(json.msg || getLocale('未知错误'))
   }
 
@@ -67,10 +67,15 @@ RequestBase.prototype = {
 
     this.sucCode.push(codes)
 
+    // 挂在 headers。暂时想不到其他方式传递出这个信息
+    this.config.headers['X-Guanmai-Success-Code'] = this.sucCode.join(',')
+
     return this
   },
   timeout: function(timeout) {
     this.config.timeout = timeout
+
+    this.config.headers['X-Guanmai-Timeout'] = '' + timeout
 
     return this
   },

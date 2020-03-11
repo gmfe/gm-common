@@ -1,5 +1,5 @@
 {
-  "name": "@gm-common/tool",
+  "name": "@gm-common/number",
   "version": "0.0.3",
   "description": "",
   "author": "liyatang <liyatang@qq.com>",
@@ -21,6 +21,6 @@
     "url": "https://github.com/gmfe/gm-common/issues"
   },
   "dependencies": {
-    "lodash": "^4.17.15"
+    "big.js": "^5.2.2"
   }
 }

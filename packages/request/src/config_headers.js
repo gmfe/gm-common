@@ -19,6 +19,10 @@ function configHeaders() {
         'X-Guanmai-Client'
       ] = `${name}/${version} ${clientId}`
     })
+  } else {
+    instance.defaults.headers.common[
+      'X-Guanmai-Client'
+    ] = `${name}/${version} ${clientId}`
   }
 
   instance.interceptors.request.use(config => {

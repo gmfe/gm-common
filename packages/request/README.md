@@ -16,3 +16,7 @@ configTrace()
 
 configProgress ?
 请业务自己调用
+
+额外请求头带了
+X-Guanmai-Timeout
+X-Guanmai-Success-Code
