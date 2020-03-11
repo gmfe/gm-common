@@ -25,5 +25,8 @@
     "@gm-common/locales": "^0.0.3",
     "@gm-common/tool": "^0.0.3",
     "axios": "^0.19.2"
+  },
+  "peerDependencies": {
+    "@gm-react-app/scripts": "^1.1.8"
   }
 }
