@@ -14,8 +14,10 @@ configHeaders()
 configTrace()
 首次调用上报一次，后面每个请求都上报
 
-configProgress ?
-请业务自己调用
+configProgress(startCallback, doneCallback)
+
+configError(errorCallback)
+参数为错误 message
 
 额外请求头带了
 X-Guanmai-Timeout

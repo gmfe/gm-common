@@ -4,7 +4,7 @@ import { getLocale } from '@gm-common/locales'
 import { processPostData, hasFileData, getErrorMessage } from './util'
 
 const instance = axios.create({
-  timeout: 3000,
+  timeout: 30000,
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/x-www-form-urlencoded',
