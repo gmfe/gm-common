@@ -46,7 +46,7 @@ export const normal = () => {
               name: '你好啊',
               age: null,
               address: undefined
-            })
+            }).code(2)
             .post()
             .then(json => {
               console.log(json)
