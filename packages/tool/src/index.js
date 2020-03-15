@@ -12,6 +12,8 @@ import Storage from './storage'
 import pinyin from './pinyin'
 import pinYinFilter from './pinyin_filter'
 
+import { devWarnForHook, devWarn, warn } from './warn'
+
 import UUID from './uuid'
 import md5 from './md5'
 import is from './is'
@@ -21,8 +23,7 @@ import sortByWithIndex from './sort_by_with_index'
 import isZoom from './is_zoom'
 import getCharLength from './get_char_length'
 import isPathMatch from './is_path_match'
-
-import { devWarnForHook, devWarn, warn } from './warn'
+import sleep from './sleep'
 
 export {
   isElementInViewport,
@@ -37,6 +38,9 @@ export {
   Storage,
   pinyin,
   pinYinFilter,
+  devWarn,
+  devWarnForHook,
+  warn,
   UUID,
   md5,
   is,
@@ -46,7 +50,5 @@ export {
   isZoom,
   getCharLength,
   isPathMatch,
-  devWarn,
-  devWarnForHook,
-  warn
+  sleep
 }
