@@ -1,6 +1,6 @@
 {
   "name": "@gm-common/router",
-  "version": "0.0.7",
+  "version": "1.0.0",
   "description": "",
   "author": "liyatang <liyatang@qq.com>",
   "homepage": "https://github.com/gmfe/gm-common#readme",
@@ -21,7 +21,7 @@
     "url": "https://github.com/gmfe/gm-common/issues"
   },
   "dependencies": {
-    "@gm-common/tool": "^0.0.7",
+    "@gm-common/tool": "^1.0.0",
     "hoist-non-react-statics": "^3.3.2",
     "query-string": "^6.11.1",
     "react-router": "^5.1.2"
