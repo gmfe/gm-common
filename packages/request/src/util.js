@@ -47,8 +47,10 @@ function processPostData(data) {
           _.each(v, file => {
             body.append(k, file, file.name)
           })
-        } else {
+        } else if (isFile(v)) {
           body.append(k, v, v.name)
+        } else {
+          body.append(k, v)
         }
       })
     } else {
