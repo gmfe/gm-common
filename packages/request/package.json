@@ -27,6 +27,6 @@
     "axios": "^0.19.2"
   },
   "peerDependencies": {
-    "@gm-react-app/scripts": "^1.1.8"
+    "@gm-react-app/scripts": "^1.3.0"
   }
 }

@@ -5,6 +5,7 @@ import { withInfo } from '@storybook/addon-info'
 window.__PRODUCTION__ = 'true'
 window.__VERSION__ = '1.0.0'
 window.__NAME__ = 'station'
+window.__CLIENT_NAME__ = 'GmStation'
 window.__COMMIT__ = 'none'
 window.__BRANCH__ = 'none'
 

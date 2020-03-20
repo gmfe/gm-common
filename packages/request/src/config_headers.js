@@ -7,7 +7,7 @@ function configHeaders() {
   // 一般第一次才可能没有获得指纹，后续都会被cache
   let clientId = getCacheFingerPrint() || UUID.generate()
 
-  const name = __NAME__ // eslint-disable-line
+  const clientName = __CLIENT_NAME__ // eslint-disable-line
   const version = __VERSION__ // eslint-disable-line
 
   // 没有的时候在异步获取，获取到就设置
@@ -17,12 +17,12 @@ function configHeaders() {
 
       instance.defaults.headers.common[
         'X-Guanmai-Client'
-      ] = `${name}/${version} ${clientId}`
+      ] = `${clientName}/${version} ${clientId}`
     })
   } else {
     instance.defaults.headers.common[
       'X-Guanmai-Client'
-    ] = `${name}/${version} ${clientId}`
+    ] = `${clientName}/${version} ${clientId}`
   }
 
   instance.interceptors.request.use(config => {
