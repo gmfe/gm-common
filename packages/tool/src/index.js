@@ -24,6 +24,7 @@ import isZoom from './is_zoom'
 import getCharLength from './get_char_length'
 import isPathMatch from './is_path_match'
 import sleep from './sleep'
+import keyMirror from './key_mirror'
 
 export {
   isElementInViewport,
@@ -50,5 +51,6 @@ export {
   isZoom,
   getCharLength,
   isPathMatch,
-  sleep
+  sleep,
+  keyMirror
 }
