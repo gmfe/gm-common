@@ -62,11 +62,21 @@ function feed(url, data = {}) {
   }
 }
 
-function doInterceptors() {
+function doInterceptors(options = {}) {
   const timeMap = {}
   instance.interceptors.request.use(config => {
     const requestId = config.headers['X-Guanmai-Request-Id']
     timeMap[requestId] = Date.now()
+
+    const { url, params, data } = config
+    if (options.canRequest && options.canRequest(url)) {
+      feed(requestUrl + platform, {
+        url,
+        params,
+        data,
+        reqTime: new Date() + ''
+      })
+    }
 
     return config
   })
@@ -82,8 +92,8 @@ function doInterceptors() {
         data,
         resCode: json.code,
         resMsg: json.msg,
-        resTime: timeMap[requestId] ? Date.now() - timeMap[requestId] : '',
-        time: new Date() + ''
+        resTime: new Date() + '',
+        time: timeMap[requestId] ? Date.now() - timeMap[requestId] : ''
       })
 
       // 释放内存
@@ -100,7 +110,7 @@ function doInterceptors() {
   )
 }
 
-function configTrace() {
+function configTrace(options) {
   if (!isProduction) {
     return
   }
@@ -110,7 +120,7 @@ function configTrace() {
   feed(requestEnvUrl + platform)
 
   // 添加中间件
-  doInterceptors()
+  doInterceptors(options)
 }
 
 export default configTrace

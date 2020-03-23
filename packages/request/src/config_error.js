@@ -19,6 +19,7 @@ function configError(errorCallback) {
     },
     error => {
       errorCallback(getErrorMessage(error))
+      return Promise.reject(error)
     }
   )
 }
