@@ -74,6 +74,7 @@ function doInterceptors(options = {}) {
         url,
         params,
         data,
+        requestId,
         reqTime: new Date() + ''
       })
     }
@@ -90,6 +91,7 @@ function doInterceptors(options = {}) {
         url,
         params,
         data,
+        requestId,
         resCode: json.code,
         resMsg: json.msg,
         resTime: new Date() + '',
