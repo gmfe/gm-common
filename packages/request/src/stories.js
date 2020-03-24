@@ -21,6 +21,7 @@ export const normal = () => {
       <button
         onClick={() => {
           Request('https://www.google.com')
+            .code([0,10])
             .data({
               id: 1,
               age: null,

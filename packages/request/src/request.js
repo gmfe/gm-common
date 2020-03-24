@@ -59,7 +59,7 @@ RequestBase.prototype = {
       codes = [codes]
     }
 
-    this.sucCode.push(codes)
+    this.sucCode = this.sucCode.concat(codes)
 
     // 挂在 headers。暂时想不到其他方式传递出这个信息
     this.config.headers['X-Guanmai-Success-Code'] = this.sucCode.join(',')
