@@ -48,7 +48,7 @@ function RequestBase(url, config) {
   this.sucCode = [0]
   this.config = {
     url,
-    headers: [],
+    headers: {},
     ...config
   }
 }
