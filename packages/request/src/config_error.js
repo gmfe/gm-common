@@ -1,6 +1,13 @@
 import { instance } from './request'
 import { getLocale } from '@gm-common/locales'
-import { getErrorMessage } from './util'
+import {
+  getPerformanceInfo,
+  getErrorMessage,
+  platform,
+  requestUrl,
+  isProduction,
+  feed
+} from './util'
 
 function configError(errorCallback) {
   instance.interceptors.response.use(
@@ -18,6 +25,18 @@ function configError(errorCallback) {
       return response
     },
     error => {
+      // 上报前端连接超时的具体网络时间信息
+      if (isProduction && error.message && error.message.includes('timeout')) {
+        const { url, headers, params } = error.config
+        // 当前被超时终止的请求信息
+        const data = {
+          url,
+          headers,
+          params,
+          performance: getPerformanceInfo()
+        }
+        feed(requestUrl + platform, data)
+      }
       errorCallback(getErrorMessage(error))
       return Promise.reject(error)
     }
