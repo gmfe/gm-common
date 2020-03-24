@@ -1,5 +1,15 @@
 import _ from 'lodash'
+import { getCacheFingerPrint } from '@gm-common/fingerprint'
 import { getLocale } from '@gm-common/locales'
+
+// eslint-disable-next-line
+let platform = __NAME__
+
+// eslint-disable-next-line
+const isProduction = __PRODUCTION__
+
+const requestUrl = '//trace.guanmai.cn/api/logs/request/'
+const requestEnvUrl = '//trace.guanmai.cn/api/logs/environment/'
 
 const isFile = function(v) {
   return /\[object File\]|\[object Blob\]/.test(toString.call(v))
@@ -69,9 +79,9 @@ function getErrorMessage(error) {
   } else if (error.request) {
     if (error.message && error.message.includes('timeout')) {
       message = getLocale('连接超时')
+    } else {
+      message = getLocale('服务器错误')
     }
-
-    message = getLocale('服务器错误')
   } else {
     message = error.message
   }
@@ -79,4 +89,93 @@ function getErrorMessage(error) {
   return message
 }
 
-export { processPostData, hasFileData, getErrorMessage }
+/* eslint-disable */
+function getMetaData() {
+  const enterTime = new Date() + ''
+  return {
+    branch: __BRANCH__,
+    commit: __COMMIT__,
+    group_id:
+      window.g_group_id ||
+      window.g_partner_id ||
+      (window.g_user && window.g_user.group_id),
+    station_id: window.g_user && window.g_user.station_id,
+    cms_key: window.g_cms_config && window.g_cms_config.key,
+    name:
+      (window.g_user &&
+        (window.g_user.name ||
+          window.g_user.username ||
+          window.g_user.user_name)) ||
+      null,
+    enterTime,
+    clientId: getCacheFingerPrint(),
+    origin: window.location.href,
+    userAgent: window.navigator.userAgent
+  }
+}
+/* eslint-enable */
+
+function doFetch(url, data) {
+  window.fetch(url, {
+    method: 'post',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    mode: 'cors'
+  })
+}
+
+function feed(url, data = {}) {
+  data.metaData = Object.assign({}, data.metaData, getMetaData())
+
+  if (window.requestIdleCallback) {
+    window.requestIdleCallback(() => {
+      doFetch(url, data)
+    })
+  } else {
+    setTimeout(() => {
+      doFetch(url, data)
+    }, 10)
+  }
+}
+
+function getEntryTiming(entry) {
+  const t = entry
+  const times = {}
+  times.redirect = t.redirectEnd - t.redirectStart
+  // DNS
+  times.lookupDomain = t.domainLookupEnd - t.domainLookupStart
+  // 内容加载完成的时间
+  times.request = t.responseEnd - t.requestStart
+  // TCP 握手时间
+  times.connect = t.connectEnd - t.connectStart
+  times.duration = t.duration
+  times.name = t.name
+  return times
+}
+
+function getPerformanceInfo() {
+  const info = {}
+  if (window.performance) {
+    const entries = _.filter(
+      window.performance.getEntriesByType('resource'),
+      entry => entry.initiatorType === 'xmlhttprequest'
+    )
+    info.times = _.map(entries, entry => getEntryTiming(entry))
+  }
+  return info
+}
+
+export {
+  requestUrl,
+  requestEnvUrl,
+  platform,
+  isProduction,
+  getPerformanceInfo,
+  processPostData,
+  hasFileData,
+  getErrorMessage,
+  doFetch,
+  feed
+}
