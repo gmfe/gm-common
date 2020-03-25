@@ -120,7 +120,8 @@ function doFetch(url, data) {
     method: 'post',
     body: JSON.stringify(data),
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'X-Guanmai-Request-Id': `${data.requestId}`
     },
     mode: 'cors'
   })
