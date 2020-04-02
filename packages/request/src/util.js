@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import { getCacheFingerPrint } from '@gm-common/fingerprint'
 import { getLocale } from '@gm-common/locales'
+import axios from 'axios'
 
 // eslint-disable-next-line
 let platform = __NAME__
@@ -116,14 +117,14 @@ function getMetaData() {
 /* eslint-enable */
 
 function doFetch(url, data) {
-  window.fetch(url, {
+  axios({
+    url,
     method: 'post',
-    body: JSON.stringify(data),
+    data: JSON.stringify(data),
     headers: {
       'Content-Type': 'application/json',
       'X-Guanmai-Request-Id': `${data.requestId}`
-    },
-    mode: 'cors'
+    }
   })
 }
 
