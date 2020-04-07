@@ -24,6 +24,7 @@
     "@gm-common/fingerprint": "^1.1.0",
     "@gm-common/locales": "^1.1.0",
     "@gm-common/tool": "^1.1.0",
+    "@types/lodash": "^4.14.149",
     "axios": "^0.19.2"
   },
   "peerDependencies": {

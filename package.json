@@ -41,9 +41,9 @@
     "@types/react": "^16.9.23",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.0.6",
-    "babel-preset-gm-react-app": "^1.1.1",
+    "babel-preset-gm-react-app": "^2.0.5-alpha.4",
     "eslint": "^6.8.0",
-    "eslint-plugin-gm-react-app": "^1.1.1",
+    "eslint-plugin-gm-react-app": "^2.0.5-alpha.4",
     "fingerprintjs2": "^2.1.0",
     "husky": "^4.2.3",
     "lint-staged": "^10.0.8",
@@ -54,6 +54,8 @@
     "prop-types": "^15.7.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
+    "ts-config-gm-react-app": "^2.0.5-alpha.4",
+    "typescript": "^3.8.3",
     "webpack": "^4.41.6"
   },
   "devDependencies": {

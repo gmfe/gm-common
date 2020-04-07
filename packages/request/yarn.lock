@@ -2,28 +2,63 @@
 # yarn lockfile v1
 
 
+"@gm-common/fingerprint@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@gm-common/fingerprint/-/fingerprint-1.1.0.tgz#ab5d22de2434d0eae7b67bced610f03b8925e82b"
+  integrity sha512-QwNZo5+C+PQ3mCE7Yt9V2Okuzwa/Iz9niwrQUcKzHoPAc27JraFjqdfFW+0ak0XiwYda6LMXaFDAJRvPe6g80g==
+  dependencies:
+    "@gm-common/tool" "^1.1.0"
+    fingerprintjs2 "^2.1.0"
+
+"@gm-common/locales@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@gm-common/locales/-/locales-1.1.0.tgz#82d6ae8678a1347dc4befbb07b098482d6fe1b8e"
+  integrity sha512-niDAtoOLkSNjBO3XOCYI8YVogffRU3F6O6UniWSTYjm4K0tWxTBjev4iDr+GJ7rcWuVcOdQJaHaU4IfECoPlqA==
+
+"@gm-common/tool@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@gm-common/tool/-/tool-1.1.0.tgz#9c0f6c313fe324fea7d280d6b63447842fc63f0d"
+  integrity sha512-u8LJRiq/UHVebD6oWfw8XZK9QIpIY71/c4dHAkT19WR/c7pTEtBuVtpzndbPOV2/Eb9VHt329xYAYRjDr03B2Q==
+  dependencies:
+    lodash "^4.17.15"
+
+"@types/lodash@^4.14.149":
+  version "4.14.149"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.149.tgz#1342d63d948c6062838fbf961012f74d4e638440"
+  integrity sha512-ijGqzZt/b7BfzcK9vTrS6MFljQRPn5BFWOx8oE0GYxribu6uV+aA9zZuXI1zc/etK9E8nrgdoF2+LgUw7+9tJQ==
+
 axios@^0.19.2:
   version "0.19.2"
-  resolved "https://registry.npmjs.org/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
   integrity sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
   dependencies:
     follow-redirects "1.5.10"
 
 debug@=3.1.0:
   version "3.1.0"
-  resolved "https://registry.npmjs.org/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
   integrity sha512-OX8XqP7/1a9cqkxYw2yXss15f26NKWBpDXQd0/uK/KPqdQhxbPa994hnzjcE2VqQpDslf55723cKPUOGSmMY3g==
   dependencies:
     ms "2.0.0"
 
+fingerprintjs2@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/fingerprintjs2/-/fingerprintjs2-2.1.0.tgz#21dc3fee27d3b199056ef8eb873debccd8e06323"
+  integrity sha512-H1k/ESTD2rJ3liupyqWBPjZC+LKfCGixQzz/NDN4dkgbmG1bVFyMOh7luKSkVDoyfhgvRm62pviNMPI+eJTZcQ==
+
 follow-redirects@1.5.10:
   version "1.5.10"
-  resolved "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.5.10.tgz#7b7a9f9aea2fdff36786a94ff643ed07f4ff5e2a"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.10.tgz#7b7a9f9aea2fdff36786a94ff643ed07f4ff5e2a"
   integrity sha512-0V5l4Cizzvqt5D44aTXbFZz+FtyXV1vrDN6qrelxtfYQKW0KO0W2T/hkE8xvGa/540LkZlkaUjO4ailYTFtHVQ==
   dependencies:
     debug "=3.1.0"
 
+lodash@^4.17.15:
+  version "4.17.15"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
+  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
+
 ms@2.0.0:
   version "2.0.0"
-  resolved "https://registry.npmjs.org/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
+  resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
   integrity sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g=
