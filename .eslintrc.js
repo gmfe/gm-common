@@ -1,3 +1,3 @@
 module.exports = {
-  extends: ['plugin:gm-react-app/recommended']
+  extends: ['plugin:gm-react-app/recommended'],
 }
