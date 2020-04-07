@@ -2,7 +2,17 @@
 # yarn lockfile v1
 
 
+"@types/fingerprintjs2@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.npm.taobao.org/@types/fingerprintjs2/download/@types/fingerprintjs2-2.0.0.tgz#3af76e165416fa75261bbce4393f5445fca4cadd"
+  integrity sha1-OvduFlQW+nUmG7zkOT9URfykyt0=
+
 fingerprintjs2@^2.1.0:
   version "2.1.0"
-  resolved "https://registry.npmjs.org/fingerprintjs2/-/fingerprintjs2-2.1.0.tgz#21dc3fee27d3b199056ef8eb873debccd8e06323"
-  integrity sha512-H1k/ESTD2rJ3liupyqWBPjZC+LKfCGixQzz/NDN4dkgbmG1bVFyMOh7luKSkVDoyfhgvRm62pviNMPI+eJTZcQ==
+  resolved "https://registry.npm.taobao.org/fingerprintjs2/download/fingerprintjs2-2.1.0.tgz#21dc3fee27d3b199056ef8eb873debccd8e06323"
+  integrity sha1-Idw/7ifTsZkFbvjrhz3rzNjgYyM=
+
+ts-config-gm-react-app@^2.0.5-alpha.0:
+  version "2.0.5-alpha.0"
+  resolved "https://registry.yarnpkg.com/ts-config-gm-react-app/-/ts-config-gm-react-app-2.0.5-alpha.0.tgz#9f02c6a57364d4110d17391fe83ac942b5f17f69"
+  integrity sha512-xpZg6cwPGGTzINrCYHlFPbyWoc+UpJVMuun3rE9A+6nD9smAP2yyNnOMD0TjUCg8IrknaR1hYU9QZEYBzgFRAg==
