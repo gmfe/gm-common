@@ -1,7 +1,7 @@
-module.exports = api => {
+module.exports = (api) => {
   api.cache(true)
 
   return {
-    presets: ['gm-react-app']
+    presets: ['gm-react-app'],
   }
 }

@@ -14,7 +14,7 @@ addDecorator(
     inline: true,
     header: false,
     source: false,
-    styles: stylesheet => {
+    styles: (stylesheet) => {
       return {
         ...stylesheet,
         infoBody: {
@@ -22,9 +22,9 @@ addDecorator(
           borderTop: '1px solid #ccc',
           color: '#444',
           padding: '10px',
-          fontWeight: 'normal'
-        }
+          fontWeight: 'normal',
+        },
       }
-    }
-  })
+    },
+  }),
 )
