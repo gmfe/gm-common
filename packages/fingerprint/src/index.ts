@@ -6,9 +6,9 @@ const KEY = '_CLIENT_ID'
 // 做cache，不用每次都拿
 let _cache = Storage.get(KEY) || ''
 
-function getFingerPrint(): Promise<string> {
+function getFingerPrint(): string | Promise<string> {
   if (_cache) {
-    return _cache
+    return _cache as string
   }
 
   return new Promise(resolve => {
@@ -20,7 +20,7 @@ function getFingerPrint(): Promise<string> {
 
         Storage.set(KEY, _cache)
 
-        resolve(_cache)
+        resolve(_cache as string)
       })
     }
 
@@ -33,7 +33,7 @@ function getFingerPrint(): Promise<string> {
 }
 
 function getCacheFingerPrint(): string {
-  return _cache
+  return _cache as string
 }
 
 export { getFingerPrint, getCacheFingerPrint }
