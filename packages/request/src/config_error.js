@@ -32,8 +32,8 @@ function configError(errorCallback) {
         const data = {
           url,
           headers,
-          params,
-          performance: getPerformanceInfo()
+          params: JSON.stringify(params),
+          performance: JSON.stringify(getPerformanceInfo())
         }
         feed(requestUrl + platform, data)
       }
