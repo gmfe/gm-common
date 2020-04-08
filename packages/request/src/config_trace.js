@@ -11,8 +11,8 @@ function doInterceptors(options = {}) {
     if (options.canRequest && options.canRequest(url)) {
       feed(requestUrl + platform, {
         url,
-        params,
-        data,
+        params: JSON.stringify(params),
+        data: JSON.stringify(data),
         requestId,
         reqTime: new Date() + ''
       })
@@ -28,8 +28,8 @@ function doInterceptors(options = {}) {
 
       feed(requestUrl + platform, {
         url,
-        params,
-        data,
+        params: JSON.stringify(params),
+        data: JSON.stringify(data),
         requestId,
         resCode: json.code,
         resMsg: json.msg,
