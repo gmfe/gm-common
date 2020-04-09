@@ -2,6 +2,33 @@
 # yarn lockfile v1
 
 
+"@gm-common/fingerprint@^2.0.0-alpha.2":
+  version "2.0.0-alpha.2"
+  resolved "https://registry.npmjs.org/@gm-common/fingerprint/-/fingerprint-2.0.0-alpha.2.tgz#578c9ab58355207c3e7731365d07f43e93ef3fa9"
+  integrity sha512-IU25uUwVMzIwixhUvQGqqtsIt9Ggidc7azlR1QgZIcZFN9x4CK3F0Dxj1pKIH4igF5L0KQ4Ij3I0u5cu0uF6fQ==
+  dependencies:
+    "@gm-common/tool" "^2.0.0-alpha.2"
+    "@types/fingerprintjs2" "^2.0.0"
+    fingerprintjs2 "^2.1.0"
+
+"@gm-common/locales@^2.0.0-alpha.2":
+  version "2.0.0-alpha.2"
+  resolved "https://registry.npmjs.org/@gm-common/locales/-/locales-2.0.0-alpha.2.tgz#925586bfc98c267657f5d791e48c4829ec2cebb1"
+  integrity sha512-yeX3HnYac58aX/3Hojf55kldevnqDJGpAqJ985O6Xx3kKjeFLdWVY51Ww8IUZNYZw2S/nIXvtLUlyYs1WdZwbg==
+
+"@gm-common/tool@^2.0.0-alpha.2":
+  version "2.0.0-alpha.2"
+  resolved "https://registry.npmjs.org/@gm-common/tool/-/tool-2.0.0-alpha.2.tgz#98b4e0082c277441b5bf464bf457cd343b468c70"
+  integrity sha512-SA4H1GRfDeakXb3CQ1BVrjRAWF0O4iPis6HhvtD2tHo2DZGNtFTCwsXIs3rIpgqrIlSQeUBAwy1v3XjCjYcwHQ==
+  dependencies:
+    "@types/lodash" "^4.14.149"
+    lodash "^4.17.15"
+
+"@types/fingerprintjs2@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/@types/fingerprintjs2/-/fingerprintjs2-2.0.0.tgz#3af76e165416fa75261bbce4393f5445fca4cadd"
+  integrity sha512-isSTwNnW5I6zGZnpkinmVcV9pJqr7cLELns+tXDYzskIOAb2J+iCQ0mQJ9bRjHJhZfdlTFXZoCYK9ZgT3oMWXQ==
+
 "@types/lodash@^4.14.149":
   version "4.14.149"
   resolved "https://registry.npm.taobao.org/@types/lodash/download/@types/lodash-4.14.149.tgz#1342d63d948c6062838fbf961012f74d4e638440"
@@ -21,12 +48,22 @@ debug@=3.1.0:
   dependencies:
     ms "2.0.0"
 
+fingerprintjs2@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npmjs.org/fingerprintjs2/-/fingerprintjs2-2.1.0.tgz#21dc3fee27d3b199056ef8eb873debccd8e06323"
+  integrity sha512-H1k/ESTD2rJ3liupyqWBPjZC+LKfCGixQzz/NDN4dkgbmG1bVFyMOh7luKSkVDoyfhgvRm62pviNMPI+eJTZcQ==
+
 follow-redirects@1.5.10:
   version "1.5.10"
   resolved "https://registry.npm.taobao.org/follow-redirects/download/follow-redirects-1.5.10.tgz?cache=0&sync_timestamp=1585479417937&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ffollow-redirects%2Fdownload%2Ffollow-redirects-1.5.10.tgz#7b7a9f9aea2fdff36786a94ff643ed07f4ff5e2a"
   integrity sha1-e3qfmuov3/NnhqlP9kPtB/T/Xio=
   dependencies:
     debug "=3.1.0"
+
+lodash@^4.17.15:
+  version "4.17.15"
+  resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
+  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
 
 ms@2.0.0:
   version "2.0.0"

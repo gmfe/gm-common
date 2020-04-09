@@ -2582,10 +2582,18 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^16.9.23":
+"@types/react@*":
   version "16.9.32"
   resolved "https://registry.npm.taobao.org/@types/react/download/@types/react-16.9.32.tgz#f6368625b224604148d1ddf5920e4fefbd98d383"
   integrity sha1-9jaGJbIkYEFI0d31kg5P772Y04M=
+  dependencies:
+    "@types/prop-types" "*"
+    csstype "^2.2.0"
+
+"@types/react@^16.9.33":
+  version "16.9.33"
+  resolved "https://registry.npmjs.org/@types/react/-/react-16.9.33.tgz#a5274520f0d28cbbb73c8652ddd48646fd4bcae5"
+  integrity sha512-ovgoy7p9999HDzwv8Sewhl8GJjn/r0GRsFrM9UMwp1uodh0kQ0pwIHLQ6LNfqGSyjNzJ8II/HIg0BL7Yn/B9yA==
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
@@ -3525,10 +3533,10 @@ babel-plugin-transform-undefined-to-void@^6.9.4:
   resolved "https://registry.npm.taobao.org/babel-plugin-transform-undefined-to-void/download/babel-plugin-transform-undefined-to-void-6.9.4.tgz#be241ca81404030678b748717322b89d0c8fe280"
   integrity sha1-viQcqBQEAwZ4t0hxcyK4nQyP4oA=
 
-babel-preset-gm-react-app@^2.1.1-alpha.3:
-  version "2.1.1-alpha.3"
-  resolved "https://registry.yarnpkg.com/babel-preset-gm-react-app/-/babel-preset-gm-react-app-2.1.1-alpha.3.tgz#b503c297184b748fea6a7664ae3beda3fce8dcb6"
-  integrity sha512-eIfTCuVd0enOkF9syl4KfoN+WCcZIPsJhXu2Lup+UI0fEEI+liFwVeQQgN04L+Qbq/5GfjzjcRvJ/Ki4NQkNgw==
+babel-preset-gm-react-app@^2.1.1-alpha.5:
+  version "2.1.1-alpha.5"
+  resolved "https://registry.npmjs.org/babel-preset-gm-react-app/-/babel-preset-gm-react-app-2.1.1-alpha.5.tgz#def2eba4ad549e850d059e7858ff9d208d20d389"
+  integrity sha512-G0mscMeoAJ/6rSMOxGA85E35HsSj8cvVxOrJBWm/MlIDOYsw74bLi3Ul4jnx9z2wtNgDmDneU7cVJVZ2go6fDQ==
   dependencies:
     "@babel/cli" "^7.8.4"
     "@babel/core" "^7.8.4"
@@ -5385,10 +5393,10 @@ eslint-plugin-es@^3.0.0:
     eslint-utils "^2.0.0"
     regexpp "^3.0.0"
 
-eslint-plugin-gm-react-app@^2.1.1-alpha.3:
-  version "2.1.1-alpha.3"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-gm-react-app/-/eslint-plugin-gm-react-app-2.1.1-alpha.3.tgz#8c5acb117f47fcd78979714aea62e5ec0c827641"
-  integrity sha512-nPQZq3WCtu6eD5LIbfSx+Kh9uAachXGpMVl2KGYRG6HxXd7fMKctg6CUU92bKUDMnFKb51lrvRpYFXfB2ByFQA==
+eslint-plugin-gm-react-app@^2.1.1-alpha.5:
+  version "2.1.1-alpha.5"
+  resolved "https://registry.npmjs.org/eslint-plugin-gm-react-app/-/eslint-plugin-gm-react-app-2.1.1-alpha.5.tgz#521a39cb0992f9ca08881c18ea1a0b984c2c3d88"
+  integrity sha512-+DT8MC0Jl4Xu+FAXMNEi7PtB7mjXvs8mIn8p2n06oknUe68UuOXOroF2fTCyfAz/2AVIEXprr7Qo6tUZMZklXg==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^2.27.0"
     "@typescript-eslint/parser" "^2.27.0"
@@ -8348,10 +8356,10 @@ mobx-react-lite@2:
   resolved "https://registry.npm.taobao.org/mobx-react-lite/download/mobx-react-lite-2.0.4.tgz#bc38c9dfb56918d2d39588324d1ce1e3a649fb66"
   integrity sha1-vDjJ37VpGNLTlYgyTRzh46ZJ+2Y=
 
-mobx-react@^6.1.8:
-  version "6.2.1"
-  resolved "https://registry.npm.taobao.org/mobx-react/download/mobx-react-6.2.1.tgz#2f2cf7be2e9f9b4661a31cec3b70b8116b1ebeff"
-  integrity sha1-Lyz3vi6fm0ZhoxzsO3C4EWsevv8=
+mobx-react@^6.2.2:
+  version "6.2.2"
+  resolved "https://registry.npmjs.org/mobx-react/-/mobx-react-6.2.2.tgz#45e8e7c4894cac8399bba0a91060d7cfb8ea084b"
+  integrity sha512-Us6V4ng/iKIRJ8pWxdbdysC6bnS53ZKLKlVGBqzHx6J+gYPYbOotWvhHZnzh/W5mhpYXxlXif4kL2cxoWJOplQ==
   dependencies:
     mobx-react-lite "2"
 
@@ -9901,7 +9909,7 @@ react-textarea-autosize@^7.1.0:
     "@babel/runtime" "^7.1.2"
     prop-types "^15.6.0"
 
-react@^16.13.0, react@^16.8.3:
+react@^16.13.1, react@^16.8.3:
   version "16.13.1"
   resolved "https://registry.npm.taobao.org/react/download/react-16.13.1.tgz#2e818822f1a9743122c063d6410d85c1e3afe48e"
   integrity sha1-LoGIIvGpdDEiwGPWQQ2FweOv5I4=
@@ -11482,10 +11490,12 @@ trim-off-newlines@^1.0.0:
   resolved "https://registry.npm.taobao.org/trim-off-newlines/download/trim-off-newlines-1.0.1.tgz#9f9ba9d9efa8764c387698bcbfeb2c848f11adb3"
   integrity sha1-n5up2e+odkw4dpi8v+sshI8RrbM=
 
-ts-config-gm-react-app@^2.1.1-alpha.3:
-  version "2.1.1-alpha.3"
-  resolved "https://registry.yarnpkg.com/ts-config-gm-react-app/-/ts-config-gm-react-app-2.1.1-alpha.3.tgz#0f9f97b55940bb84836f69975ae251a5eefa2038"
-  integrity sha512-uEDvC+kS8qfYxt8VvU1PD0jUEOOijEI3Dy5K5h02AeHtn8XwH9MT4Hgk9yfmcAFM+ViEn6HPUQ+ucHH+ng87Xw==
+ts-config-gm-react-app@^2.1.1-alpha.5:
+  version "2.1.1-alpha.5"
+  resolved "https://registry.npmjs.org/ts-config-gm-react-app/-/ts-config-gm-react-app-2.1.1-alpha.5.tgz#889a75100b8c7008b8c8c1ff26fa61e68026d085"
+  integrity sha512-Lpl7xTnFsV/CUQruJ2YtZ9ijmiyHiS4iIoOXPMytVbV/tbHhFEIxpNoVfmAz//XIyiTNqJHOr39TeFCSJ9OHGA==
+  dependencies:
+    typescript "^3.8.3"
 
 ts-dedent@^1.1.0:
   version "1.1.1"
@@ -11578,8 +11588,8 @@ typedarray@^0.0.6:
 
 typescript@^3.8.3:
   version "3.8.3"
-  resolved "https://registry.npm.taobao.org/typescript/download/typescript-3.8.3.tgz#409eb8544ea0335711205869ec458ab109ee1061"
-  integrity sha1-QJ64VE6gM1cRIFhp7EWKsQnuEGE=
+  resolved "https://registry.npmjs.org/typescript/-/typescript-3.8.3.tgz#409eb8544ea0335711205869ec458ab109ee1061"
+  integrity sha512-MYlEfn5VrLNsgudQTVJeNaQFUAI7DkhnOjdpAp4T+ku1TfQClewlbSuTVHiA+8skNBgaf02TL/kLOvig4y3G8w==
 
 ua-parser-js@^0.7.18:
   version "0.7.21"

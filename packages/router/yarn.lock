@@ -9,6 +9,14 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@gm-common/tool@^2.0.0-alpha.2":
+  version "2.0.0-alpha.2"
+  resolved "https://registry.npmjs.org/@gm-common/tool/-/tool-2.0.0-alpha.2.tgz#98b4e0082c277441b5bf464bf457cd343b468c70"
+  integrity sha512-SA4H1GRfDeakXb3CQ1BVrjRAWF0O4iPis6HhvtD2tHo2DZGNtFTCwsXIs3rIpgqrIlSQeUBAwy1v3XjCjYcwHQ==
+  dependencies:
+    "@types/lodash" "^4.14.149"
+    lodash "^4.17.15"
+
 "@types/history@*", "@types/history@^4.7.5":
   version "4.7.5"
   resolved "https://registry.npm.taobao.org/@types/history/download/@types/history-4.7.5.tgz#527d20ef68571a4af02ed74350164e7a67544860"
@@ -98,6 +106,11 @@ isarray@0.0.1:
   version "4.0.0"
   resolved "https://registry.npm.taobao.org/js-tokens/download/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
   integrity sha1-GSA/tZmR35jjoocFDUZHzerzJJk=
+
+lodash@^4.17.15:
+  version "4.17.15"
+  resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
+  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
 
 loose-envify@^1.2.0, loose-envify@^1.3.1, loose-envify@^1.4.0:
   version "1.4.0"

@@ -3,9 +3,9 @@ import { getCacheFingerPrint } from '@gm-common/fingerprint'
 import { getLocale } from '@gm-common/locales'
 import axios from 'axios'
 
-const platform = __NAME__
+const platform = __NAME__ // eslint-disable-line
 
-const isProduction = __PRODUCTION__
+const isProduction = __PRODUCTION__ // eslint-disable-line
 
 const requestUrl = '//trace.guanmai.cn/api/logs/request/'
 const requestEnvUrl = '//trace.guanmai.cn/api/logs/environment/'
