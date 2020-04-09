@@ -12,7 +12,7 @@ function configHeaders(): void {
 
   // 没有的时候在异步获取，获取到就设置
   if (!getCacheFingerPrint()) {
-    ;(<Promise<string>>getFingerPrint()).then((id) => {
+    getFingerPrint().then((id) => {
       clientId = id
 
       instance.defaults.headers.common[
