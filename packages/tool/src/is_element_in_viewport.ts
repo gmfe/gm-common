@@ -1,4 +1,4 @@
-export default function(dom: HTMLElement): boolean {
+export default function (dom: HTMLElement): boolean {
   const rect = dom.getBoundingClientRect()
   return (
     rect.top >= 0 &&

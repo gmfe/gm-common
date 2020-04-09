@@ -26,7 +26,7 @@ export default class Storage {
   static getAll(): unknown {
     const result: { [key: string]: any } = {}
     const length = localStorage.length
-    each(range(length), i => {
+    each(range(length), (i) => {
       let key = localStorage.key(i)
       if (key?.startsWith(prefix)) {
         key = key.slice(prefix.length)

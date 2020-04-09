@@ -6,14 +6,14 @@ import {
   platform,
   requestUrl,
   isProduction,
-  feed
+  feed,
 } from './util'
 
 function configError(errorCallback: (msg: string) => void): void {
   instance.interceptors.response.use(
-    response => {
+    (response) => {
       const sucCode = response.config.headers['X-Guanmai-Success-Code'].split(
-        ','
+        ',',
       )
       const json = response.data
 
@@ -24,7 +24,7 @@ function configError(errorCallback: (msg: string) => void): void {
 
       return response
     },
-    error => {
+    (error) => {
       // 上报前端连接超时的具体网络时间信息
       if (isProduction && error.message && error.message.includes('timeout')) {
         const { url, headers, params } = error.config
@@ -33,13 +33,13 @@ function configError(errorCallback: (msg: string) => void): void {
           url,
           headers,
           params: JSON.stringify(params),
-          performance: JSON.stringify(getPerformanceInfo())
+          performance: JSON.stringify(getPerformanceInfo()),
         }
         feed(requestUrl + platform, data)
       }
       errorCallback(getErrorMessage(error))
       return Promise.reject(error)
-    }
+    },
   )
 }
 

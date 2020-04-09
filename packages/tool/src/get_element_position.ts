@@ -1,5 +1,5 @@
 export default function getElementPosition(
-  element: HTMLElement
+  element: HTMLElement,
 ): { top: number; left: number } {
   let top = element.offsetTop
   let left = element.offsetLeft
@@ -11,6 +11,6 @@ export default function getElementPosition(
   }
   return {
     top,
-    left
+    left,
   }
 }

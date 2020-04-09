@@ -50,7 +50,7 @@ const UUID = {
       }
     }
     return str
-  }
+  },
 }
 
 export default UUID

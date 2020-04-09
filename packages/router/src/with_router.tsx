@@ -8,13 +8,13 @@ import processReactRouterProps from './process_react_router_props'
 // react-router 取参数是  queryString(location.search).xxx
 // 现在是 location.query.xxx 即可
 const withRouterCompatible = (
-  Component: ForwardRefRenderFunction<any, any>
+  Component: ForwardRefRenderFunction<any, any>,
 ): ComponentType => {
   const C = (props: { [key: string]: any }) => {
     const { wrappedComponentRef, ...remainingProps } = props
     return (
       <Route
-        render={routeComponentProps => (
+        render={(routeComponentProps) => (
           <Component
             {...remainingProps}
             {...processReactRouterProps(routeComponentProps)}
@@ -28,7 +28,7 @@ const withRouterCompatible = (
   C.displayName = `withRouter(${Component.displayName || Component.name})`
   C.WrappedComponent = Component
   C.propTypes = {
-    wrappedComponentRef: PropTypes.func
+    wrappedComponentRef: PropTypes.func,
   }
 
   return hoistStatics(C, Component)

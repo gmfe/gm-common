@@ -9,7 +9,7 @@ const moduleMap = {
   zh: lng1,
   'zh-HK': lng2,
   en: lng3,
-  th: lng4
+  th: lng4,
 }
 let _language: string = window.localStorage.getItem(LOCALES_LNG) ?? 'zh'
 

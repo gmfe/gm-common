@@ -17,7 +17,7 @@
     "parser": "babel-eslint"
   },
   "lint-staged": {
-    "./packages/**/*.js": [
+    "./packages/**/*.{js,ts,tsx}": [
       "eslint --cache --fix"
     ]
   },
@@ -43,9 +43,7 @@
     "babel-loader": "^8.0.6",
     "babel-preset-gm-react-app": "^2.1.1-alpha.3",
     "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-gm-react-app": "^2.1.1-alpha.3",
-    "eslint-plugin-prettier": "^3.1.2",
     "fingerprintjs2": "^2.1.0",
     "husky": "^4.2.3",
     "lint-staged": "^10.0.8",
@@ -57,7 +55,6 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "ts-config-gm-react-app": "^2.1.1-alpha.3",
-    "typescript": "^3.8.3",
     "webpack": "^4.41.6"
   },
   "devDependencies": {

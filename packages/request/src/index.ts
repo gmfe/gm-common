@@ -12,5 +12,5 @@ export {
   configHeaders,
   configTrace,
   configError,
-  configProgress
+  configProgress,
 }

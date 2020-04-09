@@ -24,7 +24,7 @@ function md5cmn(
   b: number,
   x: number,
   s: number,
-  t: number
+  t: number,
 ): number {
   return safeAdd(bitRotateLeft(safeAdd(safeAdd(a, q), safeAdd(x, t)), s), b)
 }
@@ -36,7 +36,7 @@ function md5ff(
   d: number,
   x: number,
   s: number,
-  t: number
+  t: number,
 ): number {
   return md5cmn((b & c) | (~b & d), a, b, x, s, t)
 }
@@ -48,7 +48,7 @@ function md5gg(
   d: number,
   x: number,
   s: number,
-  t: number
+  t: number,
 ): number {
   return md5cmn((b & d) | (c & ~d), a, b, x, s, t)
 }
@@ -60,7 +60,7 @@ function md5hh(
   d: number,
   x: number,
   s: number,
-  t: number
+  t: number,
 ): number {
   return md5cmn(b ^ c ^ d, a, b, x, s, t)
 }
@@ -72,7 +72,7 @@ function md5ii(
   d: number,
   x: number,
   s: number,
-  t: number
+  t: number,
 ): number {
   return md5cmn(c ^ (b | ~d), a, b, x, s, t)
 }

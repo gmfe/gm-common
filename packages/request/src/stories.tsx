@@ -5,14 +5,14 @@ configTrace()
 configHeaders()
 
 instance.interceptors.response.use(
-  response => {
+  (response) => {
     console.log(response)
     return response
   },
-  error => {
+  (error) => {
     console.log(error)
     return Promise.reject(error)
-  }
+  },
 )
 
 export const normal = () => {
@@ -25,13 +25,13 @@ export const normal = () => {
             .data({
               id: 1,
               age: null,
-              address: undefined
+              address: undefined,
             })
             .get()
-            .then(json => {
+            .then((json) => {
               console.log(json)
             })
-            .catch(error => {
+            .catch((error) => {
               console.log(error)
             })
         }}
@@ -46,14 +46,14 @@ export const normal = () => {
               id: 1,
               name: '你好啊',
               age: null,
-              address: undefined
+              address: undefined,
             })
             .code(2)
             .post()
-            .then(json => {
+            .then((json) => {
               console.log(json)
             })
-            .catch(error => {
+            .catch((error) => {
               console.log(error)
             })
         }}
@@ -63,17 +63,17 @@ export const normal = () => {
       <br />
       <input
         type='file'
-        onChange={e => {
+        onChange={(e) => {
           const file = e.target.files?.[0]
           Request('/asdfas')
             .data({
-              file
+              file,
             })
             .post()
-            .then(json => {
+            .then((json) => {
               console.log(json)
             })
-            .catch(error => {
+            .catch((error) => {
               console.log(error)
             })
         }}
@@ -83,5 +83,5 @@ export const normal = () => {
 }
 
 export default {
-  title: 'Request|Request'
+  title: 'Request|Request',
 }

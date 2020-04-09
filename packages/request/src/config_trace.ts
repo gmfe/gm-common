@@ -3,7 +3,7 @@ import { feed, requestUrl, requestEnvUrl, platform, isProduction } from './util'
 
 function doInterceptors(options: { [key: string]: any } = {}): void {
   const timeMap: { [key: string]: any } = {}
-  instance.interceptors.request.use(config => {
+  instance.interceptors.request.use((config) => {
     const requestId = config.headers['X-Guanmai-Request-Id']
     timeMap[requestId] = Date.now()
 
@@ -14,14 +14,14 @@ function doInterceptors(options: { [key: string]: any } = {}): void {
         params: JSON.stringify(params),
         data: JSON.stringify(data),
         requestId,
-        reqTime: new Date() + ''
+        reqTime: new Date() + '',
       })
     }
 
     return config
   })
   instance.interceptors.response.use(
-    response => {
+    (response) => {
       const json = response.data
       const { url, headers, params, data } = response.config
       const requestId = headers['X-Guanmai-Request-Id']
@@ -34,7 +34,7 @@ function doInterceptors(options: { [key: string]: any } = {}): void {
         resCode: json.code,
         resMsg: json.msg,
         resTime: new Date() + '',
-        time: timeMap[requestId] ? Date.now() - timeMap[requestId] : ''
+        time: timeMap[requestId] ? Date.now() - timeMap[requestId] : '',
       })
 
       // 释放内存
@@ -44,10 +44,10 @@ function doInterceptors(options: { [key: string]: any } = {}): void {
 
       return response
     },
-    error => {
+    (error) => {
       // 就不上报了，意义不大
       return Promise.reject(error)
-    }
+    },
   )
 }
 

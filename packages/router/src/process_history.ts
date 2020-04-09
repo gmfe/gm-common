@@ -18,7 +18,7 @@ function processHistory(history: ProcessHistoryOptions) {
 
   // url
   // {pathname query search}
-  history.push = function(one) {
+  history.push = function (one) {
     if (!_.isPlainObject(one)) {
       return _push(one)
     }
@@ -32,7 +32,7 @@ function processHistory(history: ProcessHistoryOptions) {
     _push.apply(this, [o])
   }
 
-  history.replace = function(one) {
+  history.replace = function (one) {
     if (!_.isPlainObject(one)) {
       return _replace(one)
     }

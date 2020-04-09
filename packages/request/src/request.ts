@@ -9,12 +9,12 @@ const instance = axios.create({
     Accept: 'application/json',
     'Content-Type': 'application/x-www-form-urlencoded',
     'X-Guanmai-Timeout': '30000',
-    'X-Guanmai-Success-Code': '0'
-  }
+    'X-Guanmai-Success-Code': '0',
+  },
 })
 
 // 处理下数据
-instance.interceptors.request.use(config => {
+instance.interceptors.request.use((config) => {
   if (config.method === 'post') {
     if (hasFileData(config.data)) {
       config.headers['Content-Type'] = 'multipart/form-data'
@@ -58,7 +58,7 @@ class RequestBase {
     this._config = {
       url,
       headers: {},
-      ...config
+      ...config,
     }
   }
 
@@ -93,7 +93,7 @@ class RequestBase {
     this._config.params = this._data
     return instance
       .request(this._config)
-      .then(res => httpResolve(res, this._sucCode), httpReject)
+      .then((res) => httpResolve(res, this._sucCode), httpReject)
   }
 
   public post(): Promise<unknown> {
@@ -101,7 +101,7 @@ class RequestBase {
     this._config.method = 'post'
     return instance
       .request(this._config)
-      .then(res => httpResolve(res, this._sucCode), httpReject)
+      .then((res) => httpResolve(res, this._sucCode), httpReject)
   }
 }
 

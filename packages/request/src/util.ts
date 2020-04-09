@@ -10,21 +10,21 @@ const isProduction = __PRODUCTION__
 const requestUrl = '//trace.guanmai.cn/api/logs/request/'
 const requestEnvUrl = '//trace.guanmai.cn/api/logs/environment/'
 
-const isFile = function(v: object): boolean {
+const isFile = function (v: object): boolean {
   return /\[object File]|\[object Blob]/.test(toString.call(v))
 }
 
-const isFiles = function(v: any[]): boolean {
+const isFiles = function (v: any[]): boolean {
   return toString.call(v) === '[object Array]' && isFile(v[0])
 }
 
 function hasFileData(data: any[]): boolean {
-  return !!_.find(data, v => isFile(v) || isFiles(v))
+  return !!_.find(data, (v) => isFile(v) || isFiles(v))
 }
 
 function param(obj: object): string {
   // encodeURIComponent
-  return _.map(obj, function(v, k) {
+  return _.map(obj, function (v, k) {
     return [encodeURIComponent(k), '=', encodeURIComponent(v)].join('')
   })
     .join('&')
@@ -42,7 +42,7 @@ function processPostData(data: any) {
 
     // 过滤null  undefined 只Object 类型。
     // 会修改，所以 ...
-    data = _.pickBy({ ...data }, value => {
+    data = _.pickBy({ ...data }, (value) => {
       return value !== null && value !== undefined
     })
 
@@ -53,7 +53,7 @@ function processPostData(data: any) {
       _.forEach(data, (v, k) => {
         // 还有这种情况？
         if (isFiles(v)) {
-          _.each(v, file => {
+          _.each(v, (file) => {
             body.append(k, file, file.name)
           })
         } else if (isFile(v)) {
@@ -109,7 +109,7 @@ function getMetaData() {
     enterTime,
     clientId: getCacheFingerPrint(),
     origin: window.location.href,
-    userAgent: window.navigator.userAgent
+    userAgent: window.navigator.userAgent,
   }
 }
 /* eslint-enable */
@@ -121,8 +121,8 @@ function doFetch(url: string, data: { [key: string]: any }): void {
     data: JSON.stringify(data),
     headers: {
       'Content-Type': 'application/json',
-      'X-Guanmai-Request-Id': `${data.requestId}`
-    }
+      'X-Guanmai-Request-Id': `${data.requestId}`,
+    },
   })
 }
 
@@ -161,10 +161,10 @@ function getPerformanceInfo() {
     const entries = _.filter(
       window.performance.getEntriesByType('resource'),
       (entry: { initiatorType: string }) =>
-        entry.initiatorType === 'xmlhttprequest'
+        entry.initiatorType === 'xmlhttprequest',
     )
     info.times = _.map(entries, (entry: { [key: string]: any }) =>
-      getEntryTiming(entry)
+      getEntryTiming(entry),
     )
   }
   return info
@@ -180,5 +180,5 @@ export {
   hasFileData,
   getErrorMessage,
   doFetch,
-  feed
+  feed,
 }

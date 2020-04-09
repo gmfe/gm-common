@@ -52,5 +52,5 @@ export {
   getCharLength,
   isPathMatch,
   sleep,
-  keyMirror
+  keyMirror,
 }

@@ -11,10 +11,10 @@ function getFingerPrint(): string | Promise<string> {
     return _cache as string
   }
 
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const handleCallback = () => {
-      Fingerprint2.get(components => {
-        const values = components.map(v => v.value)
+      Fingerprint2.get((components) => {
+        const values = components.map((v) => v.value)
 
         _cache = Fingerprint2.x64hash128(values.join(''), 31)
 

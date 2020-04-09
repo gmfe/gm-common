@@ -111,7 +111,7 @@ const is = {
 
   chinese,
 
-  strongPassword
+  strongPassword,
 }
 
 export default is

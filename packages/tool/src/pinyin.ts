@@ -5,7 +5,7 @@ let instance: (source: string, style?: string) => string
 const pinyin = (source: string, style?: string): string => {
   if (is.android()) {
     console.warn(
-      '移动端 Android 存在不支持 pinyin，因 localeCompare 存在兼容性问题'
+      '移动端 Android 存在不支持 pinyin，因 localeCompare 存在兼容性问题',
     )
   }
 
@@ -423,7 +423,7 @@ const pinyin = (source: string, style?: string): string => {
     钻: 'zuan',
     厜: 'zui',
     尊: 'zun',
-    昨: 'zuo'
+    昨: 'zuo',
   }
   // 修正不正确的拼音
   const fixedWrongPinyinHanzis = {
@@ -443,7 +443,7 @@ const pinyin = (source: string, style?: string): string => {
     帧: 'zhen',
     郍: 'na',
     芎: 'xiong',
-    谁: 'shui'
+    谁: 'shui',
   }
   const hanzis = Object.keys(HANZI_TO_PINYIN)
   const pinyins = Object.values(HANZI_TO_PINYIN)
@@ -451,7 +451,7 @@ const pinyin = (source: string, style?: string): string => {
   const cache: { [key: string]: any } = Object.assign(
     {},
     HANZI_TO_PINYIN,
-    fixedWrongPinyinHanzis
+    fixedWrongPinyinHanzis,
   )
   // safari 浏览器修正一些比较汉字
   const isSafari = !!navigator.userAgent.match(/Version\/[\d.]+.*Safari/)
@@ -486,9 +486,9 @@ const pinyin = (source: string, style?: string): string => {
       夈: '捚',
       枬: '沾',
       凧: '争',
-      州: '诌'
+      州: '诌',
     }
-    Object.keys(fixedComparedHanzisInSafari).forEach(function(hanzi) {
+    Object.keys(fixedComparedHanzisInSafari).forEach(function (hanzi) {
       hanzis[hanzis.indexOf(hanzi)] = fixedComparedHanzisInSafari[hanzi]
     })
     // 如果不需要在 safari 中修正以下汉字，则将以下汉字注释掉即可
@@ -670,7 +670,7 @@ const pinyin = (source: string, style?: string): string => {
       赼: 'zi',
       荢: 'zi',
       燪: 'zong',
-      唨: 'zu'
+      唨: 'zu',
     }
     Object.assign(cache, safariFixedHanzis)
   }
@@ -717,7 +717,7 @@ const pinyin = (source: string, style?: string): string => {
   const _pinyin = (source: string, style?: string): string => {
     let foundPinyin = ''
 
-    _.forEach(source, target => {
+    _.forEach(source, (target) => {
       foundPinyin += convert(target, style)
     })
 
