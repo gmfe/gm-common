@@ -1,6 +1,6 @@
 interface Window {
-  /* eslint-disable */
   requestIdleCallback(fn: () => any): void
+  /* eslint-disable */
   __wxjs_environment: string
   __PRODUCTION__: string
   __VERSION__: string
