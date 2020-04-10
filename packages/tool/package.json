@@ -9,7 +9,6 @@
     "access": "public"
   },
   "main": "src/index.ts",
-  "module": "src/index.ts",
   "types": "src/index.ts",
   "repository": {
     "type": "git",
