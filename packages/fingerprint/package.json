@@ -23,6 +23,7 @@
   "dependencies": {
     "@gm-common/tool": "^2.0.0-alpha.7",
     "@types/fingerprintjs2": "^2.0.0",
-    "fingerprintjs2": "^2.1.0"
+    "fingerprintjs2": "^2.1.0",
+    "ts-config-gm-react-app": "^2.0.5-alpha.0"
   }
 }

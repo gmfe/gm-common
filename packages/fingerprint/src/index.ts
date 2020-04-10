@@ -4,12 +4,12 @@ import { Storage } from '@gm-common/tool'
 const KEY = '_CLIENT_ID'
 
 // 做cache，不用每次都拿
-let _cache = Storage.get(KEY) || ''
+let _cache: string = (Storage.get(KEY) as string) || ''
 
 function getFingerPrint(): Promise<string> {
   return new Promise((resolve) => {
     if (_cache) {
-      resolve(_cache as string)
+      resolve(_cache)
     } else {
       const handleCallback = () => {
         Fingerprint2.get((components) => {
@@ -19,7 +19,7 @@ function getFingerPrint(): Promise<string> {
 
           Storage.set(KEY, _cache)
 
-          resolve(_cache as string)
+          resolve(_cache)
         })
       }
 
@@ -33,7 +33,7 @@ function getFingerPrint(): Promise<string> {
 }
 
 function getCacheFingerPrint(): string {
-  return _cache as string
+  return _cache
 }
 
 export { getFingerPrint, getCacheFingerPrint }

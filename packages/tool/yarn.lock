@@ -11,3 +11,8 @@ lodash@^4.17.15:
   version "4.17.15"
   resolved "https://registry.npm.taobao.org/lodash/download/lodash-4.17.15.tgz?cache=0&sync_timestamp=1571657272199&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Flodash%2Fdownload%2Flodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha1-tEf2ZwoEVbv+7dETku/zMOoJdUg=
+
+ts-config-gm-react-app@^2.0.5-alpha.0:
+  version "2.0.5-alpha.0"
+  resolved "https://registry.yarnpkg.com/ts-config-gm-react-app/-/ts-config-gm-react-app-2.0.5-alpha.0.tgz#9f02c6a57364d4110d17391fe83ac942b5f17f69"
+  integrity sha512-xpZg6cwPGGTzINrCYHlFPbyWoc+UpJVMuun3rE9A+6nD9smAP2yyNnOMD0TjUCg8IrknaR1hYU9QZEYBzgFRAg==
