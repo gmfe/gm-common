@@ -4,15 +4,22 @@
 
 "@types/lodash@^4.14.149":
   version "4.14.149"
-  resolved "https://registry.npm.taobao.org/@types/lodash/download/@types/lodash-4.14.149.tgz#1342d63d948c6062838fbf961012f74d4e638440"
-  integrity sha1-E0LWPZSMYGKDj7+WEBL3TU5jhEA=
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.149.tgz#1342d63d948c6062838fbf961012f74d4e638440"
+  integrity sha512-ijGqzZt/b7BfzcK9vTrS6MFljQRPn5BFWOx8oE0GYxribu6uV+aA9zZuXI1zc/etK9E8nrgdoF2+LgUw7+9tJQ==
 
 lodash@^4.17.15:
   version "4.17.15"
-  resolved "https://registry.npm.taobao.org/lodash/download/lodash-4.17.15.tgz?cache=0&sync_timestamp=1571657272199&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Flodash%2Fdownload%2Flodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
-  integrity sha1-tEf2ZwoEVbv+7dETku/zMOoJdUg=
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
+  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
 
-ts-config-gm-react-app@^2.0.5-alpha.0:
-  version "2.0.5-alpha.0"
-  resolved "https://registry.yarnpkg.com/ts-config-gm-react-app/-/ts-config-gm-react-app-2.0.5-alpha.0.tgz#9f02c6a57364d4110d17391fe83ac942b5f17f69"
-  integrity sha512-xpZg6cwPGGTzINrCYHlFPbyWoc+UpJVMuun3rE9A+6nD9smAP2yyNnOMD0TjUCg8IrknaR1hYU9QZEYBzgFRAg==
+ts-config-gm-react-app@^2.2.0-alpha.1:
+  version "2.2.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/ts-config-gm-react-app/-/ts-config-gm-react-app-2.2.0-alpha.1.tgz#ccde7f98cc15320b0c15b981d169c8aaab5a9147"
+  integrity sha512-dzqB51O18InXNAM7Sm6Aagwf5VhaQNqjh5X81LgzdCs639Jx5HT4uAppLRUSxnOV24LpZLQBCytezrBQijvSng==
+  dependencies:
+    typescript "^3.8.3"
+
+typescript@^3.8.3:
+  version "3.8.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.8.3.tgz#409eb8544ea0335711205869ec458ab109ee1061"
+  integrity sha512-MYlEfn5VrLNsgudQTVJeNaQFUAI7DkhnOjdpAp4T+ku1TfQClewlbSuTVHiA+8skNBgaf02TL/kLOvig4y3G8w==
