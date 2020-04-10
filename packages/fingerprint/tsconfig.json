@@ -1,8 +1,3 @@
 {
-  "extends": "ts-config-gm-react-app/tsconfig",
-  "compilerOptions": {
-    "downlevelIteration": true,
-    "noImplicitThis": false,
-    "declaration": true
-  }
+  "extends": "ts-config-gm-react-app/tsconfig"
 }
