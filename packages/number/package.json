@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@types/big.js": "^4.0.5",
-    "big.js": "^5.2.2"
+    "big.js": "^5.2.2",
+    "ts-config-gm-react-app": "^2.1.1-alpha.11"
   }
 }

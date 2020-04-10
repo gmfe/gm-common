@@ -20,5 +20,8 @@
   },
   "bugs": {
     "url": "https://github.com/gmfe/gm-common/issues"
+  },
+  "dependencies": {
+    "ts-config-gm-react-app": "^2.1.1-alpha.11"
   }
 }
