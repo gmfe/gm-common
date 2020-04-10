@@ -2,6 +2,7 @@
   "extends": "ts-config-gm-react-app/tsconfig",
   "compilerOptions": {
     "downlevelIteration": true,
-    "noImplicitThis": false
+    "noImplicitThis": false,
+    "declaration": true
   }
 }
