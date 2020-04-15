@@ -5,12 +5,22 @@ const { localStorage } = window
 
 export default class Storage {
   static set(key: string, value: any): void {
-    localStorage.setItem(`${prefix}${key}`, JSON.stringify(value))
+    try {
+      localStorage.setItem(`${prefix}${key}`, JSON.stringify(value))
+    } catch (err) {
+      console.warn('Storage set error', err)
+    }
   }
 
   static get(key: string): unknown {
     const value = localStorage.getItem(prefix + key)
-    return value ? JSON.parse(value) : value
+    try {
+      return value ? JSON.parse(value) : value
+    } catch (err) {
+      console.warn('Storage set error', err)
+      // 如果 parse 错误，代表这个存储错误，认为就是没有这个存储，保持和没存储的表现一直，返回 null
+      return null
+    }
   }
 
   static remove(key: string): void {
