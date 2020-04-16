@@ -9,9 +9,11 @@ import {
   feed,
 } from './util'
 
-function configError(errorCallback: (msg: string) => void): void {
+function configError(
+  errorCallback: (msg: string, response?: any) => void,
+): void {
   instance.interceptors.response.use(
-    (response) => {
+    response => {
       const sucCode = response.config.headers['X-Guanmai-Success-Code'].split(
         ',',
       )
@@ -19,12 +21,12 @@ function configError(errorCallback: (msg: string) => void): void {
 
       if (!sucCode.includes(json.code + '')) {
         const msg = json.msg || getLocale('未知错误')
-        errorCallback(msg)
+        errorCallback(msg, response)
       }
 
       return response
     },
-    (error) => {
+    error => {
       // 上报前端连接超时的具体网络时间信息
       if (isProduction && error.message && error.message.includes('timeout')) {
         const { url, headers, params } = error.config
