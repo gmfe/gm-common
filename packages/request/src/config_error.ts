@@ -19,7 +19,7 @@ function configError(errorCallback: (msg: string) => void): void {
 
       if (!sucCode.includes(json.code + '')) {
         const msg = json.msg || getLocale('未知错误')
-        errorCallback(msg)
+        errorCallback(msg, response)
       }
 
       return response
