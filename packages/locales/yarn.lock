@@ -2,14 +2,7 @@
 # yarn lockfile v1
 
 
-ts-config-gm-react-app@^2.2.0-alpha.4:
-  version "2.2.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/ts-config-gm-react-app/-/ts-config-gm-react-app-2.2.0-alpha.4.tgz#f49f5c6c2b24d51c68bcec8c07618ed9fa4b635b"
-  integrity sha512-HOjt8u6EC+THjAMbTpg7OzQZzemjy3b/NNXRbik9nOFVRefqZoPTyOB/ZIZlYXGkukS19tGCnJt7IiBVWu4rOg==
-  dependencies:
-    typescript "^3.8.3"
-
-typescript@^3.8.3:
-  version "3.8.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.8.3.tgz#409eb8544ea0335711205869ec458ab109ee1061"
-  integrity sha512-MYlEfn5VrLNsgudQTVJeNaQFUAI7DkhnOjdpAp4T+ku1TfQClewlbSuTVHiA+8skNBgaf02TL/kLOvig4y3G8w==
+ts-config-gm-react-app@3.0.2:
+  version "3.0.2"
+  resolved "https://registry.npm.taobao.org/ts-config-gm-react-app/download/ts-config-gm-react-app-3.0.2.tgz#0427fb61c3cc6f551d1d7668586e8b857e5ab13d"
+  integrity sha1-BCf7YcPMb1UdHXZoWG6LhX5asT0=

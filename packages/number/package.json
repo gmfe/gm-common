@@ -1,6 +1,6 @@
 {
   "name": "@gm-common/number",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "",
   "author": "liyatang <liyatang@qq.com>",
   "homepage": "https://github.com/gmfe/gm-common#readme",
@@ -25,6 +25,6 @@
     "@types/lodash": "^4.14.149",
     "big.js": "^5.2.2",
     "lodash": "^4.17.15",
-    "ts-config-gm-react-app": "^2.2.0-alpha.4"
+    "ts-config-gm-react-app": "3.0.2"
   }
 }

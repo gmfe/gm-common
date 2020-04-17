@@ -9,6 +9,15 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@gm-common/tool@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.npm.taobao.org/@gm-common/tool/download/@gm-common/tool-2.0.1.tgz#5370022a89353f59d86d788d77e6d1f6d0ed63d9"
+  integrity sha1-U3ACKok1P1nYbXiNd+bR9tDtY9k=
+  dependencies:
+    "@types/lodash" "^4.14.149"
+    lodash "^4.17.15"
+    ts-config-gm-react-app "^2.2.0-alpha.4"
+
 "@types/history@*", "@types/history@^4.7.5":
   version "4.7.5"
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.7.5.tgz#527d20ef68571a4af02ed74350164e7a67544860"
@@ -200,6 +209,11 @@ tiny-warning@^1.0.0, tiny-warning@^1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/tiny-warning/-/tiny-warning-1.0.3.tgz#94a30db453df4c643d0fd566060d60a875d84754"
   integrity sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==
+
+ts-config-gm-react-app@3.0.2:
+  version "3.0.2"
+  resolved "https://registry.npm.taobao.org/ts-config-gm-react-app/download/ts-config-gm-react-app-3.0.2.tgz#0427fb61c3cc6f551d1d7668586e8b857e5ab13d"
+  integrity sha1-BCf7YcPMb1UdHXZoWG6LhX5asT0=
 
 ts-config-gm-react-app@^2.2.0-alpha.4:
   version "2.2.0-alpha.4"
