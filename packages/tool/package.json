@@ -23,7 +23,7 @@
   "dependencies": {
     "@types/lodash": "^4.14.149",
     "lodash": "^4.17.15",
-    "ts-config-gm-react-app": "^2.2.0-alpha.4"
+    "ts-config-gm-react-app": "3.0.2"
   },
   "peerDependencies": {
     "react": "^16.13.1"
