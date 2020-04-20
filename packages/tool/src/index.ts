@@ -26,6 +26,7 @@ import isPathMatch from './is_path_match'
 import sleep from './sleep'
 import keyMirror from './key_mirror'
 import formatNumber from './format_number'
+import * as ImageUtil from './image'
 
 export {
   isElementInViewport,
@@ -54,5 +55,6 @@ export {
   isPathMatch,
   sleep,
   keyMirror,
-  formatNumber
+  formatNumber,
+  ImageUtil,
 }

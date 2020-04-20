@@ -2,6 +2,7 @@ import _ from 'lodash'
 import { getCacheFingerPrint } from '@gm-common/fingerprint'
 import { getLocale } from '@gm-common/locales'
 import axios from 'axios'
+import { UUID } from '@gm-common/tool'
 
 const platform = __NAME__ // eslint-disable-line
 
@@ -115,8 +116,9 @@ function getMetaData() {
 /* eslint-enable */
 
 function doFetch(url: string, data: { [key: string]: any }): void {
+  const v = UUID.generate()
   axios({
-    url,
+    url: `${url}?v=${v}`,
     method: 'post',
     data: JSON.stringify(data),
     headers: {
