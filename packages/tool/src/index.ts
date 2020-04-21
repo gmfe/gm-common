@@ -25,7 +25,6 @@ import getCharLength from './get_char_length'
 import isPathMatch from './is_path_match'
 import sleep from './sleep'
 import keyMirror from './key_mirror'
-import * as ImageUtil from './image'
 
 export {
   isElementInViewport,
@@ -54,5 +53,4 @@ export {
   isPathMatch,
   sleep,
   keyMirror,
-  ImageUtil,
 }
