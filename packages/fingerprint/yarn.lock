@@ -2,48 +2,17 @@
 # yarn lockfile v1
 
 
-"@gm-common/tool@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.npm.taobao.org/@gm-common/tool/download/@gm-common/tool-2.0.1.tgz#5370022a89353f59d86d788d77e6d1f6d0ed63d9"
-  integrity sha1-U3ACKok1P1nYbXiNd+bR9tDtY9k=
-  dependencies:
-    "@types/lodash" "^4.14.149"
-    lodash "^4.17.15"
-    ts-config-gm-react-app "^2.2.0-alpha.4"
-
 "@types/fingerprintjs2@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@types/fingerprintjs2/-/fingerprintjs2-2.0.0.tgz#3af76e165416fa75261bbce4393f5445fca4cadd"
   integrity sha512-isSTwNnW5I6zGZnpkinmVcV9pJqr7cLELns+tXDYzskIOAb2J+iCQ0mQJ9bRjHJhZfdlTFXZoCYK9ZgT3oMWXQ==
-
-"@types/lodash@^4.14.149":
-  version "4.14.149"
-  resolved "https://registry.npm.taobao.org/@types/lodash/download/@types/lodash-4.14.149.tgz#1342d63d948c6062838fbf961012f74d4e638440"
-  integrity sha1-E0LWPZSMYGKDj7+WEBL3TU5jhEA=
 
 fingerprintjs2@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/fingerprintjs2/-/fingerprintjs2-2.1.0.tgz#21dc3fee27d3b199056ef8eb873debccd8e06323"
   integrity sha512-H1k/ESTD2rJ3liupyqWBPjZC+LKfCGixQzz/NDN4dkgbmG1bVFyMOh7luKSkVDoyfhgvRm62pviNMPI+eJTZcQ==
 
-lodash@^4.17.15:
-  version "4.17.15"
-  resolved "https://registry.npm.taobao.org/lodash/download/lodash-4.17.15.tgz?cache=0&sync_timestamp=1571657272199&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Flodash%2Fdownload%2Flodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
-  integrity sha1-tEf2ZwoEVbv+7dETku/zMOoJdUg=
-
-ts-config-gm-react-app@3.0.2:
-  version "3.0.2"
-  resolved "https://registry.npm.taobao.org/ts-config-gm-react-app/download/ts-config-gm-react-app-3.0.2.tgz#0427fb61c3cc6f551d1d7668586e8b857e5ab13d"
-  integrity sha1-BCf7YcPMb1UdHXZoWG6LhX5asT0=
-
-ts-config-gm-react-app@^2.2.0-alpha.4:
-  version "2.2.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/ts-config-gm-react-app/-/ts-config-gm-react-app-2.2.0-alpha.4.tgz#f49f5c6c2b24d51c68bcec8c07618ed9fa4b635b"
-  integrity sha512-HOjt8u6EC+THjAMbTpg7OzQZzemjy3b/NNXRbik9nOFVRefqZoPTyOB/ZIZlYXGkukS19tGCnJt7IiBVWu4rOg==
-  dependencies:
-    typescript "^3.8.3"
-
-typescript@^3.8.3:
-  version "3.8.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.8.3.tgz#409eb8544ea0335711205869ec458ab109ee1061"
-  integrity sha512-MYlEfn5VrLNsgudQTVJeNaQFUAI7DkhnOjdpAp4T+ku1TfQClewlbSuTVHiA+8skNBgaf02TL/kLOvig4y3G8w==
+ts-config-gm-react-app@^3.0.6:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/ts-config-gm-react-app/-/ts-config-gm-react-app-3.0.6.tgz#312ae034a2e40ced8940a1d7bbb3fb89de606605"
+  integrity sha512-hiO+EfoFqqQIog06dbV008a6NCwvtfp3pSLLqlA4wHmtoPs1jOohB3/dL2kxymz3KCfJynGtkQDgzG0/N8I7yA==

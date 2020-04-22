@@ -27,9 +27,6 @@
     "@types/lodash": "^4.14.149",
     "axios": "^0.19.2",
     "lodash": "^4.17.15",
-    "ts-config-gm-react-app": "3.0.2"
-  },
-  "peerDependencies": {
-    "@gm-react-app/scripts": "^3.0.0-rc.0"
+    "ts-config-gm-react-app": "^3.0.6"
   }
 }
