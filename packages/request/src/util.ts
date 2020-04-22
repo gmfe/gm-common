@@ -115,13 +115,14 @@ function getMetaData() {
 /* eslint-enable */
 
 function doFetch(url: string, data: { [key: string]: any }): void {
+  const v = data.requestId
   axios({
-    url,
+    url: `${url}?v=${v}`,
     method: 'post',
     data: JSON.stringify(data),
     headers: {
       'Content-Type': 'application/json',
-      'X-Guanmai-Request-Id': `${data.requestId}`,
+      'X-Guanmai-Request-Id': `${v}`,
     },
   })
 }

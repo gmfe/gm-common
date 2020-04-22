@@ -9,7 +9,7 @@ import {
   feed,
 } from './util'
 
-function configError(errorCallback: (msg: string) => void): void {
+function configError(errorCallback: (msg: string, res?: any) => void): void {
   instance.interceptors.response.use(
     (response) => {
       const sucCode = response.config.headers['X-Guanmai-Success-Code'].split(
@@ -19,7 +19,7 @@ function configError(errorCallback: (msg: string) => void): void {
 
       if (!sucCode.includes(json.code + '')) {
         const msg = json.msg || getLocale('未知错误')
-        errorCallback(msg)
+        errorCallback(msg, response)
       }
 
       return response
