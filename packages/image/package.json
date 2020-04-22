@@ -1,8 +1,8 @@
 {
-  "name": "@gm-common/locales",
+  "name": "@gm-common/image",
   "version": "2.0.3",
   "description": "",
-  "author": "liyatang <liyatang@qq.com>",
+  "author": "zhongsink <zhongink@gmail.com>",
   "homepage": "https://github.com/gmfe/gm-common#readme",
   "license": "ISC",
   "publishConfig": {
@@ -21,6 +21,8 @@
     "url": "https://github.com/gmfe/gm-common/issues"
   },
   "dependencies": {
+    "@types/lodash": "^4.14.149",
+    "lodash": "^4.17.15",
     "ts-config-gm-react-app": "3.0.2"
   }
 }
