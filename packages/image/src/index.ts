@@ -44,7 +44,7 @@ function getFunStr(url: string | null, fun: string, options: Options): string {
     }
   }
 
-  if (url === null) {
+  if (url !== null) {
     return `${url}?${funStr}`
   } else {
     return `${funStr}`

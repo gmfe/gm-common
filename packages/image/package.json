@@ -1,6 +1,6 @@
 {
   "name": "@gm-common/image",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "",
   "author": "zhongsink <zhongink@gmail.com>",
   "homepage": "https://github.com/gmfe/gm-common#readme",
@@ -23,6 +23,6 @@
   "dependencies": {
     "@types/lodash": "^4.14.149",
     "lodash": "^4.17.15",
-    "ts-config-gm-react-app": "3.0.2"
+    "ts-config-gm-react-app": "^3.0.6"
   }
 }
