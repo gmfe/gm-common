@@ -1,19 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Storage from '../packages/tool/src/storage'
 
-export const demo = () => {
-  return <div>demo</div>
-}
+const key = 'input'
 
-function fun(
-  aaaaaaaa,
-  bbbbbbbb,
-  cccccccc,
-  ddddddddd,
-  eeeeeeeeeeee,
-  fffffffffffffffff,
-  ggggggggggggggg,
-) {
-  console.log()
+export const Demo = () => {
+  const [value, setValue] = useState(Storage.get(key) || '')
+
+  return (
+    <div>
+      <input
+        type='text'
+        value={value}
+        onChange={(e) => {
+          setValue(e.target.value)
+          Storage.set(key, e.target.value)
+        }}
+      />
+    </div>
+  )
 }
 
 export default {

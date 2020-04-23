@@ -1,19 +1,24 @@
-import { isNil, each, range, keys } from 'lodash'
+import _ from 'lodash'
 
-const prefix = '_gm-common_'
-const { localStorage } = window
+class StorageFactory {
+  prefix: string
+  target: Storage
 
-export default class Storage {
-  static set(key: string, value: any): void {
+  constructor(prefix: string, target: Storage) {
+    this.prefix = prefix
+    this.target = target
+  }
+
+  set(key: string, value: any): void {
     try {
-      localStorage.setItem(`${prefix}${key}`, JSON.stringify(value))
+      this.target.setItem(`${this.prefix}${key}`, JSON.stringify(value))
     } catch (err) {
       console.warn('Storage set error', err)
     }
   }
 
-  static get(key: string): unknown {
-    const value = localStorage.getItem(prefix + key)
+  get(key: string): unknown {
+    const value = this.target.getItem(this.prefix + key)
     try {
       return value ? JSON.parse(value) : value
     } catch (err) {
@@ -23,24 +28,33 @@ export default class Storage {
     }
   }
 
-  static remove(key: string): void {
-    localStorage.removeItem(prefix + key)
+  remove(key: string): void {
+    this.target.removeItem(this.prefix + key)
   }
 
-  static clear(): void {
-    localStorage.clear()
+  clear(): void {
+    this.target.clear()
   }
 
-  static getAll(): unknown {
+  getAll(): unknown {
     const result: { [key: string]: any } = {}
-    const length = localStorage.length
-    each(range(length), (i) => {
-      let key = localStorage.key(i)
-      if (key?.startsWith(prefix)) {
-        key = key.slice(prefix.length)
+    const length = this.target.length
+    _.each(_.range(length), (i) => {
+      let key = this.target.key(i)
+      if (key?.startsWith(this.prefix)) {
+        key = key.slice(this.prefix.length)
         result[key] = this.get(key)
       }
     })
-    return keys(result).length ? result : null
+    return _.keys(result).length ? result : null
   }
 }
+
+// 为了区分 window.localStorage window.sessionStorage
+// 估 LocalStorage SessionStorage
+const LocalStorage = new StorageFactory('_gm-common_', window.localStorage)
+const SessionStorage = new StorageFactory('_gm-common_', window.sessionStorage)
+const Storage = LocalStorage
+
+export { StorageFactory, Storage, LocalStorage, SessionStorage }
+export default Storage

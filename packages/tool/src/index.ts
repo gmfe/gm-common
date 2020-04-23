@@ -7,7 +7,12 @@ import setIco from './set_ico'
 import getScrollTop from './get_scroll_top'
 import getScrollLeft from './get_scroll_left'
 import loadScript from './load_script'
-import Storage from './storage'
+import {
+  Storage,
+  StorageFactory,
+  LocalStorage,
+  SessionStorage,
+} from './storage'
 
 import pinyin from './pinyin'
 import pinYinFilter from './pinyin_filter'
@@ -36,7 +41,10 @@ export {
   getScrollTop,
   getScrollLeft,
   loadScript,
+  StorageFactory,
   Storage,
+  LocalStorage,
+  SessionStorage,
   pinyin,
   pinYinFilter,
   devWarn,

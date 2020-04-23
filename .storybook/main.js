@@ -24,7 +24,7 @@ module.exports = {
     '../packages/request/**/*stories.tsx',
     '../packages/router/**/*stories.tsx',
     '../packages/tool/**/*stories.tsx',
-    '../demo/**/*.stories.tsx',
+    '../demo/**/*stories.js',
   ],
   webpackFinal,
 }
