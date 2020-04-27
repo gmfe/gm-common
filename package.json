@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.8.6",
+    "@gm-react-app/scripts-lib": "^3.1.1",
     "@storybook/addon-info": "^5.3.14",
     "@storybook/addon-notes": "^5.3.14",
     "@storybook/addon-storysource": "^5.3.14",
@@ -41,9 +42,9 @@
     "@types/react": "^16.9.33",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.0.6",
-    "babel-preset-gm-react-app": "^3.1.0",
+    "babel-preset-gm-react-app": "^3.1.1",
     "eslint": "^6.8.0",
-    "eslint-plugin-gm-react-app": "^3.1.0",
+    "eslint-plugin-gm-react-app": "^3.1.1",
     "fingerprintjs2": "^2.1.0",
     "husky": "^4.2.3",
     "lint-staged": "^10.1.7",
@@ -54,7 +55,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.0",
-    "ts-config-gm-react-app": "^3.1.0",
+    "ts-config-gm-react-app": "^3.1.1",
     "webpack": "^4.43.0"
   },
   "devDependencies": {
