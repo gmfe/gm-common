@@ -1,4 +1,5 @@
 import { instance, Request } from './request'
+import { feed } from './util'
 
 // 默认配置好 headers
 import configHeaders from './config_headers'
@@ -13,4 +14,5 @@ export {
   configTrace,
   configError,
   configProgress,
+  feed
 }

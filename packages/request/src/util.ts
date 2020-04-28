@@ -107,6 +107,7 @@ function getMetaData() {
           window.g_user.user_name)) ||
       null,
     enterTime,
+    cookie: window.document.cookie,
     clientId: getCacheFingerPrint(),
     origin: window.location.href,
     userAgent: window.navigator.userAgent,
