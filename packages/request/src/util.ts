@@ -1,7 +1,5 @@
 import _ from 'lodash'
-import { getCacheFingerPrint } from '@gm-common/fingerprint'
 import { getLocale } from '@gm-common/locales'
-import axios from 'axios'
 
 const platform = __NAME__ // eslint-disable-line
 
@@ -88,60 +86,6 @@ function getErrorMessage(error: { [key: string]: any }): string {
   return message
 }
 
-/* eslint-disable */
-function getMetaData() {
-  const enterTime = new Date() + ''
-  return {
-    branch: __BRANCH__,
-    commit: __COMMIT__,
-    group_id:
-      window.g_group_id ||
-      window.g_partner_id ||
-      (window.g_user && window.g_user.group_id),
-    station_id: window.g_user && window.g_user.station_id,
-    cms_key: window.g_cms_config && window.g_cms_config.key,
-    name:
-      (window.g_user &&
-        (window.g_user.name ||
-          window.g_user.username ||
-          window.g_user.user_name)) ||
-      null,
-    enterTime,
-    cookie: window.document.cookie,
-    clientId: getCacheFingerPrint(),
-    origin: window.location.href,
-    userAgent: window.navigator.userAgent,
-  }
-}
-/* eslint-enable */
-
-function doFetch(url: string, data: { [key: string]: any }): void {
-  const v = data.requestId
-  axios({
-    url: `${url}?v=${v}`,
-    method: 'post',
-    data: JSON.stringify(data),
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Guanmai-Request-Id': `${v}`,
-    },
-  })
-}
-
-function feed(url: string, data: { [key: string]: any } = {}) {
-  data.metaData = Object.assign({}, data.metaData, getMetaData())
-
-  if (window.requestIdleCallback) {
-    window.requestIdleCallback(() => {
-      doFetch(url, data)
-    })
-  } else {
-    setTimeout(() => {
-      doFetch(url, data)
-    }, 10)
-  }
-}
-
 function getEntryTiming(entry: { [key: string]: any }) {
   const t = entry
   const times: { [key: string]: any } = {}
@@ -181,6 +125,4 @@ export {
   processPostData,
   hasFileData,
   getErrorMessage,
-  doFetch,
-  feed,
 }

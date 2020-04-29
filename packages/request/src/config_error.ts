@@ -6,8 +6,8 @@ import {
   platform,
   requestUrl,
   isProduction,
-  feed,
 } from './util'
+import { report } from '@gm-common/analyse'
 
 function configError(errorCallback: (msg: string, res?: any) => void): void {
   instance.interceptors.response.use(
@@ -35,7 +35,7 @@ function configError(errorCallback: (msg: string, res?: any) => void): void {
           params: JSON.stringify(params),
           performance: JSON.stringify(getPerformanceInfo()),
         }
-        feed(requestUrl + platform, data)
+        report(requestUrl + platform, data)
       }
       errorCallback(getErrorMessage(error))
       return Promise.reject(error)

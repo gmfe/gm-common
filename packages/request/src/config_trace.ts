@@ -1,5 +1,6 @@
 import { instance } from './request'
-import { feed, requestUrl, requestEnvUrl, platform, isProduction } from './util'
+import { requestUrl, requestEnvUrl, platform, isProduction } from './util'
+import { report } from '@gm-common/analyse'
 
 function doInterceptors(options: { [key: string]: any } = {}): void {
   const timeMap: { [key: string]: any } = {}
@@ -9,7 +10,7 @@ function doInterceptors(options: { [key: string]: any } = {}): void {
 
     const { url, params, data } = config
     if (options.canRequest && options.canRequest(url)) {
-      feed(requestUrl + platform, {
+      report(requestUrl + platform, {
         url,
         params: JSON.stringify(params),
         data: JSON.stringify(data),
@@ -26,7 +27,7 @@ function doInterceptors(options: { [key: string]: any } = {}): void {
       const { url, headers, params, data } = response.config
       const requestId = headers['X-Guanmai-Request-Id']
 
-      feed(requestUrl + platform, {
+      report(requestUrl + platform, {
         url,
         params: JSON.stringify(params),
         data: JSON.stringify(data),
@@ -57,8 +58,7 @@ function configTrace(options?: { [key: string]: any }): void {
   }
 
   // 首次上报
-  // 因为是一次上报，所以获取 getCacheFingerPrint 即可，有就有，没有就没有
-  feed(requestEnvUrl + platform)
+  report(requestEnvUrl + platform, {})
 
   // 添加中间件
   doInterceptors(options)
