@@ -71,4 +71,4 @@ function report(url: string, data: any, options?: AxiosRequestConfig): void {
   }
 }
 
-export { report }
+export { report, getMetaData }

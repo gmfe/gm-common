@@ -1,4 +1,4 @@
-import { report } from './util'
+import { report, getMetaData } from './util'
 
 // todo
 // reportFirstScreen 上报首屏信息
@@ -7,6 +7,7 @@ import { report } from './util'
 function reportToQy(platform: string, data: any) {
   // try catch，可能 JSON.stringify 出错
   try {
+    data.metaData = Object.assign({}, data.metaData, getMetaData())
     // 简单文本即可
     report('https://trace.guanmai.cn/api/webhook/qy', {
       msgtype: 'text',
