@@ -2,6 +2,8 @@ import axios, { AxiosRequestConfig } from 'axios'
 import { parseUrl, stringifyUrl } from 'query-string'
 import { getCacheFingerPrint } from '@gm-common/fingerprint'
 
+const isProduction = __PRODUCTION__ // eslint-disable-line
+
 function getUrlRandom(url: string): string {
   const obj = parseUrl(url)
   obj.query.v = '' + Math.random()
@@ -57,6 +59,10 @@ function doFetch(url: string, data: any, options?: AxiosRequestConfig): void {
 
 // 会带上上下文信息
 function report(url: string, data: any, options?: AxiosRequestConfig): void {
+  if (!isProduction) {
+    return
+  }
+
   data.metaData = Object.assign({}, data.metaData, getMetaData())
 
   // 不卡主进程
