@@ -22,11 +22,8 @@ function getMetaData() {
     station_id: window.g_user && window.g_user.station_id,
     cms_key: window.g_cms_config && window.g_cms_config.key,
     name:
-      (window.g_user &&
-        (window.g_user.name ||
-          window.g_user.username ||
-          window.g_user.user_name)) ||
-      null,
+      window.g_user &&
+      (window.g_user.name || window.g_user.username || window.g_user.user_name),
     enterTime,
     // 频繁获取 cookie 不知道是否有风险
     cookie: window.document.cookie,
