@@ -21,6 +21,6 @@
     "url": "https://github.com/gmfe/gm-common/issues"
   },
   "dependencies": {
-    "ts-config-gm-react-app": "3.0.6"
+    "@types/lodash": "^4.14.150"
   }
 }

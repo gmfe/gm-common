@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@types/lodash@^4.14.149":
+"@types/lodash@^4.14.150":
   version "4.14.150"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.150.tgz#649fe44684c3f1fcb6164d943c5a61977e8cf0bd"
   integrity sha512-kMNLM5JBcasgYscD9x/Gvr6lTAv2NVgsKtet/hm93qMyf/D1pt+7jeEZklKJKxMVmXjxbRVQQGfqDSfipYCO6w==
@@ -11,8 +11,3 @@ lodash@^4.17.15:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
-
-ts-config-gm-react-app@^3.0.6:
-  version "3.0.6"
-  resolved "https://registry.yarnpkg.com/ts-config-gm-react-app/-/ts-config-gm-react-app-3.0.6.tgz#312ae034a2e40ced8940a1d7bbb3fb89de606605"
-  integrity sha512-hiO+EfoFqqQIog06dbV008a6NCwvtfp3pSLLqlA4wHmtoPs1jOohB3/dL2kxymz3KCfJynGtkQDgzG0/N8I7yA==

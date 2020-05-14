@@ -1,3 +1,4 @@
+// @ts-nocheck
 interface Window {
   requestIdleCallback(fn: () => any): void
   /* eslint-disable */
@@ -14,3 +15,10 @@ interface Window {
   g_cms_config: { [key: string]: string }
   /* eslint-enable */
 }
+
+declare const __PRODUCTION__ = 'true'
+declare const __VERSION__ = '1.0.0'
+declare const __NAME__ = 'station'
+declare const __CLIENT_NAME__ = 'GmStation'
+declare const __COMMIT__ = 'none'
+declare const __BRANCH__ = 'none'
