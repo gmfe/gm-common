@@ -1,7 +1,7 @@
 import React, { ComponentType, ForwardRefRenderFunction } from 'react'
 import PropTypes from 'prop-types'
 import hoistStatics from 'hoist-non-react-statics'
-import { Route } from 'react-router'
+import { Route } from 'react-router-dom'
 import processReactRouterProps from './process_react_router_props'
 
 // copy react-router 的 withRouter ，补充 search => query 的转换。
