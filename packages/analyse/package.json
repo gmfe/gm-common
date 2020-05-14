@@ -22,8 +22,8 @@
   },
   "dependencies": {
     "@gm-common/fingerprint": "^2.2.6",
+    "@types/lodash": "^4.14.150",
     "axios": "^0.19.2",
-    "query-string": "^6.12.1",
-    "ts-config-gm-react-app": "^3.0.6"
+    "query-string": "^6.12.1"
   }
 }
