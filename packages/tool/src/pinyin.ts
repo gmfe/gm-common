@@ -1,14 +1,7 @@
 import _ from 'lodash'
-import is from './is'
 
 let instance: (source: string, style?: string) => string
 const pinyin = (source: string, style?: string): string => {
-  if (is.android()) {
-    console.warn(
-      '移动端 Android 存在不支持 pinyin，因 localeCompare 存在兼容性问题',
-    )
-  }
-
   if (instance) {
     return instance(source, style)
   }
@@ -679,15 +672,17 @@ const pinyin = (source: string, style?: string): string => {
   const lastHanziCharCode = 40869 // 0x9FA5
 
   const convert = (target: string, style?: string): string => {
+    // 命中缓存，是修正的汉字，或者是之前已经查找过这个汉字
+    if (cache[target]) {
+      return style === 'first_letter' ? cache[target].charAt(0) : cache[target]
+    }
+
     const charCode = target.charCodeAt(0)
     // 不在比对范围内
     if (charCode < firstHanziCharCode || charCode > lastHanziCharCode) {
       return target
     }
-    // 命中缓存，是修正的汉字，或者是之前已经查找过这个汉字
-    if (cache[target]) {
-      return style === 'first_letter' ? cache[target].charAt(0) : cache[target]
-    }
+
     let start = 0
     let end = hanzis.length - 1
     let index = -1
@@ -706,11 +701,14 @@ const pinyin = (source: string, style?: string): string => {
         break
       }
     }
+
     // @ts-ignore
     if (compareResult < 0) {
       index--
     }
+
     cache[target] = pinyins[index]
+
     return style === 'first_letter' ? pinyins[index].charAt(0) : pinyins[index]
   }
 

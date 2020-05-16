@@ -1,6 +1,7 @@
 import pinyin from './pinyin'
 import _ from 'lodash'
-import is from './is'
+
+const cache: { [key: string]: boolean } = {}
 
 // 字符串匹配，中文首字母拼音匹配，字母小写匹配
 const pinYinFilter = (
@@ -15,39 +16,34 @@ const pinYinFilter = (
   what = what || ((v) => v)
   filterText = filterText.toLowerCase()
 
-  // 移动 android 不支持 localeCompare
-  if (is.android()) {
-    console.warn(
-      '移动端 Android 存在不支持 pinYinFilter，直接采用字符串匹配，因 localeCompare 存在兼容性问题',
-    )
-    return _.filter(list, (v) => {
-      let w = what(v)
-      if (!_.isString(w)) {
-        w = ''
-      }
-      return w.indexOf(filterText) > -1
-    })
-  }
-
   return _.filter(list, (v) => {
-    let w = what(v)
-    if (!_.isString(w)) {
-      w = ''
+    let text = what(v)
+    if (!_.isString(text)) {
+      return false
     }
-    w = w.toLowerCase()
-    // 全拼集合
-    const normal = _.map(pinyin(w), (value) => value[0]).join('')
-    // 首字母集合
-    const firstLetter = _.map(
-      pinyin(w, 'first_letter'),
-      (value) => value[0],
-    ).join('')
+    text = text.toLowerCase()
 
-    return (
-      w.indexOf(filterText) > -1 ||
-      normal.indexOf(filterText) > -1 ||
-      firstLetter.indexOf(filterText) > -1
-    )
+    // 优先 cache
+    if (cache[text] !== undefined) {
+      return cache[text]
+    }
+
+    // 优先纯文字文字匹配
+    if (text.includes(filterText)) {
+      cache[text] = true
+      return true
+    }
+
+    // 全拼集合。
+    // 把 text 拆细，便于 pinyin 更细粒度的 cache
+    const normal = _.map(text, (t) => pinyin(t))
+    // 首字母集合
+    const firstLetter = _.map(normal, (n) => n[0])
+
+    cache[text] =
+      normal.includes(filterText) || firstLetter.includes(filterText)
+
+    return cache[text]
   })
 }
 
