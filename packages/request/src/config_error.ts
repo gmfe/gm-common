@@ -26,8 +26,11 @@ function configError(errorCallback: (msg: string, res?: any) => void): void {
     },
     (error) => {
       // 上报前端连接超时的具体网络时间信息
+      const config = error.config
+      const currentRetryCount = config._currentRetryCount || 0
+      const isRetrying = config.retry && currentRetryCount < config.retry
       if (isProduction && error.message && error.message.includes('timeout')) {
-        const { url, headers, params } = error.config
+        const { url, headers, params } = config
         // 当前被超时终止的请求信息
         const data = {
           url,
@@ -37,7 +40,9 @@ function configError(errorCallback: (msg: string, res?: any) => void): void {
         }
         report(requestUrl + platform, data)
       }
-      errorCallback(getErrorMessage(error))
+      if (!isRetrying) {
+        errorCallback(getErrorMessage(error))
+      }
       return Promise.reject(error)
     },
   )
