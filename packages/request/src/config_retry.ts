@@ -1,7 +1,7 @@
 import { instance } from './request'
 import { isProduction } from './util'
 
-const defaultRetryMaxCount: number = 3
+const defaultRetryMaxCount: number = 2
 const defaultRetryDelay: number = 500
 
 function configRetry(opts?: {
