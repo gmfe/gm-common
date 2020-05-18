@@ -4,17 +4,27 @@ import { report } from '@gm-common/analyse'
 
 function doInterceptors(options: { [key: string]: any } = {}): void {
   const timeMap: { [key: string]: any } = {}
+  const callTimesMap: { [key: string]: any } = {}
+
   instance.interceptors.request.use((config) => {
     const requestId = config.headers['X-Guanmai-Request-Id']
     timeMap[requestId] = Date.now()
+    const { url, params, data, method } = config
+    const callTimesKey = `${method}::${url}`
 
-    const { url, params, data } = config
+    if (callTimesMap[callTimesKey]) {
+      callTimesMap[callTimesKey]++
+    } else {
+      callTimesMap[callTimesKey] = 1
+    }
+
     if (options.canRequest && options.canRequest(url)) {
       report(requestUrl + platform, {
         url,
+        requestId,
         params: JSON.stringify(params),
         data: JSON.stringify(data),
-        requestId,
+        callTimes: callTimesMap[callTimesKey],
         reqTime: new Date() + '',
       })
     }
