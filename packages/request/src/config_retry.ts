@@ -1,16 +1,15 @@
-import axios from 'axios'
 import { instance } from './request'
 import { isProduction } from './util'
 
 const defaultRetryMaxCount: number = 3
-const defaultRetryDelay: number = 1
+const defaultRetryDelay: number = 500
 
-function configRetry(opts: {
+function configRetry(opts?: {
   retryMaxCount: number
   retryDelay: number
 }): void {
-  const retryMaxCount = opts.retryMaxCount || defaultRetryMaxCount
-  const retryDelay = opts.retryDelay || defaultRetryDelay
+  const retryMaxCount = opts?.retryMaxCount || defaultRetryMaxCount
+  const retryDelay = opts?.retryDelay || defaultRetryDelay
 
   instance.interceptors.request.use((config: any) => {
     if (!config.retry) {
@@ -44,9 +43,13 @@ function configRetry(opts: {
         })
 
         return backOff.then(function () {
-          return axios(config)
+          return instance.request(config)
         })
+      } else {
+        return Promise.reject(error)
       }
+    } else {
+      return Promise.reject(error)
     }
   })
 }

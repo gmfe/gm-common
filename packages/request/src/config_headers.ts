@@ -25,9 +25,10 @@ function configHeaders(): void {
     ] = `${clientName}/${version} ${clientId}`
   }
 
-  instance.interceptors.request.use((config) => {
-    config.headers['X-Guanmai-Request-Id'] = UUID.generate()
-
+  instance.interceptors.request.use((config: any) => {
+    if (!config._currentRetryCount) {
+      config.headers['X-Guanmai-Request-Id'] = UUID.generate()
+    }
     return config
   })
 }

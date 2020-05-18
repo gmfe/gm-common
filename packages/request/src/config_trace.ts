@@ -34,8 +34,9 @@ function doInterceptors(options: { [key: string]: any } = {}): void {
   instance.interceptors.response.use(
     (response) => {
       const json = response.data
-      const { url, headers, params, data } = response.config
+      const { url, headers, params, data, method } = response.config
       const requestId = headers['X-Guanmai-Request-Id']
+      const callTimesKey = `${method}::${url}`
 
       report(requestUrl + platform, {
         url,
@@ -45,6 +46,7 @@ function doInterceptors(options: { [key: string]: any } = {}): void {
         resCode: json.code,
         resMsg: json.msg,
         resTime: new Date() + '',
+        callTimes: callTimesMap[callTimesKey],
         time: timeMap[requestId] ? Date.now() - timeMap[requestId] : '',
       })
 

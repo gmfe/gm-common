@@ -1,8 +1,9 @@
 import React from 'react'
-import { instance, Request, configTrace, configHeaders } from './index'
+import { instance, Request, configTrace, configHeaders, configRetry } from './index'
 
 configTrace()
 configHeaders()
+configRetry()
 
 instance.interceptors.response.use(
   (response) => {
