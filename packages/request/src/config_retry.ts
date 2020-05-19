@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosInstance } from 'axios'
 import { instance } from './request'
 import { isProduction } from './util'
 import {
@@ -9,8 +9,8 @@ import {
 const defaultRetryMaxCount: number = 2
 const defaultRetryDelay: number = 500
 
-const retryInstance = axios.create()
 const doRetryInterceptors = (
+  retryInstance: AxiosInstance,
   opts: {
     retryMaxCount?: number
     retryDelay?: number
@@ -53,13 +53,13 @@ const doRetryInterceptors = (
   )
 }
 
+// 注意执行时机
 function configRetry(opts?: {
   retryMaxCount: number
   retryDelay: number
 }): void {
   const retryMaxCount = opts?.retryMaxCount || defaultRetryMaxCount
   const retryDelay = opts?.retryDelay || defaultRetryDelay
-  doRetryInterceptors({ retryMaxCount, retryDelay })
 
   instance.interceptors.request.use((config: any) => {
     config.headers['X-Guanmai-Request-Retry'] = 0
@@ -75,6 +75,8 @@ function configRetry(opts?: {
       error.message &&
       error.message.includes('timeout')
     ) {
+      const retryInstance = axios.create()
+      doRetryInterceptors(retryInstance, { retryMaxCount, retryDelay })
       return await retryInstance(config)
     } else {
       return Promise.reject(error)
