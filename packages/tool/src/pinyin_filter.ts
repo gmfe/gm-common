@@ -24,7 +24,7 @@ const pinYinFilter = (
     text = text.toLowerCase()
 
     // 优先 cache
-    if (cache[filterText] && cache[text] !== undefined) {
+    if (cache[filterText] && cache[filterText][text] !== undefined) {
       return cache[filterText][text]
     }
 
@@ -43,9 +43,10 @@ const pinYinFilter = (
     const firstLetter = _.map(normal, (n) => n[0])
 
     cache[filterText][text] =
-      normal.includes(filterText) || firstLetter.includes(filterText)
+      normal.join('').includes(filterText) ||
+      firstLetter.join('').includes(filterText)
 
-    return cache[text]
+    return cache[filterText][text]
   })
 }
 

@@ -1,25 +1,22 @@
-import React, { useState } from 'react'
-import Storage from '../packages/tool/src/storage'
+import React from 'react'
+import pinYinFilter from '../packages/tool/src/pinyin_filter'
 
-const key = 'input'
+console.log(
+  pinYinFilter(
+    [
+      { id: '1', name: '商户1', company: '公司1' },
+      { id: '2', name: '商2', company: '公司2' },
+      { id: '3', name: '户3', company: '公司3' },
+    ],
+    'hu',
+    (v) => v.name,
+  ),
+)
 
-export const Demo = () => {
-  const [value, setValue] = useState(Storage.get(key) || '')
-
-  return (
-    <div>
-      <input
-        type='text'
-        value={value}
-        onChange={(e) => {
-          setValue(e.target.value)
-          Storage.set(key, e.target.value)
-        }}
-      />
-    </div>
-  )
+export const demo = () => {
+  return <div>demo</div>
 }
 
 export default {
-  title: 'DEMO|DEMO',
+  title: 'Demo',
 }
