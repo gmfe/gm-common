@@ -1,7 +1,7 @@
 import pinyin from './pinyin'
 import _ from 'lodash'
 
-const cache: { [key: string]: boolean } = {}
+const cache: { [key: string]: { [key: string]: boolean } } = {}
 
 // 字符串匹配，中文首字母拼音匹配，字母小写匹配
 const pinYinFilter = (
@@ -24,13 +24,15 @@ const pinYinFilter = (
     text = text.toLowerCase()
 
     // 优先 cache
-    if (cache[text] !== undefined) {
-      return cache[text]
+    if (cache[filterText] && cache[text] !== undefined) {
+      return cache[filterText][text]
     }
+
+    cache[filterText] = cache[filterText] || {}
 
     // 优先纯文字文字匹配
     if (text.includes(filterText)) {
-      cache[text] = true
+      cache[filterText][text] = true
       return true
     }
 
@@ -40,7 +42,7 @@ const pinYinFilter = (
     // 首字母集合
     const firstLetter = _.map(normal, (n) => n[0])
 
-    cache[text] =
+    cache[filterText][text] =
       normal.includes(filterText) || firstLetter.includes(filterText)
 
     return cache[text]
