@@ -26,7 +26,7 @@ function configHeaders(): void {
   }
 
   instance.interceptors.request.use((config) => {
-    config.headers['X-Guanmai-Request-Id'] = UUID.generate()
+    config.headers['X-Guanmai-Request-Id'] = 'ce13b1ed-bb76-4595-9011-039417e79a23'
 
     return config
   })
