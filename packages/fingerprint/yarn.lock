@@ -2,6 +2,14 @@
 # yarn lockfile v1
 
 
+"@gm-common/tool@^2.2.10":
+  version "2.2.10"
+  resolved "https://registry.yarnpkg.com/@gm-common/tool/-/tool-2.2.10.tgz#ba1ea71b01118a299900b1934c8ed2b87d237229"
+  integrity sha512-aEfC+Qv09VsV27jeAW4vAVzW2L2W7rWgppqOgke/14tc6zY0sHfRVCRnQZSegCPYCe62mphhgi9gmEb/aiI/Mw==
+  dependencies:
+    "@types/lodash" "^4.14.150"
+    lodash "^4.17.15"
+
 "@types/fingerprintjs2@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@types/fingerprintjs2/-/fingerprintjs2-2.0.0.tgz#3af76e165416fa75261bbce4393f5445fca4cadd"
@@ -16,3 +24,8 @@ fingerprintjs2@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/fingerprintjs2/-/fingerprintjs2-2.1.0.tgz#21dc3fee27d3b199056ef8eb873debccd8e06323"
   integrity sha512-H1k/ESTD2rJ3liupyqWBPjZC+LKfCGixQzz/NDN4dkgbmG1bVFyMOh7luKSkVDoyfhgvRm62pviNMPI+eJTZcQ==
+
+lodash@^4.17.15:
+  version "4.17.15"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
+  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==

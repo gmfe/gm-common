@@ -2,6 +2,29 @@
 # yarn lockfile v1
 
 
+"@gm-common/fingerprint@^2.2.10":
+  version "2.2.10"
+  resolved "https://registry.yarnpkg.com/@gm-common/fingerprint/-/fingerprint-2.2.10.tgz#679ddd619554685d4ec235f32750e6c7b3105eb0"
+  integrity sha512-SwKCxsenJETZg6ANapUCtSn7nl5GFQiLsHiNUS7cX62m9Bb/DUrF/HysxCFrC+aAjun9tLT4/HLHx2ien4Mqqw==
+  dependencies:
+    "@gm-common/tool" "^2.2.10"
+    "@types/fingerprintjs2" "^2.0.0"
+    "@types/lodash" "^4.14.150"
+    fingerprintjs2 "^2.1.0"
+
+"@gm-common/tool@^2.2.10":
+  version "2.2.10"
+  resolved "https://registry.yarnpkg.com/@gm-common/tool/-/tool-2.2.10.tgz#ba1ea71b01118a299900b1934c8ed2b87d237229"
+  integrity sha512-aEfC+Qv09VsV27jeAW4vAVzW2L2W7rWgppqOgke/14tc6zY0sHfRVCRnQZSegCPYCe62mphhgi9gmEb/aiI/Mw==
+  dependencies:
+    "@types/lodash" "^4.14.150"
+    lodash "^4.17.15"
+
+"@types/fingerprintjs2@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@types/fingerprintjs2/-/fingerprintjs2-2.0.0.tgz#3af76e165416fa75261bbce4393f5445fca4cadd"
+  integrity sha512-isSTwNnW5I6zGZnpkinmVcV9pJqr7cLELns+tXDYzskIOAb2J+iCQ0mQJ9bRjHJhZfdlTFXZoCYK9ZgT3oMWXQ==
+
 "@types/lodash@^4.14.150":
   version "4.14.150"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.150.tgz#649fe44684c3f1fcb6164d943c5a61977e8cf0bd"
@@ -26,12 +49,22 @@ decode-uri-component@^0.2.0:
   resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
   integrity sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=
 
+fingerprintjs2@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/fingerprintjs2/-/fingerprintjs2-2.1.0.tgz#21dc3fee27d3b199056ef8eb873debccd8e06323"
+  integrity sha512-H1k/ESTD2rJ3liupyqWBPjZC+LKfCGixQzz/NDN4dkgbmG1bVFyMOh7luKSkVDoyfhgvRm62pviNMPI+eJTZcQ==
+
 follow-redirects@1.5.10:
   version "1.5.10"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.10.tgz#7b7a9f9aea2fdff36786a94ff643ed07f4ff5e2a"
   integrity sha512-0V5l4Cizzvqt5D44aTXbFZz+FtyXV1vrDN6qrelxtfYQKW0KO0W2T/hkE8xvGa/540LkZlkaUjO4ailYTFtHVQ==
   dependencies:
     debug "=3.1.0"
+
+lodash@^4.17.15:
+  version "4.17.15"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
+  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
 
 ms@2.0.0:
   version "2.0.0"
