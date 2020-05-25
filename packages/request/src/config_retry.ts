@@ -6,20 +6,22 @@ import {
   traceResponseInterceptor,
 } from './config_trace'
 
+// 默认最大重试次数
 const defaultRetryMaxCount: number = 2
+// 默认重试延迟时间
 const defaultRetryDelay: number = 500
 
 const doRetryInterceptors = (
   retryInstance: AxiosInstance,
   opts: {
-    retryMaxCount?: number
-    retryDelay?: number
+    retryMaxCount: number
+    retryDelay: number
     canRequest?: () => boolean
-  } = {},
+  },
 ) => {
   retryInstance.interceptors.request.use((config: any) => {
-    if (!config.retry) {
-      config.retry = opts.retryMaxCount
+    if (!config.retryMaxCount) {
+      config.retryMaxCount = opts.retryMaxCount
     }
 
     if (!config.retryDelay) {
@@ -34,7 +36,10 @@ const doRetryInterceptors = (
     (error: any) => {
       const config = error.config
       config._currentRetryCount = config._currentRetryCount || 1
-      if (config.retry && config._currentRetryCount < config.retry) {
+      if (
+        config.retryMaxCount &&
+        config._currentRetryCount < config.retryMaxCount
+      ) {
         config._currentRetryCount += 1
 
         const backOff = new Promise(function (resolve) {
@@ -57,6 +62,7 @@ const doRetryInterceptors = (
 function configRetry(opts?: {
   retryMaxCount: number
   retryDelay: number
+  canRequest?: () => boolean
 }): void {
   const retryMaxCount = opts?.retryMaxCount || defaultRetryMaxCount
   const retryDelay = opts?.retryDelay || defaultRetryDelay
@@ -76,7 +82,11 @@ function configRetry(opts?: {
       error.message.includes('timeout')
     ) {
       const retryInstance = axios.create()
-      doRetryInterceptors(retryInstance, { retryMaxCount, retryDelay })
+      doRetryInterceptors(retryInstance, {
+        retryMaxCount,
+        retryDelay,
+        canRequest: opts?.canRequest,
+      })
       return await retryInstance(config)
     } else {
       return Promise.reject(error)
