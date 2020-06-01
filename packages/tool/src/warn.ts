@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 
-function warn() {
+function warn(...warn: any[]) {
   if (process.env.NODE_ENV === 'production') {
     return
   }
-  console.warn.apply(this, ['[react-gm warn] ', ...arguments])
+  console.warn('[react-gm warn]', ...warn)
 }
 
 const devWarnForHook = (callback: () => void): void => {
