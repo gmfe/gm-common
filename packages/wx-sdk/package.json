@@ -19,8 +19,5 @@
   },
   "bugs": {
     "url": "https://github.com/gmfe/gm-common/issues"
-  },
-  "dependencies": {
-    "@types/lodash": "^4.14.150"
   }
 }

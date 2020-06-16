@@ -22,7 +22,6 @@
   },
   "dependencies": {
     "@gm-common/fingerprint": "^2.4.0",
-    "@types/lodash": "^4.14.150",
     "axios": "^0.19.2",
     "query-string": "^6.12.1"
   }

@@ -22,7 +22,6 @@
   },
   "dependencies": {
     "@types/big.js": "^4.0.5",
-    "@types/lodash": "^4.14.150",
     "big.js": "^5.2.2",
     "lodash": "^4.17.15"
   }

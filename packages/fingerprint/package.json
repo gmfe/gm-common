@@ -23,7 +23,6 @@
   "dependencies": {
     "@gm-common/tool": "^2.4.0",
     "@types/fingerprintjs2": "^2.0.0",
-    "@types/lodash": "^4.14.150",
     "fingerprintjs2": "^2.1.0"
   }
 }

@@ -17,7 +17,7 @@ class StorageFactory {
     }
   }
 
-  get(key: string): unknown {
+  get(key: string): any {
     const value = this.target.getItem(this.prefix + key)
     try {
       return value ? JSON.parse(value) : value
@@ -36,7 +36,7 @@ class StorageFactory {
     this.target.clear()
   }
 
-  getAll(): unknown {
+  getAll(): any {
     const result: { [key: string]: any } = {}
     const length = this.target.length
     _.each(_.range(length), (i) => {
