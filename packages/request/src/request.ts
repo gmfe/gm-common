@@ -49,7 +49,14 @@ interface RequestBaseConfigOptions {
   [key: string]: any
 }
 
-class RequestBase {
+interface RequestResult<Data> {
+  code: number
+  data: Data
+  msg: string
+  pagination?: { [key: string]: any }
+}
+
+class RequestBase<Data> {
   private _config: RequestBaseConfigOptions
   private _sucCode = [0]
   private _data = {}
@@ -62,10 +69,10 @@ class RequestBase {
     }
   }
 
-  public code(code: number | number[]): RequestBase {
+  public code(code: number | number[]): RequestBase<Data> {
     let codes: number[] = code as number[]
     if (!isArray(code)) {
-      codes = [(code as unknown) as number]
+      codes = [(code as any) as number]
     }
     this._sucCode = this._sucCode.concat(codes)
     // 挂在 headers。暂时想不到其他方式传递出这个信息
@@ -73,30 +80,30 @@ class RequestBase {
     return this
   }
 
-  public timeout(timeout: number): RequestBase {
+  public timeout(timeout: number): RequestBase<Data> {
     this._config.timeout = timeout
     this._config.headers['X-Guanmai-Timeout'] = `${timeout}`
     return this
   }
 
-  public data(data: { [key: string]: any }): RequestBase {
+  public data(data: { [key: string]: any }): RequestBase<Data> {
     this._data = data
     return this
   }
 
-  public json(data: { [key: string]: any }): RequestBase {
+  public json(data: { [key: string]: any }): RequestBase<Data> {
     this._data = JSON.stringify(data)
     return this
   }
 
-  public get(): Promise<unknown> {
+  public get(): Promise<RequestResult<Data>> {
     this._config.params = this._data
     return instance
       .request(this._config)
       .then((res) => httpResolve(res, this._sucCode), httpReject)
   }
 
-  public post(): Promise<unknown> {
+  public post(): Promise<RequestResult<Data>> {
     this._config.data = this._data
     this._config.method = 'post'
     return instance
@@ -105,7 +112,7 @@ class RequestBase {
   }
 }
 
-function Request(url: string, config?: object): RequestBase {
+function Request<Data>(url: string, config?: object): RequestBase<Data> {
   return new RequestBase(url, config)
 }
 

@@ -1,4 +1,4 @@
-function loadScript(url: string, cb: () => unknown): void {
+function loadScript(url: string, cb: () => any): void {
   const elem = window.document.createElement('script')
   elem.type = 'text/javascript'
   elem.charset = 'utf-8'
