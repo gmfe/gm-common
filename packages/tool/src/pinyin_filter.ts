@@ -5,10 +5,10 @@ const cache: { [key: string]: { [key: string]: boolean } } = {}
 
 // 字符串匹配，中文首字母拼音匹配，字母小写匹配
 const pinYinFilter = (
-  list: unknown[],
+  list: any[],
   filterText: string,
-  what: (v: unknown) => string,
-): unknown[] => {
+  what: (v: any) => string,
+): any[] => {
   if (!filterText) {
     return list || []
   }

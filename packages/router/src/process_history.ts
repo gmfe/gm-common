@@ -7,9 +7,9 @@ interface ProcessHistoryOptions {
 }
 
 type HistoryDataType = {
-  pathname: string
-  query: { [key: string]: any }
-  search: string
+  pathname?: string
+  query?: { [key: string]: any }
+  search?: string
 }
 
 function processHistory(history: ProcessHistoryOptions) {

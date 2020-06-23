@@ -1,6 +1,6 @@
 {
   "name": "@gm-common/number",
-  "version": "2.4.0",
+  "version": "2.4.1-beta.0",
   "description": "",
   "author": "liyatang <liyatang@qq.com>",
   "homepage": "https://github.com/gmfe/gm-common#readme",
@@ -22,7 +22,6 @@
   },
   "dependencies": {
     "@types/big.js": "^4.0.5",
-    "@types/lodash": "^4.14.150",
     "big.js": "^5.2.2",
     "lodash": "^4.17.15"
   }
