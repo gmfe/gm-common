@@ -2,6 +2,41 @@
 # yarn lockfile v1
 
 
+"@gm-common/analyse@^2.4.1":
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/@gm-common/analyse/-/analyse-2.4.1.tgz#a98c2652419de40d4686b2062c2bcb7ac1e144e2"
+  integrity sha512-y7VIjFL1weKEs8sZhnUU1gk3ok9Ljp1w7Oukguif/DaHAzf/Q1b+EJxRSFGclC2irNTyXBoK2RuV1yWHtd3QOQ==
+  dependencies:
+    "@gm-common/fingerprint" "^2.4.1"
+    axios "^0.19.2"
+    query-string "^6.12.1"
+
+"@gm-common/fingerprint@^2.4.1":
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/@gm-common/fingerprint/-/fingerprint-2.4.1.tgz#dd1731881a294472fbc11f9f55d824ae378d6852"
+  integrity sha512-aMZ3oQfjj7KPm+rcnuyRavpQPMWXzyGADFRXxcdw+C/DQ5blAhsS9JzD/9M0Oqj092xWW6Mh4IYX9K9rn2hhDQ==
+  dependencies:
+    "@gm-common/tool" "^2.4.1"
+    "@types/fingerprintjs2" "^2.0.0"
+    fingerprintjs2 "^2.1.0"
+
+"@gm-common/locales@^2.4.1":
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/@gm-common/locales/-/locales-2.4.1.tgz#c37b67ad40d0b9d5b18a93967732130b18512b07"
+  integrity sha512-4x/Sj/tc2/4uo+7YWHjQ57dvAYny0N2EdPt7ZiFSS+hjHr1skafjvYYlY2D0JdTGP/9lAz7x0DK9Y2I6hh3Vog==
+
+"@gm-common/tool@^2.4.1":
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/@gm-common/tool/-/tool-2.4.1.tgz#3c7010f91364bbd0ee8dd38f64137adc2019588a"
+  integrity sha512-WIb15kzx3BiAnsMW6a/cdB17zxi9Xc4P1GaXHg8ssaW1o5myxohCY+dSZhygRkk7Cm/5RaeWPR6iH5IBuduVvQ==
+  dependencies:
+    lodash "^4.17.15"
+
+"@types/fingerprintjs2@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@types/fingerprintjs2/-/fingerprintjs2-2.0.0.tgz#3af76e165416fa75261bbce4393f5445fca4cadd"
+  integrity sha512-isSTwNnW5I6zGZnpkinmVcV9pJqr7cLELns+tXDYzskIOAb2J+iCQ0mQJ9bRjHJhZfdlTFXZoCYK9ZgT3oMWXQ==
+
 axios@^0.19.2:
   version "0.19.2"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
@@ -16,6 +51,16 @@ debug@=3.1.0:
   dependencies:
     ms "2.0.0"
 
+decode-uri-component@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
+  integrity sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=
+
+fingerprintjs2@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/fingerprintjs2/-/fingerprintjs2-2.1.0.tgz#21dc3fee27d3b199056ef8eb873debccd8e06323"
+  integrity sha512-H1k/ESTD2rJ3liupyqWBPjZC+LKfCGixQzz/NDN4dkgbmG1bVFyMOh7luKSkVDoyfhgvRm62pviNMPI+eJTZcQ==
+
 follow-redirects@1.5.10:
   version "1.5.10"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.10.tgz#7b7a9f9aea2fdff36786a94ff643ed07f4ff5e2a"
@@ -24,11 +69,30 @@ follow-redirects@1.5.10:
     debug "=3.1.0"
 
 lodash@^4.17.15:
-  version "4.17.15"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
-  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
+  version "4.17.19"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
+  integrity sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
 
 ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
   integrity sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g=
+
+query-string@^6.12.1:
+  version "6.13.1"
+  resolved "https://registry.yarnpkg.com/query-string/-/query-string-6.13.1.tgz#d913ccfce3b4b3a713989fe6d39466d92e71ccad"
+  integrity sha512-RfoButmcK+yCta1+FuU8REvisx1oEzhMKwhLUNcepQTPGcNMp1sIqjnfCtfnvGSQZQEhaBHvccujtWoUV3TTbA==
+  dependencies:
+    decode-uri-component "^0.2.0"
+    split-on-first "^1.0.0"
+    strict-uri-encode "^2.0.0"
+
+split-on-first@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/split-on-first/-/split-on-first-1.1.0.tgz#f610afeee3b12bce1d0c30425e76398b78249a5f"
+  integrity sha512-43ZssAJaMusuKWL8sKUBQXHWOpq8d6CfN/u1p4gUzfJkM05C8rxTmYrkIPTXapZpORA6LkkzcUulJ8FqA7Uudw==
+
+strict-uri-encode@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/strict-uri-encode/-/strict-uri-encode-2.0.0.tgz#b9c7330c7042862f6b142dc274bbcc5866ce3546"
+  integrity sha1-ucczDHBChi9rFC3CdLvMWGbONUY=
