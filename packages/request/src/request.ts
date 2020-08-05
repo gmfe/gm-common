@@ -1,8 +1,9 @@
-import axios from 'axios'
+import axios, { CancelTokenSource } from 'axios'
 import { isArray } from 'lodash'
 import { getLocale } from '@gm-common/locales'
 import { processPostData, hasFileData, getErrorMessage } from './util'
 
+const CancelToken = axios.CancelToken
 const instance = axios.create({
   timeout: 30000,
   headers: {
@@ -60,12 +61,16 @@ class RequestBase<Data> {
   private _config: RequestBaseConfigOptions
   private _sucCode = [0]
   private _data = {}
+  public cancelSource: CancelTokenSource | null = null
 
-  constructor(url: string, config?: object) {
+  constructor(url: string, config?: RequestBaseConfigOptions) {
+    const source = CancelToken.source()
+    this.cancelSource = source
     this._config = {
       url,
       headers: {},
       ...config,
+      cancelToken: source.token,
     }
   }
 
@@ -98,21 +103,46 @@ class RequestBase<Data> {
 
   public get(): Promise<RequestResult<Data>> {
     this._config.params = this._data
-    return instance
-      .request(this._config)
-      .then((res) => httpResolve(res, this._sucCode), httpReject)
+    return instance.request(this._config).then(
+      (res) => {
+        this._clearSource()
+        return httpResolve(res, this._sucCode)
+      },
+      (err) => {
+        this._clearSource()
+        httpReject(err)
+      },
+    )
+  }
+
+  public abort(): void {
+    return this.cancelSource?.cancel()
+  }
+
+  private _clearSource() {
+    this.cancelSource = null
   }
 
   public post(): Promise<RequestResult<Data>> {
     this._config.data = this._data
     this._config.method = 'post'
-    return instance
-      .request(this._config)
-      .then((res) => httpResolve(res, this._sucCode), httpReject)
+    return instance.request(this._config).then(
+      (res) => {
+        this._clearSource()
+        return httpResolve(res, this._sucCode)
+      },
+      (err) => {
+        this._clearSource()
+        httpReject(err)
+      },
+    )
   }
 }
 
-function Request<Data>(url: string, config?: object): RequestBase<Data> {
+function Request<Data>(
+  url: string,
+  config?: RequestBaseConfigOptions,
+): RequestBase<Data> {
   return new RequestBase(url, config)
 }
 
