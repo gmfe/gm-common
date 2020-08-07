@@ -8,6 +8,7 @@ import {
   isProduction,
 } from './util'
 import { report } from '@gm-common/analyse'
+import axios from 'axios'
 
 function configError(errorCallback: (msg: string, res?: any) => void): void {
   instance.interceptors.response.use(
@@ -25,19 +26,27 @@ function configError(errorCallback: (msg: string, res?: any) => void): void {
       return response
     },
     (error) => {
-      // 上报前端连接超时的具体网络时间信息
-      if (isProduction && error.message && error.message.includes('timeout')) {
-        const { url, headers, params } = error.config
-        // 当前被超时终止的请求信息
-        const data = {
-          url,
-          headers,
-          params: JSON.stringify(params),
-          performance: JSON.stringify(getPerformanceInfo()),
+      // 取消请求不做错误处理
+      if (!axios.isCancel(error)) {
+        if (
+          isProduction &&
+          error.message &&
+          error.message.includes('timeout')
+        ) {
+          // 上报前端连接超时的具体网络时间信息
+          const { url, headers, params } = error.config
+          // 当前被超时终止的请求信息
+          const data = {
+            url,
+            headers,
+            params: JSON.stringify(params),
+            performance: JSON.stringify(getPerformanceInfo()),
+          }
+          report(requestUrl + platform, data)
         }
-        report(requestUrl + platform, data)
+        errorCallback(getErrorMessage(error))
       }
-      errorCallback(getErrorMessage(error))
+
       return Promise.reject(error)
     },
   )

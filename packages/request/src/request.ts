@@ -60,13 +60,21 @@ class RequestBase<Data> {
   private _config: RequestBaseConfigOptions
   private _sucCode = [0]
   private _data = {}
+  public source
 
   constructor(url: string, config?: object) {
+    this.source = axios.CancelToken.source()
     this._config = {
       url,
       headers: {},
+      cancelToken: this.source.token,
       ...config,
     }
+  }
+
+  public getCancelIns(fn: (ins: any) => void): RequestBase<Data> {
+    fn(this.source)
+    return this
   }
 
   public code(code: number | number[]): RequestBase<Data> {
