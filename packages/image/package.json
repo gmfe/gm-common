@@ -1,6 +1,6 @@
 {
   "name": "@gm-common/image",
-  "version": "2.4.1",
+  "version": "2.5.0-alpha.0",
   "description": "",
   "author": "zhongsink <zhongink@gmail.com>",
   "homepage": "https://github.com/gmfe/gm-common#readme",
@@ -21,6 +21,6 @@
     "url": "https://github.com/gmfe/gm-common/issues"
   },
   "dependencies": {
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.19"
   }
 }
