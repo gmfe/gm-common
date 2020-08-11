@@ -1,6 +1,6 @@
 {
   "name": "@gm-common/tool",
-  "version": "2.4.1",
+  "version": "2.5.0-alpha.0",
   "description": "",
   "author": "liyatang <liyatang@qq.com>",
   "homepage": "https://github.com/gmfe/gm-common#readme",
@@ -21,7 +21,7 @@
     "url": "https://github.com/gmfe/gm-common/issues"
   },
   "dependencies": {
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.19"
   },
   "peerDependencies": {
     "react": "^16.13.1"
