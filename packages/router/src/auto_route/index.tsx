@@ -108,6 +108,7 @@ function getRouteList(Loading: any) {
 export interface AutoRouterProps {
   NoMatch?: React.ComponentType<RouteComponentProps>
   Loading?: React.ComponentType<LoadingComponentProps>
+  children?: React.ReactElement
 }
 
 const AutoRouter: FC<AutoRouterProps> = ({ NoMatch, Loading, children }) => {
