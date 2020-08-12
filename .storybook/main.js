@@ -1,7 +1,12 @@
 const webpackFinal = (config) => {
   config.module.rules.push({
-    test: /\.stories\.jsx?$/,
-    loaders: [require.resolve('@storybook/source-loader')],
+    test: /stories\.tsx?$/,
+    loaders: [
+      {
+        loader: require.resolve('@storybook/source-loader'),
+        options: { parser: 'typescript' },
+      },
+    ],
     enforce: 'pre',
   })
 
@@ -16,7 +21,7 @@ const webpackFinal = (config) => {
 }
 
 module.exports = {
-  addons: ['@storybook/addon-storysource/register'],
+  addons: ['@storybook/addon-storysource'],
   stories: [
     '../packages/fingerprint/**/*stories.tsx',
     '../packages/locales/**/*stories.tsx',
@@ -26,6 +31,7 @@ module.exports = {
     '../packages/tool/**/*stories.tsx',
     '../packages/wx-sdk/**/*stories.js',
     '../packages/analyse/**/*stories.tsx',
+    '../packages/hooks/**/*stories.tsx',
     '../demo/**/*stories.js',
   ],
   webpackFinal,

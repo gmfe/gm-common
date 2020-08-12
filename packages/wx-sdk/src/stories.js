@@ -14,5 +14,5 @@ export const Normal = () => {
 }
 
 export default {
-  title: 'WEIXIN|sdk',
+  title: 'WEIXIN/sdk',
 }

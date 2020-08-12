@@ -9,7 +9,7 @@ const store = observable({
   lng: (l ? JSON.parse(l) : '') || 'zh',
 })
 
-storiesOf('locales|locales', module).add('default', () => (
+storiesOf('locales/locales', module).add('default', () => (
   <select
     value={store.lng}
     onChange={(e) => {

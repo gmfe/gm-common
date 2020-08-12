@@ -1,4 +1,4 @@
-import { addDecorator } from '@storybook/react'
+import { addDecorator, addParameters } from '@storybook/react'
 import { withInfo } from '@storybook/addon-info'
 
 // 构造 变量。 不知道怎么用 HtmlWebpackPlugin。于是就
@@ -18,11 +18,8 @@ addDecorator(
       return {
         ...stylesheet,
         infoBody: {
-          ...stylesheet.infoBody,
-          borderTop: '1px solid #ccc',
-          color: '#444',
+          borderTop: '1px solid rgba(0, 0, 0, 0.05)',
           padding: '10px',
-          fontWeight: 'normal',
         },
       }
     },
