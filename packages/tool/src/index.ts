@@ -31,6 +31,8 @@ import isPathMatch from './is_path_match'
 import sleep from './sleep'
 import keyMirror from './key_mirror'
 import envTimeDetect from './env_time_detect'
+import Cache from './cache'
+import promiseTaskOrder from './promise_task_order'
 
 export {
   isElementInViewport,
@@ -63,4 +65,6 @@ export {
   sleep,
   keyMirror,
   envTimeDetect,
+  Cache,
+  promiseTaskOrder,
 }

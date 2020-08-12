@@ -28,5 +28,5 @@ export const Normal = () => {
 }
 
 export default {
-  title: 'analyse|analyse',
+  title: 'analyse/analyse',
 }

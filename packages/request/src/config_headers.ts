@@ -18,6 +18,7 @@ function configHeaders(): void {
       instance.defaults.headers.common[
         'X-Guanmai-Client'
       ] = `${clientName}/${version} ${clientId}`
+      return null
     })
   } else {
     instance.defaults.headers.common[

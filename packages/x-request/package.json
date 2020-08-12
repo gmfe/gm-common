@@ -1,0 +1,31 @@
+{
+  "name": "@gm-common/x-request",
+  "version": "2.5.1-alpha.3",
+  "description": "> TODO: description",
+  "author": "zhongsink <zhongink@gmail.com>",
+  "homepage": "https://github.com/gmfe/gm-common#readme",
+  "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gmfe/gm-common.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/gmfe/gm-common/issues"
+  },
+  "dependencies": {
+    "@gm-common/analyse": "^2.5.1-alpha.3",
+    "@gm-common/fingerprint": "^2.5.1-alpha.3",
+    "@gm-common/locales": "^2.5.1-alpha.3",
+    "@gm-common/tool": "^2.5.1-alpha.3",
+    "axios": "^0.19.2",
+    "lodash": "^4.17.19"
+  }
+}

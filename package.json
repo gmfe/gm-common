@@ -6,10 +6,12 @@
     "build": "build-storybook -c .storybook -o docs",
     "prebuild": "rm -rf docs; mkdir docs;",
     "publish-latest": "lerna publish --force-publish",
-    "publish-beta": "lerna publish --force-publish --dist-tag beta"
+    "publish-beta": "lerna publish --force-publish --dist-tag beta",
+    "link": "cd packages/image; yarn link; cd ../locales; yarn link; cd ../request; yarn link; cd ../router;  yarn link; cd ../tool; yarn link; cd ../x-request; yarn link; cd ../hooks; yarn link;"
   },
   "husky": {
     "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "pre-commit": "lint-staged"
     }
   },
@@ -19,6 +21,11 @@
   "lint-staged": {
     "./packages/**/*.{js,ts,tsx}": [
       "eslint --cache --fix"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@gm-react-app/commitlint-gm-react-app"
     ]
   },
   "browserslist": {
@@ -34,11 +41,13 @@
   },
   "dependencies": {
     "@babel/core": "^7.11.1",
+    "@gm-pc/react": "^0.0.2",
+    "@gm-react-app/commitlint-gm-react-app": "3.3.2-beta.5",
     "@gm-react-app/scripts-lib": "^3.3.1",
     "@storybook/addon-info": "^5.3.14",
-    "@storybook/addon-notes": "^5.3.14",
-    "@storybook/addon-storysource": "^5.3.14",
-    "@storybook/react": "^5.3.14",
+    "@storybook/addon-storysource": "^6.0.6",
+    "@storybook/react": "^6.0.6",
+    "@svgr/webpack": "^5.4.0",
     "@types/lodash": "^4.14.159",
     "@types/react": "^16.9.44",
     "babel-eslint": "^10.1.0",
@@ -46,9 +55,12 @@
     "babel-preset-gm-react-app": "^3.3.1",
     "eslint-plugin-gm-react-app": "^3.3.1",
     "fingerprintjs2": "^2.1.2",
+    "http-proxy-middleware": "^1.0.5",
     "husky": "^4.2.3",
+    "less": "^3.12.2",
+    "less-loader": "^7.0.1",
     "lint-staged": "^10.2.11",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.20",
     "mobx": "^5.15.5",
     "mobx-react": "^6.2.5",
     "prettier": "^2.0.5",

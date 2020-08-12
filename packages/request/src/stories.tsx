@@ -1,5 +1,11 @@
 import React from 'react'
-import { instance, Request, configTrace, configHeaders, configRetry } from './index'
+import {
+  instance,
+  Request,
+  configTrace,
+  configHeaders,
+  configRetry,
+} from './index'
 
 configTrace()
 configHeaders()
@@ -84,5 +90,5 @@ export const normal = () => {
 }
 
 export default {
-  title: 'Request|Request',
+  title: 'Request/Request',
 }
