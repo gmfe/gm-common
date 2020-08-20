@@ -2,6 +2,18 @@
 # yarn lockfile v1
 
 
+"@gm-common/tool@^2.5.0":
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/@gm-common/tool/-/tool-2.5.0.tgz#629ca4acb6653546a90b0beb3721b6b52719e1be"
+  integrity sha512-Ujxs3vfoUH5RQEZFqNbFxzwZc1ts3YeiyIIYEN6oO6CliiO0rHhGCXY2z+Z00N+lJdFQC4NUXqoy8iPVyYYtJw==
+  dependencies:
+    lodash "^4.17.19"
+
+lodash@^4.17.19:
+  version "4.17.20"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
+  integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
+
 ts-config-gm-react-app@^3.0.6:
   version "3.2.6"
   resolved "https://registry.npmjs.org/ts-config-gm-react-app/-/ts-config-gm-react-app-3.2.6.tgz#078d44d80e5a6c0f64154c97825be4e89d37b40b"
