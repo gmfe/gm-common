@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import { Service, Options } from '../use_async/type'
 import useAsync from '../use_async'
+import useUnmount from '../use_unmount'
 import { useState } from 'react'
 import { Paging, ResolveData, Result, PagingOptions } from './type'
 
@@ -10,6 +11,7 @@ import { Paging, ResolveData, Result, PagingOptions } from './type'
 function usePagination(service: Service, options?: Options): Result {
   const paging = options?.defaultParams?.paging || {}
 
+  const isUnmounted = useUnmount()
   const [state, setState] = useState<Paging>({
     offset: 0,
     limit: paging.limit || 10,
@@ -36,10 +38,12 @@ function usePagination(service: Service, options?: Options): Result {
 
         const pagingRes = resolveData.paging || {}
 
-        setState((s) => ({
-          ...s,
-          paging: pagingRes,
-        }))
+        if (!isUnmounted) {
+          setState((s) => ({
+            ...s,
+            paging: pagingRes,
+          }))
+        }
         options && options.onSuccess && options.onSuccess(resolveData, params)
       },
     }),

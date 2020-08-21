@@ -1,6 +1,6 @@
 import { useCallback, useRef } from 'react'
 
-function usePersistFn(fn: any) {
+function usePersistFn(fn: (...args: any[]) => any) {
   const refFun = useRef(fn)
 
   refFun.current = fn
