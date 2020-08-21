@@ -132,5 +132,5 @@ export const Order = () => {
 }
 
 export default {
-  title: 'Hook/async/useAsync',
+  title: 'Hooks/async/useAsync',
 }

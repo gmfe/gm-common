@@ -29,5 +29,5 @@ export const Normal = () => {
 }
 
 export default {
-  title: 'Hook/life cycle/useUnmount',
+  title: 'Hooks/life cycle/useUnmount',
 }

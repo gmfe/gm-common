@@ -57,5 +57,5 @@ export const HasParams = () => {
 }
 
 export default {
-  title: 'Hook/state/useToggle',
+  title: 'Hooks/state/useToggle',
 }

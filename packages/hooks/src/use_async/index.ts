@@ -26,6 +26,7 @@ function _doService(id: string, args: DoService) {
     data: cacheData !== undefined ? cacheData : undefined,
     loading: true,
     error: undefined,
+    params,
   })
 
   const resolveFn = (resolveData: any) => {
@@ -39,6 +40,7 @@ function _doService(id: string, args: DoService) {
         data: resolveData,
         loading: false,
         error: undefined,
+        params,
       })
     }
 
@@ -57,6 +59,7 @@ function _doService(id: string, args: DoService) {
         data: undefined,
         loading: false,
         error: rejectReason,
+        params,
       })
     }
 
@@ -78,7 +81,7 @@ function useAsync(service: Service, options?: Options): Result {
   const _options = Object.assign(
     {
       manual: false,
-      params: undefined,
+      defaultParams: undefined,
       onSuccess: _.noop,
       onError: _.noop,
       cacheKey: undefined,
@@ -94,6 +97,7 @@ function useAsync(service: Service, options?: Options): Result {
     data: undefined,
     loading: false,
     error: undefined,
+    params: _options.defaultParams,
   })
 
   function doService(params?: Params) {
@@ -106,7 +110,7 @@ function useAsync(service: Service, options?: Options): Result {
       cacheTime: _options.cacheTime,
     }).then(
       (resolveData) => {
-        _options.onSuccess(resolveData)
+        _options.onSuccess(resolveData, params)
         return resolveData
       },
       (error) => {
@@ -120,7 +124,7 @@ function useAsync(service: Service, options?: Options): Result {
   useEffect(() => {
     // 非手动
     if (!_options.manual) {
-      doService(_options.params)
+      doService(_options.defaultParams)
     }
   }, [])
 
@@ -129,12 +133,12 @@ function useAsync(service: Service, options?: Options): Result {
   }
 
   const refresh = () => {
-    return doService(_options.params)
+    return doService(_options.defaultParams)
   }
 
   return {
     data: state.data,
-    params: _options.params,
+    params: state.params,
     loading: state.loading,
     error: state.error,
     run,
