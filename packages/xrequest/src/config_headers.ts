@@ -1,6 +1,7 @@
-import { UUID } from '@gm-common/tool'
+import { UUID, Storage } from '@gm-common/tool'
 import { getFingerPrint, getCacheFingerPrint } from '@gm-common/fingerprint'
 import { instance } from './request'
+import { accessTokenKey } from './util'
 
 function configHeaders(): void {
   // 没有没能立马获得指纹，则用 UUID 代替。
@@ -16,18 +17,20 @@ function configHeaders(): void {
       clientId = id
 
       instance.defaults.headers.common[
-        'X-Guanmai-Client'
+        'X-Gm-Client'
       ] = `${clientName}/${version} ${clientId}`
       return null
     })
   } else {
     instance.defaults.headers.common[
-      'X-Guanmai-Client'
+      'X-Gm-Client'
     ] = `${clientName}/${version} ${clientId}`
   }
 
   instance.interceptors.request.use((config) => {
-    config.headers['X-Guanmai-Request-Id'] = UUID.generate()
+    const accessToken = Storage.get(accessTokenKey)
+    if (accessToken) config.headers.authorization = accessToken
+    config.headers['X-Gm-Request-Id'] = UUID.generate()
 
     return config
   })

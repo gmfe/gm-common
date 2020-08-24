@@ -27,6 +27,7 @@ module.exports = {
     '../packages/locales/**/*stories.tsx',
     '../packages/number/**/*stories.tsx',
     '../packages/request/**/*stories.tsx',
+    '../packages/xrequest/**/*stories.tsx',
     '../packages/router/**/*stories.tsx',
     '../packages/tool/**/*stories.tsx',
     '../packages/wx-sdk/**/*stories.js',
