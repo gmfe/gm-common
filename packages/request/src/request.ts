@@ -33,6 +33,7 @@ function httpReject(error: { [key: string]: any }): void {
   report(url, {
     error: error,
     performanceTime: window.performance,
+    title: 'http error',
   })
 
   const message = getErrorMessage(error)
