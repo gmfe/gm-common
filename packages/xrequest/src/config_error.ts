@@ -44,7 +44,7 @@ function configError(errorCallback: (msg: string, res?: any) => void): void {
       }
       if (error.response) {
         const responseHeaders = error.response.headers
-        const requestHeaders = error.request.headers
+        const requestHeaders = error.response.config.headers
         const gRPCMessage = atob(responseHeaders['grpc-message'])
         const gRPCStatus = responseHeaders['grpc-status']
         const gRpcMsgMap = Storage.get(gRpcMsgKey) || {}
