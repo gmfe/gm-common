@@ -1,7 +1,8 @@
 import axios from 'axios'
-import { isArray } from 'lodash'
+import { isArray, map, includes } from 'lodash'
 import { getLocale } from '@gm-common/locales'
 import { processPostData, hasFileData, getErrorMessage } from './util'
+import { report } from '@gm-common/analyse'
 
 const instance = axios.create({
   timeout: 30000,
@@ -28,6 +29,18 @@ instance.interceptors.request.use((config) => {
 
 function httpReject(error: { [key: string]: any }): void {
   console.error(error)
+  const url = 'https://trace.guanmai.cn/api/logs/more/' + __NAME__
+  const entries = map(window.performance.getEntries(), (entry: any) => {
+    if (includes(entry.name, 'bshop.guanmai.cn')) {
+      return entry
+    }
+  }).filter((_) => _)
+
+  report(url, {
+    error: error,
+    performanceTime: entries,
+    title: 'http error',
+  })
 
   const message = getErrorMessage(error)
 
