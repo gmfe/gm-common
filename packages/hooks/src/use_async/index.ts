@@ -4,7 +4,7 @@ import { Cache, promiseTaskOrder } from '@gm-common/tool'
 import useUnmount from '../use_unmount'
 import { Params, Service, Options, Result, State } from './type'
 
-interface DoService {
+interface DoSomeThink {
   id: string
   setState: (state: State) => void
   isUnmounted: boolean
@@ -14,7 +14,7 @@ interface DoService {
   cacheTime: number
 }
 
-function _doSomeThink(args: DoService) {
+function _doSomeThink(args: DoSomeThink) {
   const {
     id,
     setState,
