@@ -5,6 +5,7 @@ import useUnmount from '../use_unmount'
 import { Params, Service, Options, Result, State } from './type'
 
 interface DoService {
+  id: string
   setState: (state: State) => void
   isUnmounted: boolean
   service: Service
@@ -13,8 +14,16 @@ interface DoService {
   cacheTime: number
 }
 
-function _doService(id: string, args: DoService) {
-  const { setState, isUnmounted, service, params, cacheKey, cacheTime } = args
+function _doSomeThink(args: DoService) {
+  const {
+    id,
+    setState,
+    isUnmounted,
+    service,
+    params,
+    cacheKey,
+    cacheTime,
+  } = args
 
   let cacheData: any
   if (cacheKey) {
@@ -100,8 +109,10 @@ function useAsync(service: Service, options?: Options): Result {
     params: _options.defaultParams,
   })
 
-  function doService(params?: Params) {
-    return _doService(refId.current, {
+  // 不知道叫什么名字
+  function doSomeThink(params?: Params) {
+    return _doSomeThink({
+      id: refId.current,
       setState,
       isUnmounted,
       service,
@@ -124,16 +135,16 @@ function useAsync(service: Service, options?: Options): Result {
   useEffect(() => {
     // 非手动
     if (!_options.manual) {
-      doService(_options.defaultParams)
+      doSomeThink(_options.defaultParams)
     }
   }, [])
 
   const run = (params?: Params) => {
-    return doService(params)
+    return doSomeThink(params)
   }
 
   const refresh = () => {
-    return doService(_options.defaultParams)
+    return doSomeThink(_options.defaultParams)
   }
 
   return {
