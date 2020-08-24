@@ -30,8 +30,8 @@ instance.interceptors.request.use((config) => {
 function httpReject(error: { [key: string]: any }): void {
   console.error(error)
   const url = 'https://trace.guanmai.cn/api/logs/more/' + __NAME__
-  const entries = _.map(window.performance.getEntries(), (entry: any) => {
-    if (_.includes(entry.name, 'bshop.guanmai.cn')) {
+  const entries = map(window.performance.getEntries(), (entry: any) => {
+    if (includes(entry.name, 'bshop.guanmai.cn')) {
       return entry
     }
   }).filter((_) => _)
