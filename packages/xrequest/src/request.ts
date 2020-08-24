@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { isArray } from 'lodash'
-import { getErrorMessage } from './util'
 import configInit from './config_init'
 
 const instance = axios.create({
@@ -20,12 +19,12 @@ interface RequestBaseConfigOptions {
   [key: string]: any
 }
 
-interface RequestResultBase {
+interface ResponseBase {
   gRPCStatus: number
-  gRPCMessage: string
+  gRPCMessage: any
 }
 
-class RequestBase<Data extends RequestResultBase> {
+class RequestBase<Data> {
   private _config: RequestBaseConfigOptions
   private _sucCode = [0]
   private _data = {}
@@ -59,23 +58,22 @@ class RequestBase<Data extends RequestResultBase> {
     return this
   }
 
-  public post(): Promise<void | Data> {
+  public json(data: { [key: string]: any }): RequestBase<Data> {
+    this._data = JSON.stringify(data)
+    return this
+  }
+
+  public post(): Promise<Data> {
     this._config.data = this._data
     this._config.method = 'post'
-    return instance.request<Data>(this._config).then(
-      (res) => res.data,
-      (error: { [key: string]: any }) => {
-        console.error(error)
-        const message = getErrorMessage(error)
-
-        throw new Error(message)
-      },
-    )
+    return instance.request<Data>(this._config).then((res) => res.data)
   }
 }
 
-function Request<Data extends RequestResultBase>(url: string, config?: object) {
+function Request<Data extends ResponseBase>(url: string, config?: object) {
   return new RequestBase<Data>(url, config)
 }
 
 export { instance, Request }
+
+export type { ResponseBase }

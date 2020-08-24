@@ -1,27 +1,31 @@
-import { instance } from './request'
 import { getLocale } from '@gm-common/locales'
+import _ from 'lodash'
 import {
   getErrorMessage,
   platform,
   requestUrl,
   isProduction,
   gRpcMsgKey,
+  atob,
 } from './util'
 import { Storage } from '@gm-common/tool'
 import { report } from '@gm-common/analyse'
+import { instance } from './request'
 
 function configError(errorCallback: (msg: string, res?: any) => void): void {
   instance.interceptors.response.use(
     (response) => {
-      const { headers } = response.config
-      const gRPCStatus = headers['grpc-status']
-      const sucCode = headers['X-Gm-Success-Code'].split(',')
+      const requestHeaders = response.config.headers
+      const responseHeaders = response.headers
+      const gRPCStatus = responseHeaders['grpc-status']
+      const sucCode = requestHeaders['X-Gm-Success-Code'].split(',')
       const gRpcMsgMap = Storage.get(gRpcMsgKey) || {}
 
       if (!sucCode.includes(gRPCStatus + '')) {
         const msg =
           gRpcMsgMap[gRPCStatus] || `${getLocale('未知错误')}: ${gRPCStatus}`
         errorCallback(msg, response)
+        return Promise.reject(new Error(msg))
       }
 
       return response
@@ -38,8 +42,30 @@ function configError(errorCallback: (msg: string, res?: any) => void): void {
         }
         report(requestUrl + platform, data)
       }
-      errorCallback(getErrorMessage(error))
-      return Promise.reject(error)
+      if (error.response) {
+        const responseHeaders = error.response.headers
+        const requestHeaders = error.request.headers
+        const gRPCMessage = atob(responseHeaders['grpc-message'])
+        const gRPCStatus = responseHeaders['grpc-status']
+        const gRpcMsgMap = Storage.get(gRpcMsgKey) || {}
+        const sucCode = requestHeaders['X-Gm-Success-Code'].split(',')
+        if (!sucCode.includes(gRPCStatus + '')) {
+          const msg =
+            gRpcMsgMap[gRPCStatus] || `${getLocale('未知错误')}: ${gRPCStatus}`
+          errorCallback(msg, error.response)
+          return Promise.reject(error)
+        }
+        return {
+          ...error.response,
+          data: {
+            gRPCStatus,
+            gRPCMessage,
+          },
+        }
+      } else {
+        errorCallback(getErrorMessage(error))
+        return Promise.reject(error)
+      }
     },
   )
 }

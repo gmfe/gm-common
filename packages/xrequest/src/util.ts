@@ -89,6 +89,18 @@ function getErrorMessage(error: { [key: string]: any }): string {
   return message
 }
 
+function atob(s: string): any {
+  if (!s) return null
+  try {
+    const result = s.split('|').slice(1).join('|')
+    if (!result) return null
+    return JSON.parse(window.atob(result))
+  } catch (error) {
+    console.warn(error.message)
+    return null
+  }
+}
+
 export {
   gRpcMsgKey,
   accessTokenKey,
@@ -100,4 +112,5 @@ export {
   processPostData,
   hasFileData,
   getErrorMessage,
+  atob,
 }

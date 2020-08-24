@@ -6,6 +6,8 @@ import configError from './config_error'
 import configProgress from './config_progress'
 import { configGrpcCodes, configAuth } from './config_init'
 
+export type { ResponseBase } from './request'
+
 export {
   instance,
   Request,

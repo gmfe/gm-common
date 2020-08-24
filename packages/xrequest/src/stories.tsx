@@ -25,7 +25,7 @@ export const normal = () => {
     <div>
       <button
         onClick={() => {
-          Request<any>('http://dev.guanmai.cn:8811/enterprise/CreateRole')
+          Request('http://dev.guanmai.cn:8811/enterprise/CreateRole')
             .code([0, 10])
             .data({
                 role: JSON.stringify({
