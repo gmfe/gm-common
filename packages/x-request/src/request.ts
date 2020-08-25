@@ -1,42 +1,28 @@
-import axios from 'axios'
+import axios, { AxiosRequestConfig } from 'axios'
 import { isArray } from 'lodash'
-import { hasFileData, processPostData } from './util'
 const instance = axios.create({
   timeout: 30000,
   headers: {
     Accept: 'application/json',
-    'Content-Type': 'application/x-www-form-urlencoded',
+    'Content-Type': 'application/json',
     'X-Gm-Timeout': '30000',
     'X-Gm-Success-Code': '0',
   },
 })
-instance.interceptors.request.use((config) => {
-  if (config.method === 'post') {
-    if (hasFileData(config.data)) {
-      config.headers['Content-Type'] = 'multipart/form-data'
-    }
-    config.data = processPostData(config.data)
-  }
-  return config
-})
 
-interface RequestBaseConfigOptions {
-  url: string
-  headers: { [key: string]: any }
-  [key: string]: any
-}
-
-interface ResponseBase {
-  gRPCStatus: number
-  gRPCMessage: any
+interface Response<T> {
+  code: number
+  message: string
+  detail: any
+  response: T
 }
 
 class RequestBase<Data> {
-  private _config: RequestBaseConfigOptions
+  private _config: AxiosRequestConfig
   private _sucCode = [0]
   private _data = {}
 
-  constructor(url: string, config?: object) {
+  constructor(url: string, config?: AxiosRequestConfig) {
     this._config = {
       url,
       headers: {},
@@ -61,26 +47,23 @@ class RequestBase<Data> {
   }
 
   public data(data: { [key: string]: any }): RequestBase<Data> {
-    this._data = data
-    return this
-  }
-
-  public json(data: { [key: string]: any }): RequestBase<Data> {
     this._data = JSON.stringify(data)
     return this
   }
 
-  public post(): Promise<Data> {
+  public run(): Promise<Response<Data>> {
     this._config.data = this._data
     this._config.method = 'post'
-    return instance.request<Data>(this._config).then((res) => res.data)
+    return instance
+      .request<Response<Data>>(this._config)
+      .then((res) => res.data)
   }
 }
 
-function Request<Data extends ResponseBase>(url: string, config?: object) {
+function Request<Data>(url: string, config?: object) {
   return new RequestBase<Data>(url, config)
 }
 
 export { instance, Request }
 
-export type { ResponseBase }
+export type { Response }

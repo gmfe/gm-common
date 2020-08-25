@@ -1,7 +1,6 @@
-import { UUID, Storage } from '@gm-common/tool'
+import { UUID } from '@gm-common/tool'
 import { getFingerPrint, getCacheFingerPrint } from '@gm-common/fingerprint'
 import { instance } from './request'
-import { accessTokenKey } from './util'
 
 function configHeaders(): void {
   // 没有没能立马获得指纹，则用 UUID 代替。
@@ -28,8 +27,6 @@ function configHeaders(): void {
   }
 
   instance.interceptors.request.use((config) => {
-    const accessToken = Storage.get(accessTokenKey)
-    if (accessToken) config.headers.authorization = accessToken
     config.headers['X-Gm-Request-Id'] = UUID.generate()
 
     return config

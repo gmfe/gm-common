@@ -3,18 +3,14 @@ import {
   Request,
   configError,
   configHeaders,
-  configAuth,
-  configGrpcCodes
+  initAuth,
+  initGRpcCodes
 } from './index'
 
-import type { ResponseBase } from './index'
+import type { Response } from './index'
 
-interface Response extends ResponseBase {
-  role: any
-}
-
-configAuth('/enterprise/CreateRole', 'role.name')
-configGrpcCodes({ '3': '参数错误' })
+initAuth('/enterprise/CreateRole', 'role.name')
+initGRpcCodes({ '3': '参数错误' })
 configError((message, response) => {
   console.log(message, response)
 })
@@ -25,17 +21,17 @@ export const normal = () => {
     <div>
       <button
         onClick={() => {
-          Request<Response>('/enterprise/CreateRole')
+          Request<Response<{ role: any }>>('/enterprise/CreateRole')
             .code([3])
-            .json({
+            .data({
                 role:{
                   name: 'my_first_group',
                   // role_id: '1'
                 }
             })
-            .post()
+            .run()
             .then((json) => {
-              console.log(json.gRPCStatus, json.gRPCMessage, json.role)
+              console.log(json.code, json.message, json.detail, json.response)
             })
             .catch((error) => {
               console.log(error)

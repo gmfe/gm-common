@@ -3,12 +3,18 @@ import _ from 'lodash'
 import { instance } from './request'
 import { gRpcMsgKey, authInfoKey, accessTokenKey } from './util'
 
-export function configGrpcCodes(m: { [code: string]: string }) {
+export function initGRpcCodes(m: { [code: string]: string }) {
   Storage.set(gRpcMsgKey, m)
 }
 
-export function configAuth(url: string, field: string) {
+export function initAuth(url: string, field: string) {
   Storage.set(authInfoKey, { url, field })
+  instance.interceptors.request.use((config) => {
+    const accessToken = Storage.get(accessTokenKey)
+    if (accessToken) config.headers.authorization = accessToken
+
+    return config
+  })
   instance.interceptors.response.use((response) => {
     const json = response.data
     const { url } = response.config

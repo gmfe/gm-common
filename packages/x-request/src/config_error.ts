@@ -15,13 +15,16 @@ import { instance } from './request'
 
 function parseResponse(response: AxiosResponse) {
   const responseHeaders = response.headers
-  const gRPCMessage = atob(responseHeaders['grpc-message'])
+  const result = responseHeaders['grpc-message'].split('|')
+  const gRPCMessageDetail = atob(result.slice(1).join('|'))
+  const gRPCMessage = result[0] || ''
   const gRPCStatus = responseHeaders['grpc-status']
   const json = response.data || null
   response.data = {
-    gRPCStatus,
-    gRPCMessage,
-    ...json,
+    code: gRPCStatus,
+    message: gRPCMessage,
+    detail: gRPCMessageDetail,
+    response: json,
   }
   return response
 }
@@ -32,14 +35,13 @@ function wrap(
 ): Promise<AxiosResponse> {
   return new Promise((resolve) => {
     const { headers } = response.config
-    const { gRPCStatus } = response.data
+    const { code } = response.data
     const sucCode = headers['X-Gm-Success-Code'].split(',')
     const gRpcMsgMap = Storage.get(gRpcMsgKey) || {}
     let message = msg
-    if (!gRPCStatus || !sucCode.includes(gRPCStatus + '')) {
-      if (gRPCStatus) {
-        message =
-          gRpcMsgMap[gRPCStatus] || `${getLocale('未知错误')}: ${gRPCStatus}`
+    if (!code || !sucCode.includes(code + '')) {
+      if (status) {
+        message = gRpcMsgMap[code] || `${getLocale('未知错误')}: ${code}`
       }
       throw new Error(message)
     }
