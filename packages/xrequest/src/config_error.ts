@@ -8,29 +8,55 @@ import {
   gRpcMsgKey,
   atob,
 } from './util'
+import { AxiosResponse } from 'axios'
 import { Storage } from '@gm-common/tool'
 import { report } from '@gm-common/analyse'
 import { instance } from './request'
 
+function parseResponse(response: AxiosResponse) {
+  const responseHeaders = response.headers
+  const gRPCMessage = atob(responseHeaders['grpc-message'])
+  const gRPCStatus = responseHeaders['grpc-status']
+  const json = response.data || null
+  response.data = {
+    gRPCStatus,
+    gRPCMessage,
+    ...json,
+  }
+  return response
+}
+
+function wrap(response: AxiosResponse, msg = ''): Promise<AxiosResponse> {
+  return new Promise((resolve) => {
+    const { headers } = response.config
+    const { gRPCStatus } = response.data
+    const sucCode = headers['X-Gm-Success-Code'].split(',')
+    const gRpcMsgMap = Storage.get(gRpcMsgKey) || {}
+    let message = msg
+    if (!gRPCStatus || !sucCode.includes(gRPCStatus + '')) {
+      if (gRPCStatus) {
+        message =
+          gRpcMsgMap[gRPCStatus] || `${getLocale('未知错误')}: ${gRPCStatus}`
+      }
+      throw new Error(message)
+    }
+    resolve(response)
+  })
+}
+
 function configError(errorCallback: (msg: string, res?: any) => void): void {
   instance.interceptors.response.use(
-    (response) => {
-      const requestHeaders = response.config.headers
-      const responseHeaders = response.headers
-      const gRPCStatus = responseHeaders['grpc-status']
-      const sucCode = requestHeaders['X-Gm-Success-Code'].split(',')
-      const gRpcMsgMap = Storage.get(gRpcMsgKey) || {}
-
-      if (!sucCode.includes(gRPCStatus + '')) {
-        const msg =
-          gRpcMsgMap[gRPCStatus] || `${getLocale('未知错误')}: ${gRPCStatus}`
-        errorCallback(msg, response)
-        return Promise.reject(new Error(msg))
+    async (response) => {
+      const res = parseResponse(response)
+      try {
+        await wrap(res)
+      } catch (error) {
+        errorCallback(error.message, res)
+        return Promise.reject(error)
       }
-
-      return response
+      return res
     },
-    (error) => {
+    async (error) => {
       // 上报前端连接超时的具体网络时间信息
       if (isProduction && error.message && error.message.includes('timeout')) {
         const { url, headers, params } = error.config
@@ -42,28 +68,19 @@ function configError(errorCallback: (msg: string, res?: any) => void): void {
         }
         report(requestUrl + platform, data)
       }
+      const message = getErrorMessage(error)
+
       if (error.response) {
-        const responseHeaders = error.response.headers
-        const requestHeaders = error.response.config.headers
-        const gRPCMessage = atob(responseHeaders['grpc-message'])
-        const gRPCStatus = responseHeaders['grpc-status']
-        const gRpcMsgMap = Storage.get(gRpcMsgKey) || {}
-        const sucCode = requestHeaders['X-Gm-Success-Code'].split(',')
-        if (!sucCode.includes(gRPCStatus + '')) {
-          const msg =
-            gRpcMsgMap[gRPCStatus] || `${getLocale('未知错误')}: ${gRPCStatus}`
-          errorCallback(msg, error.response)
+        const res = parseResponse(error.response)
+        try {
+          await wrap(res, message)
+        } catch (e) {
+          errorCallback(e.message, res)
           return Promise.reject(error)
         }
-        return {
-          ...error.response,
-          data: {
-            gRPCStatus,
-            gRPCMessage,
-          },
-        }
+        return res
       } else {
-        errorCallback(getErrorMessage(error))
+        errorCallback(message)
         return Promise.reject(error)
       }
     },

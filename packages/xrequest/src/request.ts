@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { isArray } from 'lodash'
-import configInit from './config_init'
-
+import { hasFileData, processPostData } from './util'
 const instance = axios.create({
   timeout: 30000,
   headers: {
@@ -11,7 +10,15 @@ const instance = axios.create({
     'X-Gm-Success-Code': '0',
   },
 })
-configInit()
+instance.interceptors.request.use((config) => {
+  if (config.method === 'post') {
+    if (hasFileData(config.data)) {
+      config.headers['Content-Type'] = 'multipart/form-data'
+    }
+    config.data = processPostData(config.data)
+  }
+  return config
+})
 
 interface RequestBaseConfigOptions {
   url: string

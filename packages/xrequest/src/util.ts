@@ -9,7 +9,7 @@ const requestUrl = '//trace.guanmai.cn/api/logs/request/'
 const requestEnvUrl = '//trace.guanmai.cn/api/logs/environment/'
 const gRpcMsgKey = 'GRPC_MSG_MAP'
 const accessTokenKey = 'ACCESS_TOEKN_KEY'
-const authInterfaceKey = 'AUTH_INTERFACE_KEY'
+const authInfoKey = 'AUTH_INTERFACE_KEY'
 
 const isFile = function (v: object): boolean {
   return /\[object File]|\[object Blob]/.test(toString.call(v))
@@ -104,7 +104,7 @@ function atob(s: string): any {
 export {
   gRpcMsgKey,
   accessTokenKey,
-  authInterfaceKey,
+  authInfoKey,
   requestUrl,
   requestEnvUrl,
   platform,
