@@ -26,7 +26,10 @@ function parseResponse(response: AxiosResponse) {
   return response
 }
 
-function wrap(response: AxiosResponse, msg = ''): Promise<AxiosResponse> {
+function wrap(
+  response: AxiosResponse,
+  msg = getLocale('未知错误'),
+): Promise<AxiosResponse> {
   return new Promise((resolve) => {
     const { headers } = response.config
     const { gRPCStatus } = response.data
