@@ -1,5 +1,4 @@
 import axios, { AxiosRequestConfig } from 'axios'
-import { isArray } from 'lodash'
 const instance = axios.create({
   timeout: 30000,
   headers: {
