@@ -40,7 +40,7 @@ function wrap(
     const gRpcMsgMap = Storage.get(gRpcMsgKey) || {}
     let message = msg
     if (!code || !sucCode.includes(code + '')) {
-      if (status) {
+      if (code) {
         message = gRpcMsgMap[code] || `${getLocale('未知错误')}: ${code}`
       }
       throw new Error(message)
