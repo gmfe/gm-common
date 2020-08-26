@@ -30,11 +30,7 @@ class RequestBase<Data> {
     }
   }
 
-  public code(code: number | number[]): RequestBase<Data> {
-    let codes: number[] = code as number[]
-    if (!isArray(code)) {
-      codes = [(code as any) as number]
-    }
+  public code(codes: number[]): RequestBase<Data> {
     this._sucCode = this._sucCode.concat(codes)
     this._config.headers['X-Gm-Success-Code'] = this._sucCode.join(',')
     return this
