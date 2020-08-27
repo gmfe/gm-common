@@ -7,7 +7,7 @@
     "prebuild": "rm -rf docs; mkdir docs;",
     "publish-latest": "lerna publish --force-publish",
     "publish-beta": "lerna publish --force-publish --dist-tag beta",
-    "link": "cd packages/image; yarn link; cd ../locales; yarn link; cd ../request; yarn link; cd ../router;  yarn link; cd ../tool; yarn link;"
+    "link": "cd packages/image; yarn link; cd ../locales; yarn link; cd ../request; yarn link; cd ../router;  yarn link; cd ../tool; yarn link; cd ../x-request; yarn link;"
   },
   "husky": {
     "hooks": {
