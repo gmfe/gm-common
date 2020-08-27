@@ -21,9 +21,11 @@ function parseResponse(response: AxiosResponse) {
   const gRPCStatus = responseHeaders['grpc-status']
   const json = response.data || null
   response.data = {
-    code: gRPCStatus,
-    message: gRPCMessage,
-    detail: gRPCMessageDetail,
+    code: +gRPCStatus,
+    message: {
+      description: gRPCMessage,
+      detail: gRPCMessageDetail,
+    },
     response: json,
   }
   return response
@@ -39,7 +41,7 @@ function wrap(
     const sucCode = headers['X-Gm-Success-Code'].split(',')
     const gRpcMsgMap = Storage.get(gRpcMsgKey) || {}
     let message = msg
-    if (!code || !sucCode.includes(code + '')) {
+    if (_.isNaN(code) || !sucCode.includes(code + '')) {
       if (code) {
         message = gRpcMsgMap[code] || `${getLocale('未知错误')}: ${code}`
       }

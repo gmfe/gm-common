@@ -7,8 +7,6 @@ import {
   initGRpcCodes
 } from './index'
 
-import type { Response } from './index'
-
 initAuth('/enterprise/CreateRole', 'role.name')
 initGRpcCodes({ '3': '参数错误' })
 configError((message, response) => {
@@ -21,7 +19,7 @@ export const normal = () => {
     <div>
       <button
         onClick={() => {
-          Request<Response<{ role: any }>>('/enterprise/CreateRole')
+          Request<{ role: any }>('/enterprise/CreateRole')
             .code([3])
             .data({
                 role:{
@@ -31,10 +29,7 @@ export const normal = () => {
             })
             .run()
             .then((json) => {
-              console.log(json.code, json.message, json.detail, json.response)
-            })
-            .catch((error) => {
-              console.log(error)
+              console.log(json)
             })
         }}
       >

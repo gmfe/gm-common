@@ -11,8 +11,10 @@ const instance = axios.create({
 
 interface Response<T> {
   code: number
-  message: string
-  detail: any
+  message: {
+    description: string
+    detail: any
+  }
   response: T
 }
 
