@@ -7,7 +7,7 @@ export const SingleKey = () => {
   const handleResize = () => {
     setKey('o')
   }
-  useKeyPress('o', handleResize, { event: 'keyup' })
+  useKeyPress('o', handleResize, { eventName: 'keyup' })
   return <div>按下o: {key}</div>
 }
 
@@ -17,8 +17,8 @@ export const CombinationKey = () => {
   const handleResize = () => {
     setKey(keyFilter)
   }
-  useKeyPress(keyFilter, handleResize, { event: 'keyup' })
-  return <div>按下shift+o: {JSON.stringify(key)}</div>
+  useKeyPress(keyFilter, handleResize, { eventName: 'keyup' })
+  return <div>按下shift+I: {JSON.stringify(key)}</div>
 }
 
 export const MultiKey = () => {
@@ -27,7 +27,7 @@ export const MultiKey = () => {
   const handleResize = () => {
     setKey(keyFilter)
   }
-  useKeyPress(keyFilter, handleResize, { event: 'keyup' })
+  useKeyPress(keyFilter, handleResize, { eventName: 'keyup' })
   return <div>按下shift+I/0/e: {JSON.stringify(key)}</div>
 }
 
@@ -44,7 +44,7 @@ export const CustomizeKeyFilter = () => {
   const handleResize = () => {
     setKey('c')
   }
-  useKeyPress(handleKeyFilter, handleResize, { event: 'keyup' })
+  useKeyPress(handleKeyFilter, handleResize, { eventName: 'keyup' })
   return <div>按下c: {JSON.stringify(key)}</div>
 }
 

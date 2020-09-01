@@ -1,32 +1,49 @@
-import { useEffect } from 'react'
-import getDomTarget, { TargetType, DomType } from '../utils/get_dom_target'
+import { useEffect, useRef } from 'react'
+import getDomTarget, { TargetDomType, DomType } from '../utils/get_dom_target'
 
-export type Handler = (event?: any) => void
-export type UseEventTargetType = TargetType<DomType>
-export type EventOptions = boolean | AddEventListenerOptions
+export type UseEventTargetType = TargetDomType<DomType>
+export interface UseEventOptions {
+  eventOptions?: AddEventListenerOptions
+  target?: UseEventTargetType
+}
 
 const useEvent = (
   eventName: string,
-  handler: Handler,
-  target?: UseEventTargetType,
-  options?: EventOptions,
+  handler: EventListener,
+  useEventOptions: UseEventOptions = {},
 ): void => {
+  const { eventOptions = {}, target = window } = useEventOptions
+
+  const eventHandlerRef = useRef(handler)
+  const eventOptionsRef = useRef(eventOptions)
+
+  eventHandlerRef.current = handler
+  eventOptionsRef.current = eventOptions
+
   useEffect(() => {
     const targetDom = getDomTarget(target)
 
-    if (!targetDom || !handler) {
+    if (!targetDom) {
       return
     }
 
-    targetDom.addEventListener(eventName, handler, options)
+    targetDom.addEventListener(
+      eventName,
+      eventHandlerRef.current,
+      eventOptionsRef.current,
+    )
 
     return () => {
-      if (!targetDom || !handler) {
+      if (!targetDom) {
         return
       }
-      targetDom.removeEventListener(eventName, handler, options)
+      targetDom.removeEventListener(
+        eventName,
+        eventHandlerRef.current,
+        eventOptionsRef.current,
+      )
     }
-  }, [target, handler, eventName, options])
+  }, [target, eventName])
 }
 
 export default useEvent

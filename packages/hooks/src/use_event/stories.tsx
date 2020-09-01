@@ -7,7 +7,7 @@ export const Dom = () => {
     console.log(event, 'resize')
     setHeight(window.innerHeight)
   }
-  useEvent('resize', handleResize, window)
+  useEvent('resize', handleResize, { target: window })
   return <div>监听window-resize事件,window.innerHeight: {height}</div>
 }
 
@@ -18,7 +18,7 @@ export const RefDom = () => {
     console.log(event, 'click')
     setCount((count) => count + 1)
   }
-  useEvent('click', handleClick, demoRef)
+  useEvent('click', handleClick, { target: demoRef })
   return <div ref={demoRef}>监听click事件,点击次数: {count}</div>
 }
 

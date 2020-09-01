@@ -1,22 +1,21 @@
-import { useCallback } from 'react'
-import useEvent, { UseEventTargetType, EventOptions } from '../use_event'
+import { useCallback, useRef, useEffect } from 'react'
+import useEvent, { UseEventTargetType } from '../use_event'
 
 export type KeyEvent = 'keyup' | 'keydown'
 export interface UseKeyOptions {
-  options?: EventOptions
-  event?: KeyEvent
+  eventOptions?: AddEventListenerOptions
+  eventName?: KeyEvent
   target?: UseEventTargetType
 }
 export type KeyFilter =
   | null
   | undefined
   | string // 单键
-  | number // 单键
   | (string | number[]) // 多个适配键
   | object // 组合键
   | ((event: any) => boolean) // 自定义filter
 
-export type Handler = (event: KeyboardEvent) => void
+export type KeyHandler = (event: KeyboardEvent) => void
 const noopFunc = () => {}
 
 const modifyKey: any = {
@@ -35,8 +34,8 @@ const createKeyFilterFunc = (keyFilter: any) => {
   if (type === 'function') {
     // 自定义filter
     return keyFilter
-  } else if (type === 'string' || type === 'number') {
-    // 单个string|number
+  } else if (type === 'string') {
+    // 单个string
     return (event: KeyboardEvent) => verifySingleKey(event, keyFilter)
   } else if (type === 'object') {
     // 组合键
@@ -51,7 +50,7 @@ const createKeyFilterFunc = (keyFilter: any) => {
 }
 
 const verifySingleKey = (event: KeyboardEvent, key?: any) => {
-  return event.key + '' === key + ''
+  return event.key === key
 }
 
 const verifyCombineKey = (event: KeyboardEvent, key?: any) => {
@@ -67,22 +66,25 @@ const verifyCombineKey = (event: KeyboardEvent, key?: any) => {
 
 const useKeyPress = (
   keyFilter: KeyFilter,
-  handler: Handler = noopFunc,
+  keyHandler: KeyHandler = noopFunc,
   keyOptions: UseKeyOptions = {},
 ) => {
-  const { options, event = 'keyup', target = document } = keyOptions
+  const { eventOptions, eventName = 'keyup', target = document } = keyOptions
 
-  const handlerKeyPress = useCallback(
-    (event) => {
-      const filterFunc = createKeyFilterFunc(keyFilter)
-      if (filterFunc(event)) {
-        handler(event)
-      }
-    },
-    [keyFilter, handler],
-  )
+  const keyHandlerRef = useRef(keyHandler)
+  const keyFilterRef = useRef(keyFilter)
 
-  useEvent(event, handlerKeyPress, target, options)
+  keyHandlerRef.current = keyHandler
+  keyFilterRef.current = keyHandler
+
+  const handlerKeyPress = useCallback((event) => {
+    const filterFunc = createKeyFilterFunc(keyFilterRef.current)
+    if (filterFunc(event)) {
+      keyHandlerRef.current(event)
+    }
+  }, [])
+
+  useEvent(eventName, handlerKeyPress, { target, eventOptions })
 }
 
 export default useKeyPress
