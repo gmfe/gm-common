@@ -3,8 +3,10 @@ import useEvent from './index'
 
 export const Dom = () => {
   const [height, setHeight] = useState(0)
-  const handleResize = (event: any) => {
-    console.log(event, 'resize')
+
+  const handleResize = () => {
+    // 永远都是第一次生成的 handleResize，即 height 0
+    console.log('height', height)
     setHeight(window.innerHeight)
   }
   useEvent('resize', handleResize, { target: window })
