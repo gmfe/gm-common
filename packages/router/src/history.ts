@@ -17,7 +17,7 @@ type HistoryDataType = {
 }
 
 function processHistory(history: History): ProcessHistoryOptions {
-  console.warn('该方法不再对外暴露，请直接使用history')
+  console.warn('processHistory不再对外暴露，请直接使用history')
   const _push = history.push
   const _replace = history.replace
 
