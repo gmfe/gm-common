@@ -75,7 +75,7 @@ const useKeyPress = (
   const keyFilterRef = useRef(keyFilter)
 
   keyHandlerRef.current = keyHandler
-  keyFilterRef.current = keyHandler
+  keyFilterRef.current = keyFilter
 
   const handlerKeyPress = useCallback((event) => {
     const filterFunc = createKeyFilterFunc(keyFilterRef.current)

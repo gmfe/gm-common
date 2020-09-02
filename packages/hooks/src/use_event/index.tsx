@@ -27,21 +27,21 @@ const useEvent = (
       return
     }
 
-    targetDom.addEventListener(
-      eventName,
-      eventHandlerRef.current,
-      eventOptionsRef.current,
-    )
+    const eventListener: EventListener = (event) => {
+      eventHandlerRef.current(event)
+    }
+
+    const eventOptions = {
+      ...eventOptionsRef.current,
+    }
+
+    targetDom.addEventListener(eventName, eventListener, eventOptions)
 
     return () => {
       if (!targetDom) {
         return
       }
-      targetDom.removeEventListener(
-        eventName,
-        eventHandlerRef.current,
-        eventOptionsRef.current,
-      )
+      targetDom.removeEventListener(eventName, eventListener, eventOptions)
     }
   }, [target, eventName])
 }

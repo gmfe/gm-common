@@ -5,7 +5,6 @@ export const Dom = () => {
   const [height, setHeight] = useState(0)
 
   const handleResize = () => {
-    // 永远都是第一次生成的 handleResize，即 height 0
     console.log('height', height)
     setHeight(window.innerHeight)
   }
