@@ -1,17 +1,16 @@
-import processHistory from './process_history'
-import processReactRouterProps from './process_react_router_props'
-import withRouter from './with_router'
+import history, { processHistory } from './history'
+import withRouter, { processReactRouterProps } from './with_router'
+import type { RoutePageProps } from './with_router'
 import AutoRouter from './auto_route'
-import useQuery from './use_query'
-
-import type { RoutePageProps } from './process_react_router_props'
+import useGMLocation from './use_gm_location'
 
 export {
   processHistory,
   processReactRouterProps,
   withRouter,
   AutoRouter,
-  useQuery,
+  history,
+  useGMLocation,
 }
 
 export type { RoutePageProps }

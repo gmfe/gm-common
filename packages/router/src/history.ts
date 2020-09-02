@@ -1,7 +1,11 @@
 import _ from 'lodash'
 import { stringify } from 'query-string'
+import { createHashHistory } from 'history'
+import type { History } from 'history'
 
-interface ProcessHistoryOptions {
+const history = createHashHistory()
+
+interface ProcessHistoryOptions extends History {
   push(data: string | HistoryDataType): void
   replace(data: string | HistoryDataType): void
 }
@@ -12,13 +16,14 @@ type HistoryDataType = {
   search?: string
 }
 
-function processHistory(history: ProcessHistoryOptions) {
+function processHistory(history: History): ProcessHistoryOptions {
+  console.warn('该方法不再对外暴露，请直接使用history')
   const _push = history.push
   const _replace = history.replace
 
   // url
   // {pathname query search}
-  history.push = function (one) {
+  history.push = function (one: any) {
     if (!_.isPlainObject(one)) {
       return _push(one)
     }
@@ -32,7 +37,7 @@ function processHistory(history: ProcessHistoryOptions) {
     _push.apply(this, [o])
   }
 
-  history.replace = function (one) {
+  history.replace = function (one: any) {
     if (!_.isPlainObject(one)) {
       return _replace(one)
     }
@@ -49,4 +54,5 @@ function processHistory(history: ProcessHistoryOptions) {
   return history
 }
 
-export default processHistory
+export { processHistory }
+export default processHistory(history)
