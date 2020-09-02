@@ -15,10 +15,7 @@ const useEvent = (
   const { eventOptions = {}, target = window } = useEventOptions
 
   const eventHandlerRef = useRef(handler)
-  const eventOptionsRef = useRef(eventOptions)
-
   eventHandlerRef.current = handler
-  eventOptionsRef.current = eventOptions
 
   useEffect(() => {
     const targetDom = getDomTarget(target)
@@ -31,10 +28,6 @@ const useEvent = (
       eventHandlerRef.current(event)
     }
 
-    const eventOptions = {
-      ...eventOptionsRef.current,
-    }
-
     targetDom.addEventListener(eventName, eventListener, eventOptions)
 
     return () => {
@@ -43,7 +36,7 @@ const useEvent = (
       }
       targetDom.removeEventListener(eventName, eventListener, eventOptions)
     }
-  }, [target, eventName])
+  }, [target, eventName, eventOptions])
 }
 
 export default useEvent

@@ -1,4 +1,4 @@
-import { useCallback, useRef, useEffect } from 'react'
+import { useCallback, useRef } from 'react'
 import useEvent, { UseEventTargetType } from '../use_event'
 
 export type KeyEvent = 'keyup' | 'keydown'
@@ -7,18 +7,25 @@ export interface UseKeyOptions {
   eventName?: KeyEvent
   target?: UseEventTargetType
 }
+type FilterFunc = (event: KeyboardEvent) => boolean
 export type KeyFilter =
-  | null
-  | undefined
   | string // 单键
-  | (string | number[]) // 多个适配键
   | object // 组合键
-  | ((event: any) => boolean) // 自定义filter
+  | (string | object)[] // 多个适配键
+  | FilterFunc // 自定义filter  个人认为应该要容许并处理null/undefined的情况。
 
 export type KeyHandler = (event: KeyboardEvent) => void
 const noopFunc = () => {}
 
-const modifyKey: any = {
+interface ModifyKey {
+  ctrl: FilterFunc
+  shift: FilterFunc
+  alt: FilterFunc
+  meta: FilterFunc
+  [propName: string]: any
+}
+
+const modifyKey: ModifyKey = {
   ctrl: (event: KeyboardEvent) => event.ctrlKey,
   shift: (event: KeyboardEvent) => event.shiftKey,
   alt: (event: KeyboardEvent) => event.altKey,
@@ -29,31 +36,34 @@ const getType = (obj: any) => {
   return Object.prototype.toString.call(obj).slice(8, -1).toLocaleLowerCase()
 }
 
-const createKeyFilterFunc = (keyFilter: any) => {
+const createKeyFilterFunc = (keyFilter: KeyFilter): FilterFunc | void => {
   const type = getType(keyFilter)
   if (type === 'function') {
     // 自定义filter
-    return keyFilter
+    return keyFilter as FilterFunc
   } else if (type === 'string') {
     // 单个string
-    return (event: KeyboardEvent) => verifySingleKey(event, keyFilter)
+    return (event: KeyboardEvent) => verifySingleKey(event, keyFilter as string)
   } else if (type === 'object') {
     // 组合键
-    return (event: KeyboardEvent) => verifyCombineKey(event, keyFilter)
+    return (event: KeyboardEvent) =>
+      verifyCombineKey(event, keyFilter as object)
   } else if (type === 'array') {
     // 多种场景
     return (event: KeyboardEvent) =>
-      keyFilter.some((item: any) => createKeyFilterFunc(item)(event)) // 递归最终为单个键(string|number)的情况来处理，存在符合即为真
+      (keyFilter as []).some((item: KeyFilter) =>
+        (createKeyFilterFunc as (keyFilter: KeyFilter) => FilterFunc)(item)(
+          event,
+        ),
+      ) // 递归最终为单个键的情况来处理，存在符合即为真
   }
-
-  return keyFilter ? () => true : () => false
 }
 
-const verifySingleKey = (event: KeyboardEvent, key?: any) => {
+const verifySingleKey = (event: KeyboardEvent, key: string) => {
   return event.key === key
 }
 
-const verifyCombineKey = (event: KeyboardEvent, key?: any) => {
+const verifyCombineKey = (event: KeyboardEvent, key: object) => {
   let matchCount = 0
   const keyLength = Object.keys(key).length
   for (const k of Object.keys(key)) {
@@ -72,17 +82,17 @@ const useKeyPress = (
   const { eventOptions, eventName = 'keyup', target = document } = keyOptions
 
   const keyHandlerRef = useRef(keyHandler)
-  const keyFilterRef = useRef(keyFilter)
-
   keyHandlerRef.current = keyHandler
-  keyFilterRef.current = keyFilter
 
-  const handlerKeyPress = useCallback((event) => {
-    const filterFunc = createKeyFilterFunc(keyFilterRef.current)
-    if (filterFunc(event)) {
-      keyHandlerRef.current(event)
-    }
-  }, [])
+  const handlerKeyPress = useCallback(
+    (event) => {
+      const filterFunc = createKeyFilterFunc(keyFilter)
+      if ((filterFunc as FilterFunc)(event)) {
+        keyHandlerRef.current(event)
+      }
+    },
+    [keyFilter],
+  )
 
   useEvent(eventName, handlerKeyPress, { target, eventOptions })
 }

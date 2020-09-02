@@ -23,7 +23,7 @@ export const CombinationKey = () => {
 
 export const MultiKey = () => {
   const [key, setKey] = useState<any[]>()
-  const keyFilter = [{ shift: true, I: true }, 0, 'e']
+  const keyFilter = [{ shift: true, I: true }, '0', 'e']
   const handleResize = () => {
     setKey(keyFilter)
   }
