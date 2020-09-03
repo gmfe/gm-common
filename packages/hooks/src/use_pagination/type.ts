@@ -1,4 +1,4 @@
-import { Result as UseAsyncResult } from '../use_async/type'
+import { Data, Result as UseAsyncResult } from '../use_async/type'
 
 // TODO
 export interface PagingRequest {
@@ -22,7 +22,7 @@ export interface PagingOptions {
 
 export interface Result extends UseAsyncResult {
   paging: Paging
-  runWithPaging: (paging: PagingRequest) => void
+  runWithPaging: (paging: PagingRequest) => Promise<Data>
 }
 
 export interface ResolveData {

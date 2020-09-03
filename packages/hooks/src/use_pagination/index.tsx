@@ -36,7 +36,7 @@ function usePagination(service: Service, options?: Options): Result {
           return
         }
 
-        const pagingRes = resolveData.paging || {}
+        const pagingRes = resolveData.paging
 
         if (!isUnmounted) {
           setState((s) => ({
@@ -50,7 +50,7 @@ function usePagination(service: Service, options?: Options): Result {
   )
 
   const runWithPaging = (paging: PagingOptions) => {
-    asyncResult.run({
+    return asyncResult.run({
       ...asyncResult.params,
       paging: {
         ...state,
