@@ -3,10 +3,11 @@ import { Service, Options } from '../use_async/type'
 import useAsync from '../use_async'
 import useUnmount from '../use_unmount'
 import { useState } from 'react'
-import { Paging, ResolveData, Result, PagingOptions } from './type'
+import { Paging, ResolveData, Result, PagingRequest } from './type'
 
 /**
  * 约定 service 返回 { paging }
+ * 注意，为了性能考虑，count 只有 offset = 0 need_count = true 时才返回
  */
 function usePagination(service: Service, options?: Options): Result {
   const paging = options?.defaultParams?.paging || {}
@@ -31,30 +32,46 @@ function usePagination(service: Service, options?: Options): Result {
         },
       },
       onSuccess(resolveData: ResolveData, params: any) {
+        // 这种从后台回来的数据严谨点，做个 paging 兼容 {}
         if (!resolveData || !resolveData.paging) {
           console.warn('约定页码需要返回 paging')
           return
         }
 
-        const pagingRes = resolveData.paging
+        // 这种从后台回来的数据严谨点，做个 paging 兼容 {}
+        const pagingRes = resolveData.paging || {}
 
         if (!isUnmounted) {
-          setState((s) => ({
-            ...s,
-            paging: pagingRes,
-          }))
+          setState((s) => {
+            return {
+              ...s,
+              // 这种从后台回来的数据严谨点，一个一个字段写进去，而不是 ...pagingRes
+              has_more: !!pagingRes.has_more,
+              // 特殊。只有 need_count true offset 0 的时候才吐 count
+              // 这里，只有后台提供 count 回来才赋值，否则用之前的
+              count: pagingRes.count !== undefined ? pagingRes.count : s.count,
+            }
+          })
         }
         options && options.onSuccess && options.onSuccess(resolveData, params)
       },
     }),
   )
 
-  const runWithPaging = (paging: PagingOptions) => {
+  const runWithPaging = (pagingReq: PagingRequest) => {
+    setState((s) => {
+      return {
+        ...s,
+        offset: pagingReq.offset !== undefined ? pagingReq.offset : s.offset,
+        limit: pagingReq.limit !== undefined ? pagingReq.limit : s.limit,
+      }
+    })
+
     return asyncResult.run({
       ...asyncResult.params,
       paging: {
         ...state,
-        ...paging,
+        ...pagingReq,
       },
     })
   }

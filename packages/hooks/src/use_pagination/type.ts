@@ -1,30 +1,35 @@
 import { Data, Result as UseAsyncResult } from '../use_async/type'
 
 // TODO
-export interface PagingRequest {
+interface PagingRequest {
   offset?: number
   limit?: number
   need_count?: boolean
   // sort_by:
 }
 
-export interface PagingResponse {
+interface PagingResponse {
   has_more: boolean
   count?: number
 }
 
-export interface Paging extends PagingRequest, PagingResponse {}
+// 偏 usePagination 提供的，只有 count 可能无，其他都可能有
+interface Paging {
+  offset: number
+  limit: number
+  need_count: boolean
 
-export interface PagingOptions {
-  limit?: number
-  need_count?: boolean
+  has_more: boolean
+  count?: number
 }
 
-export interface Result extends UseAsyncResult {
+interface Result extends UseAsyncResult {
   paging: Paging
   runWithPaging: (paging: PagingRequest) => Promise<Data>
 }
 
-export interface ResolveData {
+interface ResolveData {
   paging: PagingResponse
 }
+
+export type { PagingRequest, PagingResponse, Paging, Result, ResolveData }

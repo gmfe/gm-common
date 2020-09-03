@@ -14,7 +14,7 @@ function fetchData(params: any) {
         lists: _.range(offset, offset + limit),
         paging: {
           has_more: limit + offset < count,
-          count: need_count ? count : undefined,
+          count: need_count && offset === 0 ? count : undefined,
         },
       })
     }, 1000)
@@ -40,9 +40,9 @@ export const Normal = () => {
 
   return (
     <div>
-      <pre>data: {JSON.stringify(data, null, 2)}</pre>
       <pre>params: {JSON.stringify(params, null, 2)}</pre>
       <pre>loading: {JSON.stringify(loading, null, 2)}</pre>
+      <pre>data: {JSON.stringify(data, null, 2)}</pre>
       <pre>paging: {JSON.stringify(paging, null, 2)}</pre>
       <div>
         <button
