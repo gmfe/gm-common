@@ -1,4 +1,4 @@
-import history, { processHistory } from './history'
+import gmHistory, { processHistory } from './gm_history'
 import withRouter, { processReactRouterProps } from './with_router'
 import type { RoutePageProps } from './with_router'
 import AutoRouter from './auto_route'
@@ -9,7 +9,7 @@ export {
   processReactRouterProps,
   withRouter,
   AutoRouter,
-  history,
+  gmHistory,
   useGMLocation,
 }
 

@@ -32,6 +32,9 @@ function processReactRouterProps(props: {
 const withRouterCompatible = (
   Component: ForwardRefRenderFunction<any, any>,
 ): ComponentType => {
+  console.warn(
+    `建议通过useGMLocation，useParams获取location及params， withRouter即将废弃`,
+  )
   const C = (props: { [key: string]: any }) => {
     const { wrappedComponentRef, ...remainingProps } = props
     return (
