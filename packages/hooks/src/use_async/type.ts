@@ -1,4 +1,6 @@
-export type Params = any
+export type Params = {
+  [key: string]: any
+}
 
 export type Data = any
 

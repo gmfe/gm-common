@@ -1,11 +1,13 @@
-import { Data, Result as UseAsyncResult } from '../use_async/type'
+import {
+  Data,
+  Options as UseAsyncOptions,
+  Result as UseAsyncResult,
+} from '../use_async/type'
 
-// TODO
 interface PagingRequest {
   offset?: number
   limit?: number
   need_count?: boolean
-  // sort_by:
 }
 
 interface PagingResponse {
@@ -23,6 +25,15 @@ interface Paging {
   count?: number
 }
 
+interface Params {
+  paging?: PagingRequest
+  [key: string]: any
+}
+
+interface Options extends UseAsyncOptions {
+  defaultParams?: Params
+}
+
 interface Result extends UseAsyncResult {
   paging: Paging
   runWithPaging: (paging: PagingRequest) => Promise<Data>
@@ -32,4 +43,11 @@ interface ResolveData {
   paging: PagingResponse
 }
 
-export type { PagingRequest, PagingResponse, Paging, Result, ResolveData }
+export type {
+  PagingRequest,
+  PagingResponse,
+  Paging,
+  Options,
+  Result,
+  ResolveData,
+}

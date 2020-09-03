@@ -1,9 +1,9 @@
 import _ from 'lodash'
-import { Service, Options } from '../use_async/type'
+import { Service } from '../use_async/type'
 import useAsync from '../use_async'
 import useUnmount from '../use_unmount'
 import { useState } from 'react'
-import { Paging, ResolveData, Result, PagingRequest } from './type'
+import { Paging, ResolveData, Options, Result, PagingRequest } from './type'
 
 /**
  * 约定 service 返回 { paging }
