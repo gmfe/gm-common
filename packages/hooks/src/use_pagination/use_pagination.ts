@@ -11,6 +11,7 @@ import {
   UsePaginationResult,
   UsePaginationPagingReq,
 } from './types'
+import { LocalStorage } from '@gm-common/tool'
 
 const DEFAULT_PAGING_REQ = {
   offset: 0,
@@ -26,9 +27,20 @@ function usePagination(
   service: UsePaginationService,
   options?: UsePaginationOptions,
 ): UsePaginationResult {
+  const paginationKey = '_use_pagination_key_' + options?.paginationKey
   const isUnmounted = useUnmount()
 
-  const defaultPaging = _.merge({}, DEFAULT_PAGING_REQ, options?.defaultPaging)
+  const defaultPaging = _.merge(
+    {},
+    DEFAULT_PAGING_REQ,
+    {
+      limit: options?.paginationKey
+        ? LocalStorage.get(paginationKey) || undefined
+        : undefined,
+    },
+    options?.defaultPaging,
+  )
+
   const [state, setState] = useState<UsePaginationPaging>({
     ...defaultPaging,
     has_more: false,
@@ -54,17 +66,19 @@ function usePagination(
         const pagingRes = resolveData.paging || {}
 
         // 从请求 params 上取当前的页码数据
-        const pagingRequest = params?.paging || {}
+        const pagingReq = params?.paging || {}
 
-        console.log('pagingRes', pagingRes)
-        console.log('pagingRequest', pagingRequest)
+        // 存起来
+        if (options?.paginationKey && pagingReq.limit) {
+          LocalStorage.set(paginationKey, pagingReq.limit)
+        }
 
         if (!isUnmounted) {
           setState((s) => {
             return _.merge(
               {},
               s,
-              pagingRequest,
+              pagingReq,
               // 这种从后台回来的数据严谨点，一个一个字段写进去，而不是 ...pagingRes。
               // 比如可能他们会有多语的字段，这样就污染了
               {

@@ -32,9 +32,9 @@ export const Normal = () => {
     runChangePaging,
   } = usePagination(fetchData, {
     defaultPaging: {
-      limit: 5,
       need_count: true,
     },
+    paginationKey: 'paginationKey',
   })
 
   return (
@@ -76,7 +76,16 @@ export const Normal = () => {
             })
           }}
         >
-          runWithPaging offset 40
+          runChangePaging offset 40
+        </button>
+        <button
+          onClick={() => {
+            runChangePaging({
+              limit: 5,
+            })
+          }}
+        >
+          runChangePaging limit 5
         </button>
       </div>
     </div>
