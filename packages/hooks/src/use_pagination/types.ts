@@ -30,6 +30,8 @@ interface Params {
   [key: string]: any
 }
 
+type Service = (params?: Params) => Promise<any>
+
 interface Options extends UseAsyncOptions {
   defaultParams?: Params
 }
@@ -62,6 +64,7 @@ interface ResolveData {
 }
 
 export type {
+  Service,
   Params,
   ResultParams,
   PagingRequest,

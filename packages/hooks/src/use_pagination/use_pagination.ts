@@ -1,9 +1,9 @@
 import _ from 'lodash'
-import { Service } from '../use_async/type'
 import useAsync from '../use_async'
 import useUnmount from '../use_unmount'
 import { useState } from 'react'
 import {
+  Service,
   Paging,
   Params,
   ResolveData,
