@@ -31,11 +31,9 @@ export const Normal = () => {
     refresh,
     runChangePaging,
   } = usePagination(fetchData, {
-    defaultParams: {
-      paging: {
-        limit: 5,
-        need_count: true,
-      },
+    defaultPaging: {
+      limit: 5,
+      need_count: true,
     },
   })
 

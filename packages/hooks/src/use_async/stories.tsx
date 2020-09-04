@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import useAsync from './index'
+import useAsync from './use_async'
 import _ from 'lodash'
 
 function fetchData(params: any) {
@@ -30,7 +30,7 @@ export const Normal = () => {
       <div>error {JSON.stringify(error)}</div>
       <button
         onClick={() => {
-          run('run action')
+          run({ action: 'run action' })
         }}
       >
         run
@@ -61,7 +61,7 @@ export const Manual = () => {
       <div>error {JSON.stringify(error)}</div>
       <button
         onClick={() => {
-          run('run action')
+          run({ action: 'run action' })
         }}
       >
         run
@@ -87,7 +87,7 @@ export const Cache = () => {
       <div>error {JSON.stringify(error)}</div>
       <button
         onClick={() => {
-          run('run action')
+          run({ action: 'run action' })
         }}
       >
         run
@@ -122,7 +122,7 @@ export const Order = () => {
       <div>data {JSON.stringify(data)}</div>
       <button
         onClick={() => {
-          run('run action')
+          run({ action: 'run action' })
         }}
       >
         run
