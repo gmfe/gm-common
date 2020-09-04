@@ -1,5 +1,5 @@
 import React from 'react'
-import usePagination from './index'
+import usePagination from './use_pagination'
 import _ from 'lodash'
 
 const count = 50

@@ -36,7 +36,7 @@ const useEvent = (
       }
       targetDom.removeEventListener(eventName, eventListener, eventOptions)
     }
-  }, [target, eventName, eventOptions])
+  }, [target, eventName, eventOptions?.passive, eventOptions?.once])
 }
 
 export default useEvent
