@@ -27,8 +27,9 @@ export const Normal = () => {
     loading,
     params,
     paging,
+    run,
     refresh,
-    runWithPaging,
+    runChangePaging,
   } = usePagination(fetchData, {
     defaultParams: {
       paging: {
@@ -47,6 +48,24 @@ export const Normal = () => {
       <div>
         <button
           onClick={() => {
+            run()
+          }}
+        >
+          run
+        </button>
+        <button
+          onClick={() => {
+            run({
+              paging: {
+                offset: 20,
+              },
+            })
+          }}
+        >
+          run offset 20
+        </button>
+        <button
+          onClick={() => {
             refresh()
           }}
         >
@@ -54,16 +73,7 @@ export const Normal = () => {
         </button>
         <button
           onClick={() => {
-            runWithPaging({
-              offset: 20,
-            })
-          }}
-        >
-          runWithPaging offset 20
-        </button>
-        <button
-          onClick={() => {
-            runWithPaging({
+            runChangePaging({
               offset: 40,
             })
           }}

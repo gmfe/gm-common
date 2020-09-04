@@ -15,7 +15,7 @@ interface PagingResponse {
   count?: number
 }
 
-// 偏 usePagination 提供的，只有 count 可能无，其他都可能有
+// 偏 usePagination 提供的，只有 count 可能无，其他都有
 interface Paging {
   offset: number
   limit: number
@@ -35,8 +35,16 @@ interface Options extends UseAsyncOptions {
 }
 
 interface Result extends UseAsyncResult {
+  data?: Data
+  params: Params
+  loading: boolean
+  error?: Error
   paging: Paging
-  runWithPaging: (paging: PagingRequest) => Promise<Data>
+  /** 用此方法注意 paging 信息。没有则翻页信息回到默认 */
+  run: (params?: Params) => Promise<Data>
+  refresh: () => Promise<Data>
+  /** 只用来翻页 */
+  runChangePaging: (paging: PagingRequest) => Promise<Data>
 }
 
 interface ResolveData {
@@ -44,6 +52,7 @@ interface ResolveData {
 }
 
 export type {
+  Params,
   PagingRequest,
   PagingResponse,
   Paging,

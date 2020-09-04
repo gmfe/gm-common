@@ -23,7 +23,9 @@ export interface Result {
   params?: Params
   loading: boolean
   error?: Error
+  /** 如果不提供 params，则取 defaultParams */
   run: (params?: Params) => Promise<Data>
+  /** 是用上次的参数 */
   refresh: () => Promise<Data>
 }
 

@@ -140,11 +140,13 @@ function useAsync(service: Service, options?: Options): Result {
   }, [])
 
   const run = (params?: Params) => {
-    return doSomeThink(params)
+    // 没参数，就用默认的参数
+    return doSomeThink(params || _options.defaultParams)
   }
 
   const refresh = () => {
-    return doSomeThink(_options.defaultParams)
+    // 用上次的
+    return doSomeThink(state.params)
   }
 
   return {
