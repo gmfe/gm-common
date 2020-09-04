@@ -34,9 +34,19 @@ interface Options extends UseAsyncOptions {
   defaultParams?: Params
 }
 
+// result 的 params 会提供完整的 PagingRequest 信息
+interface ResultParams {
+  paging: {
+    offset: number
+    limit: number
+    need_count: boolean
+  }
+  [key: string]: any
+}
+
 interface Result extends UseAsyncResult {
   data?: Data
-  params: Params
+  params: ResultParams
   loading: boolean
   error?: Error
   paging: Paging
@@ -53,6 +63,7 @@ interface ResolveData {
 
 export type {
   Params,
+  ResultParams,
   PagingRequest,
   PagingResponse,
   Paging,

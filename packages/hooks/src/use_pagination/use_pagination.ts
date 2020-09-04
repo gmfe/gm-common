@@ -9,6 +9,7 @@ import {
   ResolveData,
   Options,
   Result,
+  ResultParams,
   PagingRequest,
 } from './types'
 
@@ -44,7 +45,7 @@ function usePagination(service: Service, options?: Options): Result {
           need_count: state.need_count,
         },
       },
-      onSuccess(resolveData: ResolveData, params: any) {
+      onSuccess(resolveData: ResolveData, params: Params) {
         // 这种从后台回来的数据严谨点，做个 paging 兼容 {}
         if (!resolveData || !resolveData.paging) {
           console.warn('约定页码需要返回 paging')
@@ -53,7 +54,7 @@ function usePagination(service: Service, options?: Options): Result {
 
         // 这种从后台回来的数据严谨点，做个 paging 兼容 {}
         const pagingRes = resolveData.paging || {}
-        const pagingRequest = params?.paging
+        const pagingRequest = params?.paging || {}
 
         if (!isUnmounted) {
           setState((s) => {
@@ -112,7 +113,7 @@ function usePagination(service: Service, options?: Options): Result {
 
   return {
     data: asyncResult.data,
-    params: asyncResult.params as Params,
+    params: asyncResult.params as ResultParams,
     loading: asyncResult.loading,
     error: asyncResult.error,
     paging: state,
