@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { useAsync } from '../use_async'
 import useUnmount from '../use_unmount'
-import { useState } from 'react'
+import { useRef } from 'react'
 import {
   UsePaginationService,
   UsePaginationOptions,
@@ -41,7 +41,8 @@ function usePagination(
     options?.defaultPaging,
   )
 
-  const [state, setState] = useState<UsePaginationPaging>({
+  // 用 ref 处理，状态的更新 靠 useAsync 更新而跟新
+  const refState = useRef<UsePaginationPaging>({
     ...defaultPaging,
     has_more: false,
     count: 0,
@@ -54,7 +55,7 @@ function usePagination(
       defaultParams: {
         paging: defaultPaging,
       },
-      onSuccess(
+      onBeforeSuccess(
         resolveData: UsePaginationResolveData,
         params: UsePaginationParams,
       ) {
@@ -74,22 +75,22 @@ function usePagination(
         }
 
         if (!isUnmounted) {
-          setState((s) => {
-            return _.merge(
-              {},
-              s,
-              pagingReq,
-              // 这种从后台回来的数据严谨点，一个一个字段写进去，而不是 ...pagingRes。
-              // 比如可能他们会有多语的字段，这样就污染了
-              {
-                has_more: !!pagingRes.has_more,
-                // 特殊。只有 need_count true offset 0 的时候才吐 count
-                // 这里，只有后台提供 count 回来才赋值，否则用之前的
-                count:
-                  pagingRes.count !== undefined ? pagingRes.count : s.count,
-              },
-            )
-          })
+          refState.current = _.merge(
+            {},
+            refState.current,
+            pagingReq,
+            // 这种从后台回来的数据严谨点，一个一个字段写进去，而不是 ...pagingRes。
+            // 比如可能他们会有多语的字段，这样就污染了
+            {
+              has_more: !!pagingRes.has_more,
+              // 特殊。只有 need_count true offset 0 的时候才吐 count
+              // 这里，只有后台提供 count 回来才赋值，否则用之前的
+              count:
+                pagingRes.count !== undefined
+                  ? pagingRes.count
+                  : refState.current.count,
+            },
+          )
         }
 
         options && options.onSuccess && options.onSuccess(resolveData, params)
@@ -101,9 +102,9 @@ function usePagination(
     return asyncResult.run({
       ...asyncResult.params,
       paging: {
-        offset: pagingReq.offset ?? state.offset,
-        limit: pagingReq.limit ?? state.limit,
-        need_count: pagingReq.need_count ?? state.need_count,
+        offset: pagingReq.offset ?? refState.current.offset,
+        limit: pagingReq.limit ?? refState.current.limit,
+        need_count: pagingReq.need_count ?? refState.current.need_count,
       },
     })
   }
@@ -135,7 +136,7 @@ function usePagination(
     params: asyncResult.params as UsePaginationParams,
     loading: asyncResult.loading,
     error: asyncResult.error,
-    paging: state,
+    paging: refState.current,
     run,
     refresh,
     runChangePaging,

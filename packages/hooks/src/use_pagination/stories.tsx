@@ -39,6 +39,8 @@ export const Normal = () => {
     paginationKey: 'paginationKey',
   })
 
+  console.log('render')
+
   return (
     <div>
       <pre>params: {JSON.stringify(params, null, 2)}</pre>
@@ -196,7 +198,7 @@ export const PaginationHook = () => {
   return (
     <div>
       <WithCountHook />
-      <WithoutCountHook /> 
+      <WithoutCountHook />
     </div>
   )
 }

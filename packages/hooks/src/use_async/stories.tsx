@@ -6,7 +6,7 @@ function fetchData(params: any) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (Math.random() > 0.3) {
-        resolve('resolve ' + params)
+        resolve('resolve ' + JSON.stringify(params))
       }
       reject('reject')
     }, 2000)
@@ -21,7 +21,7 @@ export const Normal = () => {
     onError: (error) => console.log('onError', error),
   })
 
-  console.log(data, loading, error)
+  console.log('render', data, loading, error)
 
   return (
     <div>

@@ -3,6 +3,7 @@ import _ from 'lodash'
 import { Cache, promiseTaskOrder } from '@gm-common/tool'
 import useUnmount from '../use_unmount'
 import {
+  Data,
   UseAsyncParams,
   UseAsyncService,
   UseAsyncOptions,
@@ -18,6 +19,10 @@ interface DoSomeThink {
   params?: UseAsyncParams
   cacheKey?: string
   cacheTime: number
+  onBeforeSuccess(data?: Data, params?: UseAsyncParams): void
+  onSuccess(data?: Data, params?: UseAsyncParams): void
+  onBeforeError(e: Error): void
+  onError(e: Error): void
 }
 
 function _doSomeThink(args: DoSomeThink) {
@@ -29,6 +34,10 @@ function _doSomeThink(args: DoSomeThink) {
     params,
     cacheKey,
     cacheTime,
+    onBeforeSuccess,
+    onSuccess,
+    onBeforeError,
+    onError,
   } = args
 
   let cacheData: any
@@ -49,6 +58,8 @@ function _doSomeThink(args: DoSomeThink) {
       Cache.set(cacheKey, cacheTime, resolveData)
     }
 
+    onBeforeSuccess(resolveData, params)
+
     // unmounted 后没有意义
     if (!isUnmounted) {
       setState({
@@ -59,6 +70,8 @@ function _doSomeThink(args: DoSomeThink) {
       })
     }
 
+    onSuccess(resolveData, params)
+
     return resolveData
   }
 
@@ -67,6 +80,8 @@ function _doSomeThink(args: DoSomeThink) {
     if (cacheKey) {
       Cache.remove(cacheKey)
     }
+
+    onBeforeError(rejectReason)
 
     // unmounted 后没有意义
     if (!isUnmounted) {
@@ -77,6 +92,8 @@ function _doSomeThink(args: DoSomeThink) {
         params,
       })
     }
+
+    onError(rejectReason)
 
     // eslint-disable-next-line promise/no-return-wrap
     return Promise.reject(rejectReason)
@@ -100,7 +117,9 @@ function useAsync(
     {
       manual: false,
       defaultParams: undefined,
+      onBeforeSuccess: _.noop,
       onSuccess: _.noop,
+      onBeforeError: _.noop,
       onError: _.noop,
       cacheKey: undefined,
       cacheTime: 5 * 60 * 1000,
@@ -128,17 +147,11 @@ function useAsync(
       params,
       cacheKey: _options.cacheKey,
       cacheTime: _options.cacheTime,
-    }).then(
-      (resolveData) => {
-        _options.onSuccess(resolveData, params)
-        return resolveData
-      },
-      (error) => {
-        _options.onError(error)
-        // eslint-disable-next-line promise/no-return-wrap
-        return Promise.reject(error)
-      },
-    )
+      onBeforeSuccess: _options.onBeforeSuccess,
+      onSuccess: _options.onSuccess,
+      onBeforeError: _options.onBeforeError,
+      onError: _options.onError,
+    })
   }
 
   useEffect(() => {
