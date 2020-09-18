@@ -96,6 +96,7 @@ module.exports = {
     '../packages/analyse/**/*stories.tsx',
     '../packages/hooks/**/*stories.tsx',
     '../packages/image/**/*stories.tsx',
+    '../packages/map/**/*stories.tsx',
     '../demo/**/*stories.js',
   ],
   webpackFinal,
