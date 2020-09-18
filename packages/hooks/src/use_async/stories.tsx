@@ -13,12 +13,14 @@ function fetchData(params: any) {
   })
 }
 
-export const Normal = () => {
+// 自动
+export const NotManual = () => {
   const { data, loading, error, run, refresh } = useAsync(fetchData, {
     onSuccess: (data) => {
       console.log('onSuccess', data)
     },
     onError: (error) => console.log('onError', error),
+    manual: false,
   })
 
   console.log('render', data, loading, error)
@@ -47,12 +49,10 @@ export const Normal = () => {
 }
 
 /**
- * 手动
+ * 默认手动
  */
 export const Manual = () => {
-  const { data, loading, error, run } = useAsync(fetchData, {
-    manual: true,
-  })
+  const { data, loading, error, run } = useAsync(fetchData)
 
   return (
     <div>
@@ -76,6 +76,7 @@ export const Manual = () => {
 export const Cache = () => {
   const { data, loading, error, run } = useAsync(fetchData, {
     cacheKey: 'cacheKey',
+    manual: false,
   })
 
   console.log(data, loading, error)
@@ -113,7 +114,7 @@ export const Order = () => {
     })
   }
 
-  const { data, run } = useAsync(fetchData)
+  const { data, run } = useAsync(fetchData, { manual: false })
 
   console.log(data)
 

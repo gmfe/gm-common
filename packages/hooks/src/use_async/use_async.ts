@@ -115,7 +115,7 @@ function useAsync(
 ): UseAsyncResult {
   const _options = Object.assign(
     {
-      manual: false,
+      manual: true,
       defaultParams: undefined,
       onBeforeSuccess: _.noop,
       onSuccess: _.noop,
