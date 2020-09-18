@@ -95,6 +95,7 @@ module.exports = {
     '../packages/wx-sdk/**/*stories.js',
     '../packages/analyse/**/*stories.tsx',
     '../packages/hooks/**/*stories.tsx',
+    '../packages/map/**/*stories.tsx',
     '../demo/**/*stories.js',
   ],
   webpackFinal,
