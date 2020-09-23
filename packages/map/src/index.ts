@@ -1,3 +1,4 @@
-import PcMap from './pc_map/pc_map'
+import GMMap, { LocationParams, GMMapProps } from './gm_map/gm_map'
 
-export default PcMap
+export type { LocationParams as GMMapLocationParams, GMMapProps }
+export { GMMap }

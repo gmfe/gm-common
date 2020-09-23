@@ -23,6 +23,10 @@
   "dependencies": {
     "@types/classnames": "^2.2.10",
     "classnames": "^2.2.6",
+    "lodash": "^4.17.20",
     "react-amap": "^1.2.7"
+  },
+  "peerDependencies": {
+    "react": "^16.13.1"
   }
 }
