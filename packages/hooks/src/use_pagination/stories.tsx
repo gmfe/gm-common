@@ -16,7 +16,7 @@ function fetchData(params: any) {
         lists: _.range(offset, offset + limit),
         paging: {
           has_more: limit + offset < count,
-          count: need_count && offset === 0 ? count : undefined,
+          count: need_count && offset === 0 ? count : 0,
         },
       })
     }, 1000)

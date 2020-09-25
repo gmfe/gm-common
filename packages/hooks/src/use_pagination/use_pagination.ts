@@ -83,10 +83,10 @@ function usePagination(
             // 比如可能他们会有多语的字段，这样就污染了
             {
               has_more: !!pagingRes.has_more,
-              // 特殊。只有 need_count true offset 0 的时候才吐 count
+              // 特殊。只有 need_count true offset 0 的时候 count 才有意义。 没意义的时候 count 后台会吐 0，需要忽略
               // 这里，只有后台提供 count 回来才赋值，否则用之前的
               count:
-                pagingRes.count !== undefined
+                pagingReq.offset === 0
                   ? pagingRes.count
                   : refState.current.count,
             },
