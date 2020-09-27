@@ -1,19 +1,15 @@
 import React, { useRef, FC, useState, ChangeEvent, useCallback } from 'react'
-import { Map, Marker, EventMap, FullLngLatPos } from 'react-amap'
+import { Map, Marker, EventMap, LngLatPos, FullLngLatPos } from 'react-amap'
 import _ from 'lodash'
 import classNames from 'classnames'
 import SvgClose from '../svg/close.svg'
-import './map.less'
-import { getTips } from './util'
+import './style.less'
+import { getMapTips, getMapCenter } from './util'
+import type { tipsArray } from './util'
 
-export const url = 'https://restapi.amap.com/v3/assistant/inputtips'
-const urlRegeo = 'https://restapi.amap.com/v3/geocode/regeo'
+const baseUrl = 'https://restapi.amap.com/v3/'
 
-export interface RecommendList {
-  [key: string]: string
-}
-
-export interface GMMapProps {
+interface LocationMapProps {
   onLocation(location: LocationParams): void
   location: LocationParams
   amapkey?: string
@@ -21,11 +17,11 @@ export interface GMMapProps {
   placeholder?: string
 }
 
-export interface LocationParams extends FullLngLatPos {
+interface LocationParams extends FullLngLatPos {
   address: string
 }
 
-const GMMap: FC<GMMapProps> = (props) => {
+const LocationMap: FC<LocationMapProps> = (props) => {
   const { placeholder, zoom, amapkey, onLocation, location } = props
   const lngAndLat = {
     longitude: location?.longitude,
@@ -34,7 +30,7 @@ const GMMap: FC<GMMapProps> = (props) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const mapRef = useRef<object | null>(null)
   const [center, setCenter] = useState<FullLngLatPos | null>(lngAndLat)
-  const [recommendList, setRecommendList] = useState<RecommendList[]>([])
+  const [recommendList, setRecommendList] = useState<tipsArray[]>([])
   const [mask, setMask] = useState<boolean>(true)
   const [showList, setShowList] = useState<boolean>(false)
   const [inputFocus, setInputFocus] = useState<boolean>(false)
@@ -45,40 +41,26 @@ const GMMap: FC<GMMapProps> = (props) => {
     },
   }
 
-  const handleMapCenter = async (center: { lng: number; lat: number }) => {
-    const data = await window
-      .fetch(`${urlRegeo}?key=${amapkey}&location=${center.lng},${center.lat}`)
-      .then((res) => res.json())
-      .catch((err) => {
-        console.error(err)
-      })
-    if (data.status === '1') {
-      const keywords: string = data.regeocode.formatted_address
-      setKeywords(keywords)
-      getTips(keywords)
-      onLocation({
-        longitude: center.lng,
-        latitude: center.lat,
-        address: keywords,
-      })
-    }
+  const handleMapCenter = async (center: LngLatPos) => {
+    const keywords = await getMapCenter(
+      baseUrl,
+      `geocode/regeo?key=${amapkey}&location=${center.lng},${center.lat}`,
+    )
+    setKeywords(keywords)
+    getTips(keywords)
+    onLocation({
+      longitude: center.lng,
+      latitude: center.lat,
+      address: keywords,
+    })
   }
 
   const getTips = async (value: string): Promise<void> => {
-    const data = await window
-      .fetch(`${url}?key=${amapkey}&keywords=${value}`)
-      .then((res) => res.json())
-      .catch((err) => {
-        console.error(err)
-      })
-    if (data.status === '1') {
-      // 过滤掉不合法的item
-      const recommendList = _.filter(
-        data.tips,
-        (item) => typeof item.id === 'string',
-      )
-      setRecommendList(recommendList)
-    }
+    const tips = await getMapTips(
+      baseUrl,
+      `assistant/inputtips?key=${amapkey}&keywords=${value}`,
+    )
+    setRecommendList(tips)
   }
 
   const handleEventAction = () => {
@@ -90,14 +72,13 @@ const GMMap: FC<GMMapProps> = (props) => {
     })
   }
 
-  const handleTipsClick = (item: { [key: string]: string }) => {
+  const handleTipsClick = (item: tipsArray) => {
     const [longitude, latitude] = item.location.split(',')
     // tip接口拿到的经纬度是string，
     const location = {
       longitude: Number(longitude),
       latitude: Number(latitude),
     }
-    console.log('item', item)
     const address = `${item.district}${item.name}`
     setCenter(location)
     setKeywords(address)
@@ -197,11 +178,13 @@ const GMMap: FC<GMMapProps> = (props) => {
     </div>
   )
 }
-GMMap.defaultProps = {
+LocationMap.defaultProps = {
   // zoom 表示地图显示的缩放级别。在PC上，取值范围为[3-18]。在移动设备上,取值范围[3-19]。
   zoom: 16,
   // 高德地图的key
   amapkey: 'e805d5ba2ef44393f20bc9176c3821a2',
 }
 
-export default GMMap
+export type { LocationMapProps, LocationParams }
+
+export default LocationMap
