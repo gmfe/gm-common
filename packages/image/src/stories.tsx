@@ -25,7 +25,7 @@ const getQiniuSSUToken = () => {
     return {
       prefix: dir_path,
       token: upload_token,
-      expire_time
+      expire_time: `${new Date(+new Date() + +expire_time)}`
     }
   })
 }
