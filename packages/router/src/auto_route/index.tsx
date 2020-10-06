@@ -22,7 +22,8 @@ interface NavConfigItem {
 type NavConfig = NavConfigItem[]
 
 // src/pages index.page.xxx
-const req = require.context('@/pages', true, /index\.page\./, 'lazy')
+// eslint-disabled-next-line
+const req = require.context('@/pages', true, __AUTO_ROUTER_REG__, 'lazy')
 
 function getRouteList(Loading: any) {
   const routeList: RouteBaseProps[] = []
