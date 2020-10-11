@@ -2,7 +2,14 @@ import React, { useRef } from 'react'
 import useAsync from './use_async'
 import _ from 'lodash'
 
-function fetchData(params: any) {
+interface Params {
+  name?: string
+  action?: string
+}
+
+type Data = string
+
+function fetchData(params?: Params): Promise<string> {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (Math.random() > 0.3) {
@@ -15,7 +22,10 @@ function fetchData(params: any) {
 
 // 自动
 export const NotManual = () => {
-  const { data, loading, error, run, refresh } = useAsync(fetchData, {
+  const { data, params, loading, error, run, refresh } = useAsync(fetchData, {
+    defaultParams: {
+      name: 'lala',
+    },
     onSuccess: (data) => {
       console.log('onSuccess', data)
     },
@@ -23,7 +33,7 @@ export const NotManual = () => {
     manual: false,
   })
 
-  console.log('render', data, loading, error)
+  console.log('render', params, data, loading, error)
 
   return (
     <div>
@@ -52,7 +62,7 @@ export const NotManual = () => {
  * 默认手动
  */
 export const Manual = () => {
-  const { data, loading, error, run } = useAsync(fetchData)
+  const { data, loading, error, run } = useAsync<Params, Data>(fetchData)
 
   return (
     <div>

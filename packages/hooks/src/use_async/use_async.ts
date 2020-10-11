@@ -3,29 +3,27 @@ import _ from 'lodash'
 import { Cache, promiseTaskOrder } from '@gm-common/tool'
 import useUnmount from '../use_unmount'
 import {
-  Data,
-  UseAsyncParams,
   UseAsyncService,
   UseAsyncOptions,
   UseAsyncResult,
   UseAsyncState,
 } from './types'
 
-interface DoSomeThink {
+interface DoSomeThink<P, D> {
   id: string
-  setState: (state: UseAsyncState) => void
+  setState: (state: UseAsyncState<P>) => void
   isUnmounted: boolean
-  service: UseAsyncService
-  params?: UseAsyncParams
+  service: UseAsyncService<P, D>
+  params?: P
   cacheKey?: string
   cacheTime: number
-  onBeforeSuccess(data?: Data, params?: UseAsyncParams): void
-  onSuccess(data?: Data, params?: UseAsyncParams): void
+  onBeforeSuccess(data?: D, params?: P): void
+  onSuccess(data?: D, params?: P): void
   onBeforeError(e: Error): void
   onError(e: Error): void
 }
 
-function _doSomeThink(args: DoSomeThink) {
+function _doSomeThink<P, D>(args: DoSomeThink<P, D>) {
   const {
     id,
     setState,
@@ -109,10 +107,10 @@ function _doSomeThink(args: DoSomeThink) {
  * 异步（promise）管理
  * 且调度 service，保证响应最新一个
  */
-function useAsync(
-  service: UseAsyncService,
-  options?: UseAsyncOptions,
-): UseAsyncResult {
+function useAsync<P extends object = any, D = any>(
+  service: UseAsyncService<P, D>,
+  options?: UseAsyncOptions<P, D>,
+): UseAsyncResult<P, D> {
   const _options = Object.assign(
     {
       manual: true,
@@ -130,7 +128,7 @@ function useAsync(
   const refId = useRef((Math.random() + '').slice(2))
   const isUnmounted = useUnmount()
 
-  const [state, setState] = useState<UseAsyncState>({
+  const [state, setState] = useState<UseAsyncState<P>>({
     data: undefined,
     loading: false,
     error: undefined,
@@ -138,8 +136,8 @@ function useAsync(
   })
 
   // 不知道叫什么名字
-  function doSomeThink(params?: UseAsyncParams) {
-    return _doSomeThink({
+  function doSomeThink(params?: P) {
+    return _doSomeThink<P, D>({
       id: refId.current,
       setState,
       isUnmounted,
@@ -161,7 +159,7 @@ function useAsync(
     }
   }, [])
 
-  const run = (params?: UseAsyncParams) => {
+  const run = (params?: P) => {
     // 没参数，就用默认的参数
     return doSomeThink(params || _options.defaultParams)
   }

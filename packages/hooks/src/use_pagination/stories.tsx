@@ -3,12 +3,24 @@ import usePagination from './use_pagination'
 import _ from 'lodash'
 import { Button, Pagination } from '@gm-pc/react'
 import { observable } from 'mobx'
+import { PagingReq, PagingRes } from '../types'
 
 const count = 50
-function fetchData(params: any) {
+
+interface Params {
+  [propName: string]: any
+  paging: PagingReq
+}
+
+interface Data {
+  lists?: any[]
+  paging: PagingRes
+}
+
+function fetchData(params?: any): Promise<Data> {
   const {
     paging: { limit, offset, need_count },
-  } = params
+  } = params!
 
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -96,18 +108,6 @@ export const Normal = () => {
   )
 }
 
-// todo 临时自己定义，后面以组件提供为准
-interface PagingRequest {
-  offset?: number
-  limit?: number
-  need_count?: boolean
-}
-
-interface Params {
-  [propName: string]: any
-  paging: PagingRequest
-}
-
 const paginationHookStore = observable({
   defaultPagingWithCount: {
     need_count: true,
@@ -123,7 +123,7 @@ const paginationHookStore = observable({
     return { paging: { has_more: true, count: 100 } }
   },
 
-  fetchData(params?: Params) {
+  fetchData(params?: Params): Promise<Data> {
     return new Promise((resolve) =>
       setTimeout(() => {
         resolve(this.setPaging(params))
@@ -135,7 +135,7 @@ const paginationHookStore = observable({
 const WithCountHook = () => {
   const { req, defaultPagingWithCount } = paginationHookStore
   const { loading, runChangePaging, paging, run } = usePagination(
-    (params) => paginationHookStore.fetchData(params as Params),
+    (params?) => paginationHookStore.fetchData(params),
     {
       defaultParams: { paging: { ...defaultPagingWithCount } },
     },
