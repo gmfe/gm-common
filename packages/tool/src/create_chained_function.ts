@@ -1,8 +1,8 @@
-export default function createChainedFunction(...funs: Function[]) {
+export default function createChainedFunction(...funcs: Function[]) {
   return function (...args: any[]) {
-    funs.forEach((fun) => {
+    funcs.forEach((fun) => {
       if (fun) {
-        fun(args)
+        fun(...args)
       }
     })
   }
