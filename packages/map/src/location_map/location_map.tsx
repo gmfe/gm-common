@@ -1,4 +1,11 @@
-import React, { useRef, FC, useState, ChangeEvent, useCallback } from 'react'
+import React, {
+  useRef,
+  FC,
+  useState,
+  ChangeEvent,
+  useCallback,
+  useEffect,
+} from 'react'
 import { Map, Marker, EventMap, LngLatPos } from 'react-amap'
 import _ from 'lodash'
 import classNames from 'classnames'
@@ -44,6 +51,10 @@ const LocationMap: FC<LocationMapProps> = (props) => {
       mapRef.current = m
     },
   }
+  useEffect(() => {
+    setCenter(lngAndLat)
+    setKeywords(defaultLocation?.address || '')
+  }, [defaultLocation])
 
   // fetchCenter
   const fetchMapCenter = async (center: LngLatPos) => {
@@ -87,6 +98,7 @@ const LocationMap: FC<LocationMapProps> = (props) => {
     const address = `${item.district}${item.name}`
     setCenter(location)
     setKeywords(address)
+    setTips([])
     onLocation({
       ...location,
       address,
@@ -104,6 +116,7 @@ const LocationMap: FC<LocationMapProps> = (props) => {
 
   const handleCleanKeywords = useCallback(() => {
     setKeywords('')
+    setTips([])
   }, [])
 
   const handleInputBlur = useCallback(() => {
