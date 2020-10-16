@@ -7,12 +7,11 @@ map 组件是基于饿了么开发的 react-amap 组件的再封装，使用高�
 
 ## Props
 
-1. position (Obj | isRequired),{ longitude: number, latitude: number }，初始化地图的中心位置.
-2. mapAddress (String | isRequired), 初始化地址。
-3. zoom (Number), 地图显示的缩放级别，默认值是 16。
-4. amapkey (String), 加载高德 API 使用的 Key，已整理到组件内部，选填。
-5. onGetLocation (Func | isRequired)，传入一个回调函数，接受的参数即是地图返回的位置信息。 参数信息：经度，纬度，地址。
-6. placeholder (String), 设置搜索框的 placeholder。
+1. defaultLocation (Obj),{ longitude: number | string, latitude: number | string, address?: string }，初始化地图的中心位置.
+2. zoom (Number), 地图显示的缩放级别，默认值是 16。
+3. amapkey (String), 加载高德 API 使用的 Key，已整理到组件内部，选填。
+4. onLocation (Func | isRequired)，传入一个回调函数，接受的参数即是地图返回的位置信息。 参数信息：经度，纬度，地址。
+5. placeholder (String), 设置搜索框的 placeholder。
 
 ## 特别注意
 
