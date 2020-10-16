@@ -57,7 +57,7 @@ async function getMapTips(baseUrl: string, paramsUrl: string) {
   return []
 }
 
-async function getMapCenter(
+async function getMapCenterAddress(
   baseUrl: string,
   paramsUrl: string,
 ): Promise<string> {
@@ -69,4 +69,4 @@ async function getMapCenter(
   return ''
 }
 export type { tipsArray }
-export { getMapTips, getMapCenter }
+export { getMapTips, getMapCenterAddress }

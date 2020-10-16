@@ -3,5 +3,5 @@ import LocationMap, {
   LocationMapProps,
 } from './location_map/location_map'
 
-export type { LocationParams as OnLocationData, LocationMapProps }
+export type { LocationParams as LocationData, LocationMapProps }
 export { LocationMap }
