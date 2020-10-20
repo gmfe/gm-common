@@ -56,6 +56,7 @@ function parseResponse(response: AxiosResponse) {
 function formatResponse<T>(response: AxiosResponse<T>) {
   const { gRPCMessageDetail, gRPCMessage, gRPCStatus } = parseResponse(response)
   const data = response.data
+  console.log('response', gRPCStatus, gRPCMessage, gRPCMessageDetail, data)
   return {
     code: +gRPCStatus,
     message: {
