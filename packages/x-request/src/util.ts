@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import { getLocale } from '@gm-common/locales'
+import { AxiosResponse } from 'axios'
 
 const platform = __NAME__ // eslint-disable-line
 
@@ -38,7 +39,36 @@ function atob(s: string): any {
   }
 }
 
+function parseResponse(response: AxiosResponse) {
+  const responseHeaders = response.headers
+  const result = (responseHeaders['grpc-message'] || '').split('|')
+  const gRPCMessageDetail: string = atob(result.slice(1).join('|'))
+  const gRPCMessage: string = result[0] || ''
+  const gRPCStatus: number = +responseHeaders['grpc-status']
+  const isNaN = _.isNaN(gRPCStatus)
+  return {
+    gRPCMessageDetail,
+    gRPCMessage,
+    gRPCStatus: isNaN ? -1 : gRPCStatus,
+  }
+}
+
+function formatResponse<T>(response: AxiosResponse<T>) {
+  const { gRPCMessageDetail, gRPCMessage, gRPCStatus } = parseResponse(response)
+  const data = response.data
+  return {
+    code: +gRPCStatus,
+    message: {
+      description: gRPCMessage,
+      detail: gRPCMessageDetail,
+    },
+    response: data,
+  }
+}
+
 export {
+  formatResponse,
+  parseResponse,
   gRpcMsgKey,
   accessTokenKey,
   authInfoKey,

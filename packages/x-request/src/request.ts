@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios'
+import { parseResponse, formatResponse } from './util'
 const instance = axios.create({
   timeout: 30000,
   headers: {
@@ -51,9 +52,9 @@ class RequestBase<Data> {
   public run(): Promise<Response<Data>> {
     this._config.data = this._data
     this._config.method = 'post'
-    return instance
-      .request<Response<Data>>(this._config)
-      .then((res) => res.data)
+    return instance.request<Data>(this._config).then((res) => {
+      return formatResponse<Data>(res)
+    })
   }
 }
 
