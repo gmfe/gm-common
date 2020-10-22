@@ -144,21 +144,6 @@
   dependencies:
     tslib "^1.10.0"
 
-"@gm-common/hooks@^2.6.3":
-  version "2.6.6"
-  resolved "https://registry.yarnpkg.com/@gm-common/hooks/-/hooks-2.6.6.tgz#852bf3f956a0761cad4c0d7de378eff8f2d9c76e"
-  integrity sha512-tjDBhHBJc9F/hcQlnuBja1pPAboI7kMWbyf8SCU5hM9XZ3P7QZReHx0eegCTorxMKRkgB56fSt7v1gng+krWWg==
-  dependencies:
-    "@gm-common/tool" "^2.6.6"
-    ts-config-gm-react-app "^3.0.6"
-
-"@gm-common/tool@^2.6.6":
-  version "2.6.6"
-  resolved "https://registry.yarnpkg.com/@gm-common/tool/-/tool-2.6.6.tgz#9b039f7c3d58a10f2833fc39c703d49fe10602fd"
-  integrity sha512-In5c7N3RrRltS9WJ7tPEAEWvSAdRIYxrcZPlWVAzAz/OtPSx23IO3GGJtEOZiIeiGsfr6g2Wo6oeiwIJExwO4Q==
-  dependencies:
-    lodash "^4.17.19"
-
 "@types/d3-timer@^1.0.9":
   version "1.0.10"
   resolved "https://registry.yarnpkg.com/@types/d3-timer/-/d3-timer-1.0.10.tgz#329c51c2c931f44ed0acff78b8c84571acf0ed21"
@@ -168,11 +153,6 @@
   version "0.0.45"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.45.tgz#e9387572998e5ecdac221950dab3e8c3b16af884"
   integrity sha512-jnqIUKDUqJbDIUxm0Uj7bnlMnRm1T/eZ9N+AVMqhPgzrba2GhGG5o/jCTwmdPK709nEZsGoMzXEDUjcXHa3W0g==
-
-"@types/lodash@^4.14.162":
-  version "4.14.162"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.162.tgz#65d78c397e0d883f44afbf1f7ba9867022411470"
-  integrity sha512-alvcho1kRUnnD1Gcl4J+hK0eencvzq9rmzvFPRmP5rPHx9VVsJj6bKLTATPVf9ktgv4ujzh7T+XWKp+jhuODig==
 
 "@types/node@*":
   version "14.14.2"
@@ -253,14 +233,6 @@ gl-matrix@^3.0.0, gl-matrix@^3.3.0:
   resolved "https://registry.yarnpkg.com/gl-matrix/-/gl-matrix-3.3.0.tgz#232eef60b1c8b30a28cbbe75b2caf6c48fd6358b"
   integrity sha512-COb7LDz+SXaHtl/h4LeaFcNdJdAQSDeVqjiIihSXNrkWObZLhDI4hIkZC11Aeqp7bcE72clzB0BnDXr2SmslRA==
 
-"gm_api@git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#80fe5f3d7b32600347380a1bf022d136cac9be0e":
-  version "1.0.0"
-  resolved "git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#80fe5f3d7b32600347380a1bf022d136cac9be0e"
-  dependencies:
-    "@gm-common/hooks" "^2.6.3"
-    "@types/lodash" "^4.14.162"
-    lodash "^4.17.20"
-
 graphlib@^2.1.8:
   version "2.1.8"
   resolved "https://registry.yarnpkg.com/graphlib/-/graphlib-2.1.8.tgz#5761d414737870084c92ec7b5dbcb0592c9d35da"
@@ -280,7 +252,7 @@ is-any-array@^0.1.0:
   dependencies:
     rollup "^1.31.1"
 
-lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.20:
+lodash@^4.17.15, lodash@^4.17.20:
   version "4.17.20"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
   integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
@@ -323,11 +295,6 @@ rollup@^1.31.1:
     "@types/estree" "*"
     "@types/node" "*"
     acorn "^7.1.0"
-
-ts-config-gm-react-app@^3.0.6:
-  version "3.4.5"
-  resolved "https://registry.yarnpkg.com/ts-config-gm-react-app/-/ts-config-gm-react-app-3.4.5.tgz#082a267f788f7cf5b9abf4c95c4ec2c497c6884e"
-  integrity sha512-oKn6WfN1X7XjnJYSJGn2hqp7XdjAWJ3kPf+/YFuW0Kn/eFwyUtumrsYL2EfKXm6FKIQmpqUpIfH1yJpf2Qtt7A==
 
 tslib@^1.10.0:
   version "1.14.1"

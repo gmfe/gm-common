@@ -5,7 +5,6 @@ import { merge } from 'lodash'
 import { NodeConfig, EdgeConfig, GraphOptions } from '@antv/g6/lib/types'
 
 import { registerNode } from './register_node'
-import { transToG6Data } from './utils'
 
 /** 节点类型
  *  - 物料节点
@@ -56,12 +55,8 @@ export interface FlowProps {
   options?: Partial<GraphOptions>
 }
 
-export type IGraphBom = FC<FlowProps> & {
-  transToG6Data: typeof transToG6Data
-}
-
 let graph: IGraph = null!
-const GraphBom: IGraphBom = ({ data, options = {} }) => {
+const GraphBom: FC<FlowProps> = ({ data, options = {} }) => {
   const container = useRef<HTMLDivElement>(null!)
 
   useEffect(() => {
@@ -116,6 +111,5 @@ const GraphBom: IGraphBom = ({ data, options = {} }) => {
 
   return <div ref={container} />
 }
-GraphBom.transToG6Data = transToG6Data
 
 export default GraphBom

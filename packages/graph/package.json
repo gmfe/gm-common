@@ -22,9 +22,6 @@
   },
   "dependencies": {
     "@antv/g6": "^3.8.1",
-    "@gm-common/x-request": "^2.6.6",
-    "gm_api": "git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#80fe5f3d7b32600347380a1bf022d136cac9be0e",
-    "lodash": "^4.17.20",
-    "ts-config-gm-react-app": "^3.0.6"
+    "lodash": "^4.17.20"
   }
 }
