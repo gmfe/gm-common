@@ -56,7 +56,7 @@ export interface FlowProps {
 }
 
 let graph: IGraph = null!
-const GraphBom: FC<FlowProps> = ({ data, options = {} }) => {
+const GraphFlow: FC<FlowProps> = ({ data, options = {} }) => {
   const container = useRef<HTMLDivElement>(null!)
 
   useEffect(() => {
@@ -112,4 +112,4 @@ const GraphBom: FC<FlowProps> = ({ data, options = {} }) => {
   return <div ref={container} />
 }
 
-export default GraphBom
+export default GraphFlow

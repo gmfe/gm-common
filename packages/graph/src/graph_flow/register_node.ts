@@ -3,7 +3,7 @@ import { ModelConfig } from '@antv/g6/lib/types'
 import GGroup from '@antv/g-canvas/lib/group'
 import { mat3 } from '@antv/matrix-util'
 import { adjustPath } from './utils'
-import { NODE_STATE, NODE_SUB_TYPE } from './graph_bom'
+import { NODE_STATE, NODE_SUB_TYPE } from './graph_flow'
 
 /** 配置 */
 const round_w = 70 // 物料节点宽，若调整物料节点的宽高可能还需要调整图标的位置

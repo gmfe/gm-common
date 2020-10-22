@@ -1,9 +1,9 @@
 import React from 'react'
-import { GraphBom, NODE_TYPE, NODE_STATE, NODE_SUB_TYPE } from './index'
+import { GraphFlow, NODE_TYPE, NODE_STATE, NODE_SUB_TYPE } from './index'
 
 export const Normal = () => {
   return (
-    <GraphBom
+    <GraphFlow
       data={{
         nodes: [
           {
