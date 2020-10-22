@@ -15,7 +15,7 @@ export function traceRequestInterceptor(
   options: { [key: string]: any },
   config: AxiosRequestConfig,
 ) {
-  const requestId = config.headers['X-Gm-Request-Id']
+  const requestId = config.headers['X-Request-Id']
   timeMap[requestId] = Date.now()
   const { url, params, data, method } = config
   const callTimesKey = `${method}::${url}`
@@ -43,7 +43,7 @@ export function traceRequestInterceptor(
 export function traceResponseInterceptor(response: AxiosResponse<any>) {
   const { gRPCStatus, gRPCMessage, gRPCMessageDetail } = parseResponse(response)
   const { url, headers, params, data, method } = response.config
-  const requestId = headers['X-Gm-Request-Id']
+  const requestId = headers['X-Request-Id']
   const callTimesKey = `${method}::${url}`
 
   report(requestUrl + platform, {

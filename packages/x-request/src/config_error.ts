@@ -21,7 +21,7 @@ function wrap(
   return new Promise((resolve) => {
     const { headers } = response.config
     const { gRPCStatus: code } = parseResponse(response)
-    const sucCode = headers['X-Gm-Success-Code'].split(',')
+    const sucCode = headers['X-Success-Code'].split(',')
     const gRpcMsgMap = Storage.get(gRpcMsgKey) || {}
     let message = msg
     if (_.isNaN(code) || !sucCode.includes(code + '')) {

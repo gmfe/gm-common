@@ -19,7 +19,7 @@ interface GetQiniuUploadTokenResponse {
 }
 const getQiniuSSUToken = () => {
   return Request<GetQiniuUploadTokenResponse>('/secret/GetQiniuUploadToken', { headers: {
-    authorization: '6dd24a47dd6b444f941cc86adc8e80df'
+    authorization: '02dbaa493c1147c080577c68b40fe515'
   }}).data({ file_type: ImageType.IMAGE_TYPE_MERCHANDISE_SSU }).run().then(json => {
     const { expire_time, dir_path, upload_token } = json.response
     return {

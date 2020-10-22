@@ -1,12 +1,12 @@
 import axios, { AxiosRequestConfig } from 'axios'
-import { parseResponse, formatResponse } from './util'
+import { formatResponse } from './util'
 const instance = axios.create({
   timeout: 30000,
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
-    'X-Gm-Timeout': '30000',
-    'X-Gm-Success-Code': '0',
+    'X-Timeout': '30000',
+    'X-Success-Code': '0',
   },
 })
 
@@ -34,13 +34,13 @@ class RequestBase<Data> {
 
   public code(codes: number[]): RequestBase<Data> {
     this._sucCode = this._sucCode.concat(codes)
-    this._config.headers['X-Gm-Success-Code'] = this._sucCode.join(',')
+    this._config.headers['X-Success-Code'] = this._sucCode.join(',')
     return this
   }
 
   public timeout(timeout: number): RequestBase<Data> {
     this._config.timeout = timeout
-    this._config.headers['X-Gm-Timeout'] = `${timeout}`
+    this._config.headers['X-Timeout'] = `${timeout}`
     return this
   }
 

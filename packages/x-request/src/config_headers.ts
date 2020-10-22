@@ -16,18 +16,18 @@ function configHeaders(): void {
       clientId = id
 
       instance.defaults.headers.common[
-        'X-Gm-Client'
+        'X-Client'
       ] = `${clientName}/${version} ${clientId}`
       return null
     })
   } else {
     instance.defaults.headers.common[
-      'X-Gm-Client'
+      'X-Client'
     ] = `${clientName}/${version} ${clientId}`
   }
 
   instance.interceptors.request.use((config) => {
-    config.headers['X-Gm-Request-Id'] = UUID.generate()
+    config.headers['X-Request-Id'] = UUID.generate()
 
     return config
   })
