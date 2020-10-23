@@ -68,12 +68,14 @@ const GraphFlow: FC<FlowProps> = ({ data, options = {} }) => {
       registerNode()
       // @ts-ignore
       const containerWidth = container.current.parentNode!.offsetWidth
+      // @ts-ignore
+      const containerHeight = container.current.parentNode!.offsetHeight
       graph = new Graph(
         merge(
           {
             container: container.current as string | HTMLElement,
             width: containerWidth,
-            height: 500,
+            height: containerHeight,
             maxZoom: 1,
             modes: {
               default: ['drag-canvas', 'zoom-canvas'],
@@ -107,7 +109,7 @@ const GraphFlow: FC<FlowProps> = ({ data, options = {} }) => {
       graph.destroy()
       graph = null!
     }
-  }, [])
+  }, [data])
 
   return <div ref={container} />
 }
