@@ -41,6 +41,7 @@ export interface FlowNode extends NodeConfig {
   label?: string
   state?: NODE_STATE
   color?: string
+  [key: string]: any
 }
 export interface FlowEdge extends EdgeConfig {
   target: string
