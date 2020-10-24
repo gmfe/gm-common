@@ -16,8 +16,7 @@ type HistoryDataType = {
   search?: string
 }
 
-function processHistory(history: History): ProcessHistoryOptions {
-  console.warn('processHistory不再对外暴露，请直接使用history')
+function baseProcessHistory(history: History): ProcessHistoryOptions {
   const _push = history.push
   const _replace = history.replace
 
@@ -54,5 +53,10 @@ function processHistory(history: History): ProcessHistoryOptions {
   return history
 }
 
+function processHistory(history: History): ProcessHistoryOptions {
+  console.warn('processHistory不再对外暴露，请直接使用history')
+  return baseProcessHistory(history)
+}
+
 export { processHistory }
-export default processHistory(history)
+export default baseProcessHistory(history)
