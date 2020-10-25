@@ -9,7 +9,7 @@ interface Params {
 
 type Data = string
 
-function fetchData(params?: Params): Promise<string> {
+function fetchData(params: Params): Promise<string> {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (Math.random() > 0.3) {
@@ -22,16 +22,19 @@ function fetchData(params?: Params): Promise<string> {
 
 // 自动
 export const NotManual = () => {
-  const { data, params, loading, error, run, refresh } = useAsync(fetchData, {
-    defaultParams: {
-      name: 'lala',
+  const { data, params, loading, error, run, refresh } = useAsync<Params, Data>(
+    fetchData,
+    {
+      defaultParams: {
+        name: 'lala',
+      },
+      onSuccess: (data) => {
+        console.log('onSuccess', data)
+      },
+      onError: (error) => console.log('onError', error),
+      manual: false,
     },
-    onSuccess: (data) => {
-      console.log('onSuccess', data)
-    },
-    onError: (error) => console.log('onError', error),
-    manual: false,
-  })
+  )
 
   console.log('render', params, data, loading, error)
 
@@ -84,7 +87,7 @@ export const Manual = () => {
  * 内存级别的数据缓存，会优先返回缓存数据，之后会请求数据更新。使用此选项注意 data 和 loading 的配合，如果 data 有数据，loading true，UI 不显示 loading 态
  */
 export const Cache = () => {
-  const { data, loading, error, run } = useAsync(fetchData, {
+  const { data, loading, error, run } = useAsync<Params, Data>(fetchData, {
     cacheKey: 'cacheKey',
     manual: false,
   })
@@ -113,7 +116,7 @@ export const Cache = () => {
 export const Order = () => {
   const refCount = useRef(0)
 
-  function fetchData() {
+  function fetchData(): Promise<Data> {
     return new Promise((resolve) => {
       const time = _.random(0, 10) * 200
       const count = refCount.current++
@@ -124,7 +127,7 @@ export const Order = () => {
     })
   }
 
-  const { data, run } = useAsync(fetchData, { manual: false })
+  const { data, run } = useAsync<Params, Data>(fetchData, { manual: false })
 
   console.log(data)
 

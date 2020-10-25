@@ -11,14 +11,14 @@ import {
 
 interface DoSomeThink<P, D> {
   id: string
-  setState: (state: UseAsyncState<P>) => void
+  setState: (state: UseAsyncState<P, D>) => void
   isUnmounted: boolean
   service: UseAsyncService<P, D>
-  params?: P
+  params: P
   cacheKey?: string
   cacheTime: number
-  onBeforeSuccess(data?: D, params?: P): void
-  onSuccess(data?: D, params?: P): void
+  onBeforeSuccess(data: D | undefined, params: P): void
+  onSuccess(data: D | undefined, params: P): void
   onBeforeError(e: Error): void
   onError(e: Error): void
 }
@@ -128,7 +128,7 @@ function useAsync<P extends object = any, D = any>(
   const refId = useRef((Math.random() + '').slice(2))
   const isUnmounted = useUnmount()
 
-  const [state, setState] = useState<UseAsyncState<P>>({
+  const [state, setState] = useState<UseAsyncState<P, D>>({
     data: undefined,
     loading: false,
     error: undefined,
@@ -142,7 +142,7 @@ function useAsync<P extends object = any, D = any>(
       setState,
       isUnmounted,
       service,
-      params,
+      params: params || ({} as P),
       cacheKey: _options.cacheKey,
       cacheTime: _options.cacheTime,
       onBeforeSuccess: _options.onBeforeSuccess,
@@ -171,7 +171,7 @@ function useAsync<P extends object = any, D = any>(
 
   return {
     data: state.data,
-    params: state.params,
+    params: state.params || ({} as P),
     loading: state.loading,
     error: state.error,
     run,

@@ -68,7 +68,7 @@ function usePagination<P extends Params = any, D extends Data = any>(
       const pagingRes = resolveData.paging || {}
 
       // 从请求 params 上取当前的页码数据
-      const pagingReq = params?.paging || {}
+      const pagingReq = params.paging || {}
 
       // 存起来
       if (options?.paginationKey && pagingReq.limit) {
@@ -133,8 +133,7 @@ function usePagination<P extends Params = any, D extends Data = any>(
 
   return {
     data: asyncResult.data,
-    // 一定有
-    params: asyncResult.params!,
+    params: asyncResult.params,
     loading: asyncResult.loading,
     error: asyncResult.error,
     paging: refState.current,

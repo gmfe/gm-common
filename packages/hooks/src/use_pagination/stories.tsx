@@ -44,7 +44,7 @@ export const Normal = () => {
     run,
     refresh,
     runChangePaging,
-  } = usePagination(fetchData, {
+  } = usePagination<Params, Data>(fetchData, {
     defaultPaging: {
       need_count: true,
     },
@@ -115,9 +115,10 @@ const paginationHookStore = observable({
 
   req: {
     q: '',
+    paging: {},
   },
 
-  setPaging(paging: any) {
+  getPaging(paging: any) {
     console.log(paging, 'ppppp')
 
     return { paging: { has_more: true, count: 100 } }
@@ -126,7 +127,7 @@ const paginationHookStore = observable({
   fetchData(params?: Params): Promise<Data> {
     return new Promise((resolve) =>
       setTimeout(() => {
-        resolve(this.setPaging(params))
+        resolve(this.getPaging(params))
       }, 1000),
     )
   },
@@ -134,7 +135,7 @@ const paginationHookStore = observable({
 
 const WithCountHook = () => {
   const { req, defaultPagingWithCount } = paginationHookStore
-  const { loading, runChangePaging, paging, run } = usePagination(
+  const { loading, runChangePaging, paging, run } = usePagination<Params, Data>(
     (params?) => paginationHookStore.fetchData(params),
     {
       defaultParams: { paging: { ...defaultPagingWithCount } },
@@ -167,7 +168,9 @@ const WithoutCountHook = () => {
     runChangePaging: ncRunChangePaging,
     paging: ncPaging,
     run: ncRun,
-  } = usePagination((params) => paginationHookStore.fetchData(params as Params))
+  } = usePagination<Params, Data>((params) =>
+    paginationHookStore.fetchData(params as Params),
+  )
 
   useEffect(() => {
     ncRun({ ...req })
