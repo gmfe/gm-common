@@ -7,11 +7,17 @@ export function initGRpcCodes(m: { [code: string]: string }) {
   Storage.set(gRpcMsgKey, m)
 }
 
+let accessToken: string | undefined
+
 export function initAuth(url: string, field: string) {
   Storage.set(authInfoKey, { url, field })
   instance.interceptors.request.use((config) => {
-    const accessToken = Storage.get(accessTokenKey)
-    if (accessToken) config.headers.authorization = accessToken
+    if (!accessToken) {
+      accessToken = Storage.get(accessTokenKey)
+    }
+    if (accessToken) {
+      config.headers.authorization = accessToken
+    }
 
     return config
   })
@@ -28,4 +34,9 @@ export function initAuth(url: string, field: string) {
 
     return response
   })
+}
+
+export function clearAuth() {
+  Storage.remove(accessTokenKey)
+  accessToken = undefined
 }
