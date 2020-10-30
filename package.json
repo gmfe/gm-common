@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.12.3",
-    "@gm-pc/react": "^1.1.0",
+    "@gm-pc/react": "^1.1.1",
     "@gm-react-app/commitlint-gm-react-app": "3.4.5",
     "@gm-react-app/scripts-lib": "^3.4.5",
     "@storybook/addon-info": "^5.3.21",
@@ -68,8 +68,8 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-window": "^1.8.5",
-    "styled-components": "^5.2.0",
     "ts-config-gm-react-app": "^3.4.5",
+    "typescript": "^3.9.7",
     "webpack": "^4.44.1"
   },
   "devDependencies": {

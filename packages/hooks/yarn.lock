@@ -2,19 +2,7 @@
 # yarn lockfile v1
 
 
-"@gm-common/tool@^2.7.4":
-  version "2.7.4"
-  resolved "https://registry.npmjs.org/@gm-common/tool/-/tool-2.7.4.tgz#07db8aaab390f00c6793816b20cfdebc94dcd017"
-  integrity sha512-Bnv5pNySewggb8guL2OGuNBOIkxGH8TmNF2qNSgFdt3VBKc6XEIfY88mZX3EDj9myw56p+jxXSIES0ekjoT3Cw==
-  dependencies:
-    lodash "^4.17.19"
-
-lodash@^4.17.19:
-  version "4.17.20"
-  resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
-  integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
-
 ts-config-gm-react-app@^3.4.5:
   version "3.4.5"
-  resolved "https://registry.npmjs.org/ts-config-gm-react-app/-/ts-config-gm-react-app-3.4.5.tgz#082a267f788f7cf5b9abf4c95c4ec2c497c6884e"
-  integrity sha512-oKn6WfN1X7XjnJYSJGn2hqp7XdjAWJ3kPf+/YFuW0Kn/eFwyUtumrsYL2EfKXm6FKIQmpqUpIfH1yJpf2Qtt7A==
+  resolved "https://registry.npm.taobao.org/ts-config-gm-react-app/download/ts-config-gm-react-app-3.4.5.tgz#082a267f788f7cf5b9abf4c95c4ec2c497c6884e"
+  integrity sha1-CComf3iPfPW5q/TJXE7CxJfGiE4=
