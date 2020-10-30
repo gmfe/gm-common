@@ -22,6 +22,6 @@
   },
   "dependencies": {
     "@gm-common/tool": "^2.7.4",
-    "ts-config-gm-react-app": "^3.0.6"
+    "ts-config-gm-react-app": "^3.4.5"
   }
 }

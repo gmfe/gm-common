@@ -38,10 +38,10 @@
     d3-timer "^1.0.9"
     detect-browser "^5.1.0"
 
-"@antv/g-canvas@^0.5.1":
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/@antv/g-canvas/-/g-canvas-0.5.1.tgz#37ef422b7e6392ef77d3f1e737f2d69976a00c41"
-  integrity sha512-m132AyMrILm0wYTbXSlmDaz8M7OoEIvSZuW59apDS+F3jHAxsJrBvKXJjJJ26CItdIbTmeLLMcfoGIj9IzXvDw==
+"@antv/g-canvas@^0.5.2":
+  version "0.5.3"
+  resolved "https://registry.npmjs.org/@antv/g-canvas/-/g-canvas-0.5.3.tgz#6d5028395b8093c799f4bc612765fe53d0d9d04d"
+  integrity sha512-80k1BbiY05heHKUm4o6IL6KVRZS+uAgzdIF2OaC9grQc6KxrJoK2dCxKpmna3NBHTU9Sm+/rsiGcL7lp7S+ecQ==
   dependencies:
     "@antv/g-base" "^0.5.1"
     "@antv/g-math" "^0.1.5"
@@ -68,16 +68,16 @@
     "@antv/util" "~2.0.0"
     detect-browser "^5.0.0"
 
-"@antv/g6@^3.8.1":
-  version "3.8.1"
-  resolved "https://registry.yarnpkg.com/@antv/g6/-/g6-3.8.1.tgz#1df7714a3081b1d197031ad9c4505e3ccf98c5f7"
-  integrity sha512-WcnDMcC4iymDsR8mzVDGxAFEtrjnt5rvsFnavpj18n0LGA4V/Np8cPsrbEV15+a+8Np1MSKHZUW9LcA6UZ+XrQ==
+"@antv/g6@^3.8.3":
+  version "3.8.3"
+  resolved "https://registry.npmjs.org/@antv/g6/-/g6-3.8.3.tgz#701a33fe92b37e3dc9bc04e9c5eb0c11286ebfe3"
+  integrity sha512-NBqswaUnraM+Jl1YOKYK0Y7UR5YBX8gxPSdK13x48oGKJmoHnUfjgtAysuNl8VNdzpXZ1byHEmAo1Kd7TfqZOw==
   dependencies:
     "@antv/color-util" "^2.0.5"
     "@antv/dom-util" "^2.0.1"
     "@antv/event-emitter" "~0.1.0"
     "@antv/g-base" "^0.5.1"
-    "@antv/g-canvas" "^0.5.1"
+    "@antv/g-canvas" "^0.5.2"
     "@antv/g-math" "^0.1.1"
     "@antv/g-svg" "^0.5.1"
     "@antv/hierarchy" "^0.6.2"

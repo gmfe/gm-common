@@ -25,7 +25,7 @@
     "@gm-common/fingerprint": "^2.7.4",
     "@gm-common/locales": "^2.7.4",
     "@gm-common/tool": "^2.7.4",
-    "axios": "^0.19.2",
-    "lodash": "^4.17.19"
+    "axios": "^0.21.0",
+    "lodash": "^4.17.20"
   }
 }

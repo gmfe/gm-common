@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@gm-common/qiniup": "^2.7.4",
-    "lodash": "^4.17.19"
+    "lodash": "^4.17.20"
   },
   "devDependencies": {
     "@gm-common/x-request": "^2.7.4"

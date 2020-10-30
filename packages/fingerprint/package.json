@@ -23,6 +23,6 @@
   "dependencies": {
     "@gm-common/tool": "^2.7.4",
     "@types/fingerprintjs2": "^2.0.0",
-    "fingerprintjs2": "^2.1.0"
+    "fingerprintjs2": "^2.1.2"
   }
 }

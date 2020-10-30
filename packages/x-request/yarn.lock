@@ -2,12 +2,54 @@
 # yarn lockfile v1
 
 
+"@gm-common/analyse@^2.7.4":
+  version "2.7.4"
+  resolved "https://registry.npmjs.org/@gm-common/analyse/-/analyse-2.7.4.tgz#dbe29f76619a32a0f9745fa16706069d672bb68a"
+  integrity sha512-OOcu/2Pw1xZeEnPSmOuwgZ5u7ygFhBg/a+vU/FfvOw+UupBlHLAW6QhQW3ZJL1TlIlp0pBG9ZzGBaLalJM9/6Q==
+  dependencies:
+    "@gm-common/fingerprint" "^2.7.4"
+    axios "^0.19.2"
+    query-string "^6.12.1"
+
+"@gm-common/fingerprint@^2.7.4":
+  version "2.7.4"
+  resolved "https://registry.npmjs.org/@gm-common/fingerprint/-/fingerprint-2.7.4.tgz#fba35d1e47f1c9eeda4043d2b4fa50a26ea5d462"
+  integrity sha512-rpTEnsyy0AlcLSyvhtvTUESmAqr+Dnth2i7U3sTyea4CrdQzOpLGNj74VLw85ORx01VHXsSiQg9OXn62OOFbtA==
+  dependencies:
+    "@gm-common/tool" "^2.7.4"
+    "@types/fingerprintjs2" "^2.0.0"
+    fingerprintjs2 "^2.1.0"
+
+"@gm-common/locales@^2.7.4":
+  version "2.7.4"
+  resolved "https://registry.npmjs.org/@gm-common/locales/-/locales-2.7.4.tgz#cd473f3d44d998a8ee1f0a827d5a87dc043e6fc5"
+  integrity sha512-7l+ODXVuDLjz7X0o3VqJ+C2M6+7CojYzgUF5Uw3rYflklvIg7wskCy5tpoY8nmeuS+0gIs2JMzMtE6XzUExhBw==
+
+"@gm-common/tool@^2.7.4":
+  version "2.7.4"
+  resolved "https://registry.npmjs.org/@gm-common/tool/-/tool-2.7.4.tgz#07db8aaab390f00c6793816b20cfdebc94dcd017"
+  integrity sha512-Bnv5pNySewggb8guL2OGuNBOIkxGH8TmNF2qNSgFdt3VBKc6XEIfY88mZX3EDj9myw56p+jxXSIES0ekjoT3Cw==
+  dependencies:
+    lodash "^4.17.19"
+
+"@types/fingerprintjs2@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/@types/fingerprintjs2/-/fingerprintjs2-2.0.0.tgz#3af76e165416fa75261bbce4393f5445fca4cadd"
+  integrity sha512-isSTwNnW5I6zGZnpkinmVcV9pJqr7cLELns+tXDYzskIOAb2J+iCQ0mQJ9bRjHJhZfdlTFXZoCYK9ZgT3oMWXQ==
+
 axios@^0.19.2:
   version "0.19.2"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
   integrity sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
   dependencies:
     follow-redirects "1.5.10"
+
+axios@^0.21.0:
+  version "0.21.0"
+  resolved "https://registry.npmjs.org/axios/-/axios-0.21.0.tgz#26df088803a2350dff2c27f96fef99fe49442aca"
+  integrity sha512-fmkJBknJKoZwem3/IKSSLpkdNXZeBu5Q7GA/aRsr2btgrptmSCxi2oFjZHqGdK9DoTil9PIHlPIZw2EcRJXRvw==
+  dependencies:
+    follow-redirects "^1.10.0"
 
 debug@=3.1.0:
   version "3.1.0"
@@ -16,12 +58,27 @@ debug@=3.1.0:
   dependencies:
     ms "2.0.0"
 
+decode-uri-component@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.npmjs.org/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
+  integrity sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=
+
+fingerprintjs2@^2.1.0:
+  version "2.1.2"
+  resolved "https://registry.npmjs.org/fingerprintjs2/-/fingerprintjs2-2.1.2.tgz#d4812e627356f04b279c63b995b72591b2ab5ed5"
+  integrity sha512-ZPsLgjziFRbUb5tXWpEMtWp4XFnzSah8SiNfl3aoURDZ+2zi2tuIOYUULqDBV+Cb6paN+raWT+Q2qpOaCbX/Yw==
+
 follow-redirects@1.5.10:
   version "1.5.10"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.10.tgz#7b7a9f9aea2fdff36786a94ff643ed07f4ff5e2a"
   integrity sha512-0V5l4Cizzvqt5D44aTXbFZz+FtyXV1vrDN6qrelxtfYQKW0KO0W2T/hkE8xvGa/540LkZlkaUjO4ailYTFtHVQ==
   dependencies:
     debug "=3.1.0"
+
+follow-redirects@^1.10.0:
+  version "1.13.0"
+  resolved "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.13.0.tgz#b42e8d93a2a7eea5ed88633676d6597bc8e384db"
+  integrity sha512-aq6gF1BEKje4a9i9+5jimNFIpq4Q1WiwBToeRK5NvZBd/TRsmW8BsJfOEGkr76TbOyPVD3OVDN910EcUNtRYEA==
 
 lodash@^4.17.19:
   version "4.17.20"
@@ -32,3 +89,22 @@ ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
   integrity sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g=
+
+query-string@^6.12.1:
+  version "6.13.6"
+  resolved "https://registry.npmjs.org/query-string/-/query-string-6.13.6.tgz#e5ac7c74f2a5da43fbca0b883b4f0bafba439966"
+  integrity sha512-/WWZ7d9na6s2wMEGdVCVgKWE9Rt7nYyNIf7k8xmHXcesPMlEzicWo3lbYwHyA4wBktI2KrXxxZeACLbE84hvSQ==
+  dependencies:
+    decode-uri-component "^0.2.0"
+    split-on-first "^1.0.0"
+    strict-uri-encode "^2.0.0"
+
+split-on-first@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/split-on-first/-/split-on-first-1.1.0.tgz#f610afeee3b12bce1d0c30425e76398b78249a5f"
+  integrity sha512-43ZssAJaMusuKWL8sKUBQXHWOpq8d6CfN/u1p4gUzfJkM05C8rxTmYrkIPTXapZpORA6LkkzcUulJ8FqA7Uudw==
+
+strict-uri-encode@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/strict-uri-encode/-/strict-uri-encode-2.0.0.tgz#b9c7330c7042862f6b142dc274bbcc5866ce3546"
+  integrity sha1-ucczDHBChi9rFC3CdLvMWGbONUY=

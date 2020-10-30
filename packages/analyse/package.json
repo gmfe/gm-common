@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@gm-common/fingerprint": "^2.7.4",
-    "axios": "^0.19.2",
-    "query-string": "^6.12.1"
+    "axios": "^0.21.0",
+    "query-string": "^6.13.6"
   }
 }
