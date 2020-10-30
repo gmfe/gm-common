@@ -27,6 +27,6 @@
     "react-amap": "^1.2.7"
   },
   "peerDependencies": {
-    "react": "^17.0.1"
+    "react": "^16.14.0"
   }
 }
