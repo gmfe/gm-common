@@ -35,7 +35,6 @@ function makeStorageObservable<T extends Object>(
 
   // listener 监听全部变化
   observe(target, (change) => {
-    console.log(change)
     const name = change.name as keyof T
 
     if (change.type === 'update' && annotations.includes(name)) {
