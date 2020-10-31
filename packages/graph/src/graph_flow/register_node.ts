@@ -104,6 +104,26 @@ export function registerNode() {
           product.setMatrix(newMatrix)
         }
 
+        // 包材
+        if (cfg.sub_type === NODE_SUB_TYPE.PACK) {
+          const ratio = h > w ? w / 210 : (h / 210) * 1.4
+          const product = group.addShape('path', {
+            attrs: {
+              path: adjustPath(`
+              M34.4,57.6c-5.3-2.3-10.7-4.7-16-7.1c-0.9-0.4-1.3-0.5-1.3-1.2v-4.7c0-0.6,0.3-1.4,1.1-1.1      l16.4,7.3c1.5,0.7,1.1,0.8,1.1,3.6v2.3C35.7,57.1,35.3,58,34.4,57.6L34.4,57.6z M48,47.1L6.3,29.5c-1.1,0-2,0.9-2,2V74      c0,0.5-0.3,1.1,2,2L48,95.9c1.1,0,2-0.9,2-2V50.1C50,48.9,50,47.9,48,47.1L48,47.1z M55,93.9c0,1.1,0.9,2,2,2L98.7,74      c1.6-1,2-2.8,2-5.5v-37c0-0.5-0.2-1-0.6-1.4c-0.4-0.4-0.9-0.6-1.4-0.6h0L57,47.1c-2,0.8-2,1.8-2,2.9V93.9z M53.7,43.9      c-1.3,0.5-1,0.6-2.6,0L7.3,25.5c-0.4-0.3-0.6-0.8-0.6-1.3c0-0.5,0.2-1,0.5-1.3l0,0L49.9,4.5c1-0.5,2-0.7,3.7,0l43.5,18      c0.7,0.7,0.8,1.9,0.1,2.6L53.7,43.9z
+            `),
+              fill: 'white',
+            },
+          })
+          let matrix = product.getMatrix()
+          if (!matrix) matrix = mat3.create() as number[]
+          const newMatrix = Util.transform(matrix, [
+            ['t', w / 2 / ratio - w / 2 - 15, h * ratio - h / 2 + 30],
+            ['s', ratio, ratio],
+          ])
+          product.setMatrix(newMatrix)
+        }
+
         // 产出图
         if (
           cfg.sub_type === NODE_SUB_TYPE.OUTPUT ||

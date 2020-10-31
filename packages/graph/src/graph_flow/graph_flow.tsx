@@ -25,6 +25,7 @@ export enum NODE_SUB_TYPE {
   'BY_PRODUCT' = 'by_product', // 副产品
   'OUTPUT' = 'output', // 产出
   'INPUT' = 'input', // 投入
+  'PACK' = 'pack', // 包材
 }
 
 /** 节点状态（目前只有工序节点才有） */
@@ -47,6 +48,7 @@ export interface FlowEdge extends EdgeConfig {
   target: string
   source: string
   id: string
+  [key: string]: any
 }
 export interface FlowProps {
   data: {
