@@ -71,7 +71,7 @@ async function uploadRequest(url: string, data: { [key: string]: any }) {
 export async function qiniuUpload(blob: File, opts: Opts) {
   const options = {
     uploadUrl: 'https://upload-z2.qiniup.com/',
-    domain: opts.domain || 'http://qhcvfb3qx.hn-bkt.clouddn.com',
+    domain: opts.domain || 'https://qncdn.guanmai.cn',
     getQiniuInfo: opts.getQiniuInfo,
     fileType: opts.fileType,
   }
