@@ -65,7 +65,6 @@ function tailRequestTrim(
       result[n] = {}
       tailRequestTrim(v, result[n])
     } else {
-      result[n] = v
       result[n] = typeof v === 'string' ? v.trim() : v
     }
   })
