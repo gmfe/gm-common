@@ -53,6 +53,30 @@ function parseResponse(response: AxiosResponse) {
   }
 }
 
+function tailRequestTrim(
+  obj: { [key: string]: any },
+  result: { [key: string]: any },
+) {
+  _.forEach(Object.entries(obj), ([n, v]) => {
+    if (v instanceof Object && !_.isArray(v)) {
+      // 判断一下循环引用，如果有就抛错误
+      JSON.stringify(v)
+
+      result[n] = {}
+      tailRequestTrim(v, result[n])
+    } else {
+      result[n] = v
+      result[n] = typeof v === 'string' ? v.trim() : v
+    }
+  })
+
+  return result
+}
+
+function requestTrim(obj: { [key: string]: any }) {
+  return tailRequestTrim(obj, {})
+}
+
 function formatResponse<T>(response: AxiosResponse<T>) {
   const { gRPCMessageDetail, gRPCMessage, gRPCStatus } = parseResponse(response)
   const data = response.data
@@ -84,4 +108,5 @@ export {
   isProduction,
   getErrorMessage,
   atob,
+  requestTrim,
 }
