@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios'
-import { formatResponse } from './util'
+import { formatResponse, requestTrim } from './util'
 const instance = axios.create({
   timeout: 30000,
   headers: {
@@ -45,7 +45,8 @@ class RequestBase<Data> {
   }
 
   public data(data: { [key: string]: any }): RequestBase<Data> {
-    this._data = JSON.stringify(data)
+    // requestTrim 剔除前后多余空格
+    this._data = JSON.stringify(requestTrim(data))
     return this
   }
 
