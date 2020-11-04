@@ -59,9 +59,6 @@ function tailRequestTrim(
 ) {
   _.forEach(Object.entries(obj), ([n, v]) => {
     if (v instanceof Object && !_.isArray(v)) {
-      // 判断一下循环引用，如果有就抛错误
-      JSON.stringify(v)
-
       result[n] = {}
       tailRequestTrim(v, result[n])
     } else {
@@ -73,6 +70,9 @@ function tailRequestTrim(
 }
 
 function requestTrim(obj: { [key: string]: any }) {
+  // 判断一下循环引用，如果有就抛错误
+  JSON.stringify(obj)
+
   return tailRequestTrim(obj, {})
 }
 
