@@ -1,6 +1,6 @@
 {
   "name": "@gm-common/x-request",
-  "version": "2.8.4",
+  "version": "2.8.5",
   "description": "> TODO: description",
   "author": "zhongsink <zhongink@gmail.com>",
   "homepage": "https://github.com/gmfe/gm-common#readme",
@@ -21,10 +21,10 @@
     "url": "https://github.com/gmfe/gm-common/issues"
   },
   "dependencies": {
-    "@gm-common/analyse": "^2.8.4",
-    "@gm-common/fingerprint": "^2.8.4",
-    "@gm-common/locales": "^2.8.4",
-    "@gm-common/tool": "^2.8.4",
+    "@gm-common/analyse": "^2.8.5",
+    "@gm-common/fingerprint": "^2.8.5",
+    "@gm-common/locales": "^2.8.5",
+    "@gm-common/tool": "^2.8.5",
     "axios": "^0.21.0",
     "lodash": "^4.17.19"
   }
