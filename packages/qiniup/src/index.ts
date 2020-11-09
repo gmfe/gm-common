@@ -22,8 +22,13 @@ const TOKEN_KEY_BASE = 'x_qiniu_token_'
 const TOKEN_KEY_CACHE_TIME_BASE = 'x_qiniu_token_cache_time_'
 
 function getUploadFileName(blob: File) {
-  const { type } = blob
-  const suf = type.split('/').pop()
+  const { type, name } = blob
+  let suf = type.includes('image') ? type.split('/').pop() : ''
+  if (!suf) {
+    suf = name.split('.').pop()
+  }
+
+  if (!suf) throw new Error('Can not find the suffix')
 
   return `${UUID.generate()}.${suf}`
 }
