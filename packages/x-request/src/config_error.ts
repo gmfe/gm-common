@@ -25,6 +25,8 @@ function wrap(
   const sucCode = headers['X-Success-Code'].split(',')
 
   let message = msg || getLocale('未知错误')
+
+  // 如果错误了
   if (_.isNaN(code) || !sucCode.includes(code + '')) {
     if (code) {
       message = `${getLocale('未知错误')}: ${code}`
@@ -50,7 +52,12 @@ function wrapErrorResponse(response: AxiosResponse) {
 function configError(errorCallback: ErrorCallback): void {
   instance.interceptors.response.use(
     (response) => {
-      wrap(response, errorCallback)
+      try {
+        wrap(response, errorCallback)
+      } catch (error) {
+        // 要转错误
+        return Promise.reject(error)
+      }
 
       return response
     },
@@ -69,8 +76,14 @@ function configError(errorCallback: ErrorCallback): void {
       const message = getErrorMessage(error)
 
       if (error.response) {
-        wrap(error.response, errorCallback, message)
-        return error
+        try {
+          wrap(error.response, errorCallback, message)
+        } catch (error) {
+          return Promise.reject(error)
+        }
+
+        // 要转成功
+        return error.response
       } else {
         errorCallback(message)
         return Promise.reject(error)
