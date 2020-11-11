@@ -5,7 +5,7 @@ import {
   requestEnvUrl,
   platform,
   isProduction,
-  parseResponse,
+  formatToResponse,
 } from './util'
 import { report } from '@gm-common/analyse'
 const timeMap: { [key: string]: any } = {}
@@ -41,7 +41,8 @@ export function traceRequestInterceptor(
 }
 
 export function traceResponseInterceptor(response: AxiosResponse<any>) {
-  const { gRPCStatus, gRPCMessage, gRPCMessageDetail } = parseResponse(response)
+  const { code, message } = formatToResponse(response)
+
   const { url, headers, params, data, method } = response.config
   const requestId = headers['X-Request-Id']
   const callTimesKey = `${method}::${url}`
@@ -51,9 +52,9 @@ export function traceResponseInterceptor(response: AxiosResponse<any>) {
     params: JSON.stringify(params),
     data: JSON.stringify(data),
     requestId,
-    resCode: gRPCStatus,
-    resMsg: gRPCMessage,
-    resMsgDetail: gRPCMessageDetail,
+    resCode: code,
+    resMsg: message.description,
+    resMsgDetail: message.detail,
     resTime: new Date() + '',
     callTimes: callTimesMap[callTimesKey],
     time: timeMap[requestId] ? Date.now() - timeMap[requestId] : '',

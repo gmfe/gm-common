@@ -1,15 +1,9 @@
 import React from 'react'
-import {
-  Request,
-  configError,
-  configHeaders,
-  initAuth,
-  initGRpcCodes,
-} from './index'
+import { Request, configError, configHeaders, initAuth } from './index'
+// @ts-ignore
 import sha256 from 'crypto-js/sha256'
 
 initAuth('/enterprise/CreateRole', 'role.name')
-initGRpcCodes({ '3': '参数错误' })
 configError((message, response) => {
   console.log(message, response)
 })
@@ -29,9 +23,14 @@ export const normal = () => {
               },
             })
             .run()
-            .then((json) => {
-              console.log(json)
-            })
+            .then(
+              (json) => {
+                console.log('resolve', json)
+              },
+              (reason) => {
+                console.log('reject', reason)
+              },
+            )
         }}
       >
         request post
