@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios'
 import { formatResponse, requestTrim } from './util'
+
 const instance = axios.create({
   timeout: 30000,
   headers: {
@@ -54,6 +55,7 @@ class RequestBase<Data> {
     this._config.data = this._data
     this._config.method = 'post'
     return instance.request<Data>(this._config).then((res) => {
+      // formatResponse 不能再中间件做，中间件不更改数据
       return formatResponse<Data>(res)
     })
   }

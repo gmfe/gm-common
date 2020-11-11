@@ -9,7 +9,7 @@ const isProduction = __PRODUCTION__ // eslint-disable-line
 const requestUrl = '//trace.guanmai.cn/api/logs/request/'
 const requestEnvUrl = '//trace.guanmai.cn/api/logs/environment/'
 const gRpcMsgKey = 'GRPC_MSG_MAP'
-const accessTokenKey = 'ACCESS_TOEKN_KEY'
+const accessTokenKey = 'ACCESS_TOKEN_KEY'
 const authInfoKey = 'AUTH_INTERFACE_KEY'
 
 function getErrorMessage(error: { [key: string]: any }): string {
@@ -80,10 +80,11 @@ function formatResponse<T>(response: AxiosResponse<T>) {
   const { gRPCMessageDetail, gRPCMessage, gRPCStatus } = parseResponse(response)
   const data = response.data
 
-  if (!isProduction) {
-    console.log('response', response.config.url)
-    console.log('response', gRPCStatus, gRPCMessage, gRPCMessageDetail, data)
-  }
+  console.groupCollapsed(`request ${response.config.url}`)
+  console.log('gRPCStatus', gRPCStatus)
+  console.log('gRPCMessage', gRPCMessage)
+  console.log('gRPCMessageDetail', gRPCMessageDetail)
+  console.groupEnd()
 
   return {
     code: +gRPCStatus,

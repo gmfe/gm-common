@@ -70,9 +70,8 @@
     "react-window": "^1.8.5",
     "ts-config-gm-react-app": "^3.4.5",
     "typescript": "^3.9.7",
-    "webpack": "^4.44.1"
-  },
-  "devDependencies": {
+    "webpack": "^4.44.1",
+    "crypto-js": "^4.0.0",
     "lerna": "^3.19.0"
   }
 }
