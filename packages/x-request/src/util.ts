@@ -8,7 +8,6 @@ const isProduction = __PRODUCTION__ // eslint-disable-line
 
 const requestUrl = '//trace.guanmai.cn/api/logs/request/'
 const requestEnvUrl = '//trace.guanmai.cn/api/logs/environment/'
-const gRpcMsgKey = 'GRPC_MSG_MAP'
 const accessTokenKey = 'ACCESS_TOKEN_KEY'
 const authInfoKey = 'AUTH_INTERFACE_KEY'
 
@@ -39,17 +38,34 @@ function atob(s: string): any {
   }
 }
 
-function parseResponse(response: AxiosResponse) {
+function parseResponseHeaders(response: AxiosResponse) {
   const responseHeaders = response.headers
+
   const result = (responseHeaders['grpc-message'] || '').split('|')
   const gRPCMessageDetail: string = atob(result.slice(1).join('|'))
   const gRPCMessage: string = result[0] || ''
   const gRPCStatus: number = +responseHeaders['grpc-status']
   const isNaN = _.isNaN(gRPCStatus)
+
   return {
     gRPCMessageDetail,
     gRPCMessage,
     gRPCStatus: isNaN ? -1 : gRPCStatus,
+  }
+}
+function formatToResponse<T>(response: AxiosResponse<T>) {
+  const { gRPCMessageDetail, gRPCMessage, gRPCStatus } = parseResponseHeaders(
+    response,
+  )
+  const data = response.data
+
+  return {
+    code: +gRPCStatus,
+    message: {
+      description: gRPCMessage,
+      detail: gRPCMessageDetail,
+    },
+    response: data,
   }
 }
 
@@ -76,30 +92,8 @@ function requestTrim(obj: { [key: string]: any }) {
   return tailRequestTrim(obj, {})
 }
 
-function formatResponse<T>(response: AxiosResponse<T>) {
-  const { gRPCMessageDetail, gRPCMessage, gRPCStatus } = parseResponse(response)
-  const data = response.data
-
-  console.groupCollapsed(`request ${response.config.url}`)
-  console.log('gRPCStatus', gRPCStatus)
-  console.log('gRPCMessage', gRPCMessage)
-  console.log('gRPCMessageDetail', gRPCMessageDetail)
-  console.groupEnd()
-
-  return {
-    code: +gRPCStatus,
-    message: {
-      description: gRPCMessage,
-      detail: gRPCMessageDetail,
-    },
-    response: data,
-  }
-}
-
 export {
-  formatResponse,
-  parseResponse,
-  gRpcMsgKey,
+  formatToResponse,
   accessTokenKey,
   authInfoKey,
   requestUrl,

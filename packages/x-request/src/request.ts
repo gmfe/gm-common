@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios'
-import { formatResponse, requestTrim } from './util'
+import { formatToResponse, requestTrim } from './util'
+import { Response } from './types'
 
 const instance = axios.create({
   timeout: 30000,
@@ -10,15 +11,6 @@ const instance = axios.create({
     'X-Success-Code': '0',
   },
 })
-
-interface Response<T> {
-  code: number
-  message: {
-    description: string
-    detail: any
-  }
-  response: T
-}
 
 class RequestBase<Data> {
   private _config: AxiosRequestConfig
@@ -55,8 +47,17 @@ class RequestBase<Data> {
     this._config.data = this._data
     this._config.method = 'post'
     return instance.request<Data>(this._config).then((res) => {
-      // formatResponse 不能再中间件做，中间件不更改数据
-      return formatResponse<Data>(res)
+      // formatToResponse 不能再中间件做，中间件不更改数据
+      const formatRes = formatToResponse<Data>(res)
+
+      // log 在这里做，不能在 formatToResponse，因为它可能被调用多次
+      console.groupCollapsed(`request ${res.config.url}`)
+      console.log('code', formatRes.code)
+      console.log('message.description', formatRes.message.description)
+      console.log('message.detail', formatRes.message.detail)
+      console.groupEnd()
+
+      return formatRes
     })
   }
 }
@@ -66,5 +67,3 @@ function Request<Data>(url: string, config?: object) {
 }
 
 export { instance, Request }
-
-export type { Response }

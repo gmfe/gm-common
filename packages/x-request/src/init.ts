@@ -1,11 +1,7 @@
 import { Storage } from '@gm-common/tool'
 import _ from 'lodash'
 import { instance } from './request'
-import { gRpcMsgKey, authInfoKey, accessTokenKey } from './util'
-
-export function initGRpcCodes(m: { [code: string]: string }) {
-  Storage.set(gRpcMsgKey, m)
-}
+import { authInfoKey, accessTokenKey } from './util'
 
 let accessToken: string | undefined
 
