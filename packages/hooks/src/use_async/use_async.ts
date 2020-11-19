@@ -120,7 +120,7 @@ function useAsync<P extends object = any, D = any>(
       onBeforeError: _.noop,
       onError: _.noop,
       cacheKey: undefined,
-      cacheTime: 5 * 60 * 1000,
+      cacheTime: 10 * 60 * 1000,
     },
     options,
   )

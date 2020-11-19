@@ -33,6 +33,8 @@ import keyMirror from './key_mirror'
 import envTimeDetect from './env_time_detect'
 import Cache from './cache'
 import promiseTaskOrder from './promise_task_order'
+import filterGroupList from './filter_group_list'
+import filterGroupListLeaf from './filter_group_list_leaf'
 
 export {
   isElementInViewport,
@@ -67,4 +69,6 @@ export {
   envTimeDetect,
   Cache,
   promiseTaskOrder,
+  filterGroupList,
+  filterGroupListLeaf,
 }
