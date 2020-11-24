@@ -1,5 +1,5 @@
 import React from 'react'
-import { getHoliday } from './index'
+import getHoliday from './index'
 import moment from 'moment'
 import _ from 'lodash'
 import { Flex } from '@gm-pc/react'
@@ -37,5 +37,5 @@ export const ComHoliday = () => {
 }
 
 export default {
-  title: 'Holiday/Holiday',
+  title: 'Date/Holiday',
 }
