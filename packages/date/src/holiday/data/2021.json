@@ -1,7 +1,43 @@
 {
-    "$schema": "https://raw.githubusercontent.com/NateScarlet/holiday-cn/master/schema.json",
-    "$id": "https://raw.githubusercontent.com/NateScarlet/holiday-cn/master/2021.json",
-    "year": 2021,
-    "papers": [],
-    "days": []
+  "$schema": "https://raw.githubusercontent.com/NateScarlet/holiday-cn/master/schema.json",
+  "$id": "https://raw.githubusercontent.com/NateScarlet/holiday-cn/master/2021.json",
+  "year": 2021,
+  "papers": [],
+  "days": [
+    {
+      "name": "元旦",
+      "date": "2021-01-01",
+      "isOffDay": true
+    },
+    {
+      "name": "春节",
+      "date": "2021-02-12",
+      "isOffDay": true
+    },
+    {
+      "name": "清明节",
+      "date": "2021-04-04",
+      "isOffDay": true
+    },
+    {
+      "name": "劳动节",
+      "date": "2021-05-01",
+      "isOffDay": true
+    },
+    {
+      "name": "端午节",
+      "date": "2021-06-14",
+      "isOffDay": true
+    },
+    {
+      "name": "中秋节",
+      "date": "2021-09-21",
+      "isOffDay": true
+    },
+    {
+      "name": "国庆节",
+      "date": "2021-10-01",
+      "isOffDay": true
+    }
+  ]
 }
