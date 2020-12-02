@@ -53,13 +53,10 @@
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.0.6",
     "babel-preset-gm-react-app": "^3.4.5",
-    "crypto-js": "^4.0.0",
     "eslint-plugin-gm-react-app": "^3.3.1",
     "fingerprintjs2": "^2.1.2",
     "http-proxy-middleware": "^1.0.6",
     "husky": "^4.3.0",
-    "js-base64": "^3.6.0",
-    "lerna": "^3.19.0",
     "less": "^3.12.2",
     "less-loader": "^7.0.2",
     "lint-staged": "^10.2.11",
@@ -73,6 +70,8 @@
     "react-window": "^1.8.5",
     "ts-config-gm-react-app": "^3.4.5",
     "typescript": "^3.9.7",
-    "webpack": "^4.44.1"
+    "webpack": "^4.44.1",
+    "crypto-js": "^4.0.0",
+    "lerna": "^3.19.0"
   }
 }
