@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import { getLocale } from '@gm-common/locales'
 import { AxiosResponse } from 'axios'
+import { decode } from 'js-base64'
 
 const platform = __NAME__ // eslint-disable-line
 
@@ -31,7 +32,8 @@ function getErrorMessage(error: { [key: string]: any }): string {
 function atob(s: string): any {
   if (!s) return null
   try {
-    return JSON.parse(window.atob(s))
+    // base64 -> utf-8
+    return JSON.parse(decode(s))
   } catch (error) {
     console.warn(error.message)
     return null
