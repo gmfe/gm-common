@@ -117,6 +117,7 @@ function usePagination<P extends Params = any, D extends Data = any>(
       paging: _.merge(
         {},
         defaultPaging, // 默认分页信息
+        { limit: refState.current.limit }, // 当前limit,默认<优先级<外部params
         params?.paging, // 传递的分页信息
       ),
     })
