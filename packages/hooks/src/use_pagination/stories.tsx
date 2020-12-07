@@ -48,7 +48,6 @@ export const Normal = () => {
     defaultPaging: {
       need_count: true,
     },
-    paginationKey: 'paginationKey',
   })
 
   console.log('render')
