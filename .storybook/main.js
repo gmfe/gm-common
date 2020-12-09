@@ -99,6 +99,7 @@ module.exports = {
     '../packages/map/**/*stories.tsx',
     '../packages/graph/**/*stories.tsx',
     '../packages/date/**/*stories.tsx',
+    '../packages/google-map/**/*stories.tsx',
     '../demo/**/*stories.js',
   ],
   webpackFinal,

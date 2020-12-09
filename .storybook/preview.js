@@ -2,6 +2,8 @@ import { addDecorator, addParameters } from '@storybook/react'
 import { withInfo } from '@storybook/addon-info'
 
 import '@gm-pc/react/src/index.less'
+import '../packages/google-map/src/index.less'
+import '../packages/map/src/index.less'
 
 // 构造 变量。 不知道怎么用 HtmlWebpackPlugin。于是就
 window.__PRODUCTION__ = 'true'

@@ -10,7 +10,6 @@ import { Map, Marker, EventMap, LngLatPos } from 'react-amap'
 import _ from 'lodash'
 import classNames from 'classnames'
 import SvgClose from '../svg/close.svg'
-import './style.less'
 import { getMapTips, getMapCenterAddress } from './util'
 import type { tipsArray } from './util'
 

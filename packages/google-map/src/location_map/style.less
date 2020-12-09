@@ -1,0 +1,58 @@
+.c-g-location-map {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.c-g-location-map-input-wrap {
+  width: 100%;
+  height: 30px;
+  position: relative;
+}
+
+.c-g-location-map-input {
+  width: 100%;
+  height: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
+  outline: none;
+  border: 1px solid rgb(238, 238, 238);
+  &.c-g-location-map-input-focus {
+    border: 1px solid #2c9feb;
+  }
+}
+
+.c-g-location-map-icon {
+  font-size: 14px;
+  color: #999;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.c-g-location-map-gmap {
+  width: 100%;
+  height: calc(100% - 30px);
+}
+
+.c-g-location-map-mask {
+  position: absolute;
+  height: ~'calc(100% - 30px)';
+  width: 100%;
+  left: 0;
+  top: 30px;
+  background: rgba(255, 255, 255, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  .c-g-location-map-mask-tip {
+    font-size: 1.4em;
+    color: #2c9feb;
+  }
+}
