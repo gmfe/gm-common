@@ -9,15 +9,15 @@ import React, {
 import {
   GoogleMap,
   Marker,
-  useJsApiLoader,
   Autocomplete,
+  LoadScript,
 } from '@react-google-maps/api'
 import classNames from 'classnames'
 import SvgClose from '../svg/close.svg'
 
 interface GLocationData {
-  lat: number | string
-  lng: number | string
+  lat?: number
+  lng?: number
   address?: string
 }
 
@@ -39,11 +39,6 @@ const GLocationMap: FC<GLocationMapProps> = ({
   defaultLocation,
   onLocation,
 }) => {
-  const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: googleApiKey,
-    libraries,
-  })
-
   const lngAndLat: GLocationData = {
     lng: defaultLocation?.lng || 113.9402776,
     lat: defaultLocation?.lat || 22.551669399999998,
@@ -126,7 +121,7 @@ const GLocationMap: FC<GLocationMapProps> = ({
   return (
     <div className='c-g-location-map'>
       <div className='c-g-location-map-gmap'>
-        {isLoaded ? (
+        <LoadScript googleMapsApiKey={googleApiKey} libraries={libraries}>
           <GoogleMap
             zoom={zoom}
             center={center}
@@ -162,12 +157,10 @@ const GLocationMap: FC<GLocationMapProps> = ({
             </Autocomplete>
             <Marker position={center} />
           </GoogleMap>
-        ) : (
-          <div>Map loading...</div>
-        )}
+        </LoadScript>
       </div>
 
-      {mask && isLoaded ? (
+      {mask ? (
         <div className='c-g-location-map-mask' onClick={() => setMask(false)}>
           <div className='c-g-location-map-mask-tip'>
             点击解锁后，可拖动修改
