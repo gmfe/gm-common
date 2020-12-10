@@ -16,8 +16,8 @@ import classNames from 'classnames'
 import SvgClose from '../svg/close.svg'
 
 interface GLocationData {
-  lat: number | string
-  lng: number | string
+  lat?: number
+  lng?: number
   address?: string
 }
 

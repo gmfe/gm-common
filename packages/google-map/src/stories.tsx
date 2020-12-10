@@ -3,8 +3,6 @@ import { GLocationMap } from './index'
 
 export const GLocation_Map = () => {
   let location = {
-    lng: '',
-    lat: '',
     address: '广东省深圳市南山区粤海街道科兴科学园',
   }
 
