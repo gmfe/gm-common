@@ -6,14 +6,10 @@ import React, {
   useRef,
   ChangeEvent,
 } from 'react'
-import {
-  GoogleMap,
-  Marker,
-  useJsApiLoader,
-  Autocomplete,
-} from '@react-google-maps/api'
+import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api'
 import classNames from 'classnames'
 import SvgClose from '../svg/close.svg'
+import _ from 'lodash'
 
 interface GLocationData {
   lat?: number
@@ -51,14 +47,19 @@ const GLocationMap: FC<GLocationMapProps> = ({
 
   const inputRef = useRef<HTMLInputElement>(null)
   const mapRef = useRef<any>(null)
-  const autoComplateRef = useRef<any>(null)
+  const debounceSearchRef = useRef<any>(null)
 
   const [center, setCenter] = useState<GLocationData>(lngAndLat)
+  const [tips, setTips] = useState<any[]>([])
   const [inputFocus, setInputFocus] = useState<boolean>(false)
   const [keywords, setKeywords] = useState<string>(
     defaultLocation?.address || '',
   )
   const [mask, setMask] = useState<boolean>(true)
+
+  useEffect(() => {
+    debounceSearchRef.current = _.debounce(searchKeywords, 500)
+  }, [])
 
   useEffect(() => {
     setCenter(lngAndLat)
@@ -69,12 +70,9 @@ const GLocationMap: FC<GLocationMapProps> = ({
     mapRef.current = map
   }, [])
 
-  const onAutoCompleteMapLoad = useCallback((c: any) => {
-    autoComplateRef.current = c
-  }, [])
-
   const handleCleanKeywords = useCallback(() => {
     setKeywords('')
+    setTips([])
   }, [])
 
   const handleInputBlur = useCallback(() => {
@@ -89,42 +87,92 @@ const GLocationMap: FC<GLocationMapProps> = ({
   const handleInputChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     setKeywords(value)
+    debounceSearchRef.current(value)
   }, [])
 
-  const onPlaceChanged = () => {
-    if (autoComplateRef.current) {
-      const place = autoComplateRef.current.getPlace()
-      if (place && place.geometry) {
-        const location = place.geometry.location.toJSON()
-        setCenter(location)
-        setKeywords(place.formatted_address)
-        onLocation({
-          ...location,
-          address: place.formatted_address,
-        })
-      }
+  const searchKeywords = (keywords: string) => {
+    if (!keywords) {
+      return
     }
+    const service = new (window as any).google.maps.places.PlacesService(
+      mapRef.current,
+    )
+    service.textSearch(
+      {
+        query: keywords,
+      },
+      (res: any[], status: string) => {
+        console.log('res==>', res)
+        if (status === 'OK') {
+          setTips(res)
+        }
+      },
+    )
+  }
+
+  const handlePlaceChanged = (place: any) => {
+    setTips([])
+    const location = place.geometry.location.toJSON()
+    setCenter(location)
+    setKeywords(`${place.formatted_address || place.vicinity} ${place.name}`)
+    onLocation({
+      ...location,
+      address: `${place.formatted_address || place.vicinity} ${place.name}`,
+    })
   }
 
   const handleMapDragEng = () => {
     if (mapRef.current) {
       const center = mapRef.current.getCenter()
+      setCenter(center)
       const geocoder = new (window as any).google.maps.Geocoder()
       geocoder.geocode({ location: center }, (res: any[], status: any) => {
         if (status === 'OK' && res.length) {
           setCenter(center)
           setKeywords(res[0].formatted_address)
-          onLocation({
-            ...center.toJSON(),
-            address: res[0].formatted_address,
-          })
         }
       })
+
+      const service = new (window as any).google.maps.places.PlacesService(
+        mapRef.current,
+      )
+      service.nearbySearch(
+        {
+          location: center,
+          radius: 100,
+        },
+        (res: any, status: any) => {
+          if (status === 'OK') {
+            setTips(res)
+          }
+        },
+      )
     }
   }
 
   return (
     <div className='c-g-location-map'>
+      <div className='c-g-location-map-input-wrap'>
+        <input
+          className={classNames('c-g-location-map-input', {
+            'c-g-location-map-input-focus': inputFocus,
+          })}
+          type='text'
+          placeholder={placeholder}
+          value={keywords}
+          onFocus={handleInputFocus}
+          onBlur={handleInputBlur}
+          onChange={handleInputChange}
+          ref={inputRef}
+        />
+        {keywords && keywords.length ? (
+          <SvgClose
+            onClick={handleCleanKeywords}
+            className='c-g-location-map-icon'
+          />
+        ) : null}
+      </div>
+
       <div className='c-g-location-map-gmap'>
         {isLoaded ? (
           <GoogleMap
@@ -134,38 +182,29 @@ const GLocationMap: FC<GLocationMapProps> = ({
             onLoad={onMapLoad}
             onDragEnd={handleMapDragEng}
           >
-            <Autocomplete
-              fields={['geometry', 'name', 'formatted_address']}
-              onLoad={onAutoCompleteMapLoad}
-              onPlaceChanged={onPlaceChanged}
-            >
-              <div className='c-g-location-map-input-wrap'>
-                <input
-                  className={classNames('c-g-location-map-input', {
-                    'c-g-location-map-input-focus': inputFocus,
-                  })}
-                  type='text'
-                  placeholder={placeholder}
-                  value={keywords}
-                  onFocus={handleInputFocus}
-                  onBlur={handleInputBlur}
-                  onChange={handleInputChange}
-                  ref={inputRef}
-                />
-                {keywords && keywords.length ? (
-                  <SvgClose
-                    onClick={handleCleanKeywords}
-                    className='c-g-location-map-icon'
-                  />
-                ) : null}
-              </div>
-            </Autocomplete>
             <Marker position={center} />
           </GoogleMap>
         ) : (
           <div>Map loading...</div>
         )}
       </div>
+
+      {!!tips.length && (
+        <ul className='c-g-location-map-result'>
+          {_.map(tips, (tip) => {
+            return (
+              <li
+                className='c-g-location-map-result-item'
+                key={tip.place_id}
+                onClick={() => handlePlaceChanged(tip)}
+              >
+                <div>{tip.name}</div>
+                <div>{tip.formatted_address || tip.vicinity}</div>
+              </li>
+            )
+          })}
+        </ul>
+      )}
 
       {mask && isLoaded ? (
         <div className='c-g-location-map-mask' onClick={() => setMask(false)}>
