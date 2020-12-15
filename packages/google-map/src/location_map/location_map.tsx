@@ -102,7 +102,6 @@ const GLocationMap: FC<GLocationMapProps> = ({
         query: keywords,
       },
       (res: any[], status: string) => {
-        console.log('res==>', res)
         if (status === 'OK') {
           setTips(res)
         }
@@ -216,7 +215,5 @@ const GLocationMap: FC<GLocationMapProps> = ({
     </div>
   )
 }
-
-export type { GLocationData, GLocationMapProps }
 
 export default GLocationMap
