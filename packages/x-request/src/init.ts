@@ -1,11 +1,25 @@
+import axios from 'axios'
 import { Storage } from '@gm-common/tool'
 import _ from 'lodash'
-import { instance } from './request'
 import { authInfoKey, accessTokenKey } from './util'
 
 let accessToken: string | undefined
 
-export function initAuth(url: string, field: string) {
+let instance = axios.create({
+  timeout: 30000,
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+    'X-Timeout': '30000',
+    'X-Success-Code': '0',
+  },
+})
+
+function init(obj) {
+  instance = obj
+}
+
+function initAuth(url: string, field: string) {
   Storage.set(authInfoKey, { url, field })
   instance.interceptors.request.use((config) => {
     if (!accessToken) {
@@ -32,7 +46,9 @@ export function initAuth(url: string, field: string) {
   })
 }
 
-export function clearAuth() {
+function clearAuth() {
   Storage.remove(accessTokenKey)
   accessToken = undefined
 }
+
+export { clearAuth, init, initAuth, instance }

@@ -1,6 +1,6 @@
 import { UUID } from '@gm-common/tool'
 import { getFingerPrint, getCacheFingerPrint } from '@gm-common/fingerprint'
-import { instance } from './request'
+import { instance } from './init'
 
 function configHeaders(): void {
   // 没有没能立马获得指纹，则用 UUID 代替。

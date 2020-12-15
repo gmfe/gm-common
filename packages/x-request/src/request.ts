@@ -1,16 +1,7 @@
-import axios, { AxiosRequestConfig } from 'axios'
+import { AxiosRequestConfig } from 'axios'
+import { instance } from './init'
 import { formatToResponse, requestTrim } from './util'
 import { Response } from './types'
-
-const instance = axios.create({
-  timeout: 30000,
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-    'X-Timeout': '30000',
-    'X-Success-Code': '0',
-  },
-})
 
 class RequestBase<Data> {
   private _config: AxiosRequestConfig

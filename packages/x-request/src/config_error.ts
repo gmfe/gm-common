@@ -9,7 +9,7 @@ import {
 } from './util'
 import { AxiosResponse } from 'axios'
 import { report } from '@gm-common/analyse'
-import { instance } from './request'
+import { instance } from './init'
 import { ErrorCallback } from './types'
 
 function wrap(

@@ -1,5 +1,5 @@
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
-import { instance } from './request'
+import { instance } from './init'
 import {
   requestUrl,
   requestEnvUrl,

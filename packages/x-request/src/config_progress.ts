@@ -1,4 +1,4 @@
-import { instance } from './request'
+import { instance } from './init'
 
 function configProgress(
   startCallback: () => void,
