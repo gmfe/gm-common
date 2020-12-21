@@ -149,6 +149,10 @@ const GLocationMap: FC<GLocationMapProps> = ({
     }
   }
 
+  const handleMapClick = () => {
+    setTips([])
+  }
+
   return (
     <div className='c-g-location-map'>
       <div className='c-g-location-map-input-wrap'>
@@ -177,6 +181,7 @@ const GLocationMap: FC<GLocationMapProps> = ({
           <GoogleMap
             zoom={zoom}
             center={center}
+            onClick={handleMapClick}
             mapContainerStyle={{ width: '100%', height: '100%' }}
             onLoad={onMapLoad}
             onDragEnd={handleMapDragEng}
