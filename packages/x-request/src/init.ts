@@ -20,13 +20,10 @@ export function initAuth(url: string, field: string) {
 
     return config
   })
+
   instance.interceptors.response.use((response) => {
     const json = response.data
     const { url } = response.config
-
-    if (!authInfo) {
-      authInfo = Storage.get(authInfoKey)
-    }
 
     if (authInfo?.url === url && authInfo?.field) {
       const accessToken = _.get(json, authInfo.field)
