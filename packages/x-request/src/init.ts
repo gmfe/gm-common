@@ -4,9 +4,12 @@ import { instance } from './request'
 import { authInfoKey, accessTokenKey } from './util'
 
 let accessToken: string | undefined
+let authInfo: { url: string; field: string } | undefined
 
 export function initAuth(url: string, field: string) {
-  Storage.set(authInfoKey, { url, field })
+  authInfo = { url, field }
+  Storage.set(authInfoKey, authInfo)
+
   instance.interceptors.request.use((config) => {
     if (!accessToken) {
       accessToken = Storage.get(accessTokenKey)
@@ -21,7 +24,10 @@ export function initAuth(url: string, field: string) {
     const json = response.data
     const { url } = response.config
 
-    const authInfo = Storage.get(authInfoKey)
+    if (!authInfo) {
+      authInfo = Storage.get(authInfoKey)
+    }
+
     if (authInfo?.url === url && authInfo?.field) {
       const accessToken = _.get(json, authInfo.field)
       if (accessToken && typeof accessToken === 'string')
