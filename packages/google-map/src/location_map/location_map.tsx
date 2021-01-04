@@ -113,10 +113,10 @@ const GLocationMap: FC<GLocationMapProps> = ({
     setTips([])
     const location = place.geometry.location.toJSON()
     setCenter(location)
-    setKeywords(`${place.formatted_address || place.vicinity} ${place.name}`)
+    setKeywords(`${place.name} ${place.formatted_address || place.vicinity}`)
     onLocation({
       ...location,
-      address: `${place.formatted_address || place.vicinity} ${place.name}`,
+      address: `${place.name} ${place.formatted_address || place.vicinity}`,
     })
   }
 
