@@ -41,8 +41,8 @@ const GLocationMap: FC<GLocationMapProps> = ({
   })
 
   const lngAndLat: GLocationData = {
-    lng: defaultLocation?.lng || 113.9402776,
-    lat: defaultLocation?.lat || 22.551669399999998,
+    lng: defaultLocation?.lng || 116.397451,
+    lat: defaultLocation?.lat || 39.909187,
   }
 
   const inputRef = useRef<HTMLInputElement>(null)
@@ -64,6 +64,19 @@ const GLocationMap: FC<GLocationMapProps> = ({
   useEffect(() => {
     setCenter(lngAndLat)
     setKeywords(defaultLocation?.address || '')
+    if (
+      navigator.geolocation &&
+      (!defaultLocation?.lat || !defaultLocation.lng)
+    ) {
+      navigator.geolocation.getCurrentPosition(
+        ({ coords: { latitude, longitude } }) => {
+          setCenter({
+            lng: longitude,
+            lat: latitude,
+          })
+        },
+      )
+    }
   }, [defaultLocation])
 
   const onMapLoad = useCallback((map: any) => {
