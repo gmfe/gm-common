@@ -1,6 +1,6 @@
 {
   "name": "@gm-common/hooks",
-  "version": "2.9.11",
+  "version": "2.9.12",
   "description": "> TODO: description",
   "author": "liyatang <liyatang@qq.com>",
   "homepage": "https://github.com/gmfe/gm-common#readme",
@@ -21,7 +21,7 @@
     "url": "https://github.com/gmfe/gm-common/issues"
   },
   "dependencies": {
-    "@gm-common/tool": "^2.9.11",
+    "@gm-common/tool": "^2.9.12",
     "ts-config-gm-react-app": "^3.4.5"
   }
 }
