@@ -57,6 +57,7 @@ function usePagination<P extends Params = any, D extends Data = any>(
   const newOptions = _.merge({}, options, {
     // 带给 useAsync
     defaultParams: {
+      ...options?.defaultParams,
       paging: defaultPaging,
     },
     onBeforeSuccess(resolveData: D, params: P) {
@@ -112,7 +113,7 @@ function usePagination<P extends Params = any, D extends Data = any>(
 
   // 较为复杂
   const run = (params?: P) => {
-    const newParams: P = Object.assign({}, params, {
+    const newParams: P = Object.assign({}, asyncResult.params, params, {
       // paging
       paging: _.merge(
         {},
