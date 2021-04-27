@@ -32,6 +32,7 @@ interface Data {
 function usePagination<P extends Params = any, D extends Data = any>(
   service: UsePaginationService<P, D>,
   options?: UsePaginationOptions<P, D>,
+  isMergeAsyncParams = false,
 ): UsePaginationResult<P, D> {
   const paginationKey = '_use_pagination_key_' + options?.paginationKey
   const isUnmounted = useUnmount()
@@ -113,16 +114,19 @@ function usePagination<P extends Params = any, D extends Data = any>(
 
   // 较为复杂
   const run = (params?: P) => {
-    const newParams: P = Object.assign({}, asyncResult.params, params, {
-      // paging
-      paging: _.merge(
-        {},
-        defaultPaging, // 默认分页信息
-        { limit: refState.current.limit }, // 当前limit,默认<优先级<外部params
-        params?.paging, // 传递的分页信息
-      ),
-    })
-
+    const newParams: P = Object.assign(
+      {},
+      isMergeAsyncParams ? asyncResult.params : {},
+      params,
+      {
+        paging: _.merge(
+          {},
+          defaultPaging, // 默认分页信息
+          { limit: refState.current.limit }, // 当前limit,默认<优先级<外部params
+          params?.paging, // 传递的分页信息
+        ),
+      },
+    )
     return asyncResult.run(newParams)
   }
 
