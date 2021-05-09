@@ -146,6 +146,10 @@ function usePagination<P extends Params = any, D extends Data = any>(
     run,
     refresh,
     runChangePaging,
+    pagination: {
+      paging: refState.current,
+      onChange: runChangePaging,
+    },
   }
 }
 

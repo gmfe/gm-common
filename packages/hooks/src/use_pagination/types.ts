@@ -20,7 +20,7 @@ interface UsePaginationOptions<P, D> extends UseAsyncOptions<P, D> {
   paginationKey?: string
 }
 
-interface UsePaginationResult<P, D> {
+interface UsePaginationResult<P = any, D = any> {
   data?: D
   /** 返回有 params，带有 paging */
   params: P
@@ -35,6 +35,10 @@ interface UsePaginationResult<P, D> {
   refresh: () => Promise<D>
   /** 只用来翻页 */
   runChangePaging: (paging: PagingReq) => Promise<D>
+  pagination: {
+    paging: UsePaginationPaging
+    onChange: (paging: PagingReq) => Promise<D>
+  }
 }
 
 export type {
