@@ -21,11 +21,18 @@ interface NavConfigItem {
 
 type NavConfig = NavConfigItem[]
 
+interface NavRouteMapType {
+  [key: string]: {
+    link: string
+    disabled: boolean
+  }
+}
+
 // src/pages index.page.xxx
 // eslint-disabled-next-line
 const req = require.context('@/pages', true, __AUTO_ROUTER_REG__, 'lazy')
 
-function getRouteList(Loading: any) {
+function generateRouteList() {
   const routeList: RouteBaseProps[] = []
 
   _.each(req.keys(), (key) => {
@@ -41,9 +48,18 @@ function getRouteList(Loading: any) {
       loader: () => Promise.resolve(req(key)),
     })
   })
+  return routeList
+}
 
-  const RouteList = _.map(routeList, (v) => {
-    return (
+function getRouteList(Loading: any, navRouteMap: NavRouteMapType) {
+  const routeList: RouteBaseProps[] = generateRouteList()
+
+  const RouteList: any = []
+  _.forEach(routeList, (v) => {
+    if (navRouteMap[v.path]?.disabled) {
+      return
+    }
+    const route = (
       <Route
         key={v.path}
         exact
@@ -54,8 +70,8 @@ function getRouteList(Loading: any) {
         })}
       />
     )
+    RouteList.push(route)
   })
-
   return RouteList
 }
 
@@ -86,6 +102,7 @@ function getRedirect(navConfig: NavConfig) {
 
 export interface AutoRouterProps {
   navConfig?: NavConfig
+  navRouteMap?: NavRouteMapType
   NoMatch?: React.ComponentType<RouteComponentProps>
   Loading?: React.ComponentType<LoadingComponentProps>
   children?: React.ReactElement
@@ -99,13 +116,14 @@ const AutoRouter: FC<AutoRouterProps> = ({
   NoMatch,
   Loading,
   children,
+  navRouteMap = {},
 }) => {
   // 优先用户的 children
   return (
     <Switch>
       {children}
       {navConfig && getRedirect(navConfig)}
-      {getRouteList(Loading)}
+      {getRouteList(Loading, navRouteMap)}
       <Route exact component={NoMatch} />
     </Switch>
   )
