@@ -30,7 +30,7 @@ const libraries: any[] = ['places']
 
 const GLocationMap: FC<GLocationMapProps> = ({
   placeholder,
-  googleApiKey = 'AIzaSyBcNtmptbXNIDlq0CZuSHh_SH7WYYUeaFE',
+  googleApiKey = 'AIzaSyD1ll1YyD_qv5pEQ7a3lxzJm_3Uz2Ed9gc',
   zoom = 16,
   defaultLocation,
   onLocation,
