@@ -30,7 +30,7 @@ jobs:
           pwd
           git clone https://github.com/gmfe/gm-common-doc.git
       - run: |
-          cd gm-mobile
+          cd gm-common-doc
           yarn install --ignore-engines
           npx lerna bootstrap
           npm run build
