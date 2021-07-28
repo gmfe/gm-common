@@ -4,7 +4,7 @@ name: doc
 on:
   push:
     branches:
-      - master
+      - main
 
 # 任务列表
 jobs:
@@ -38,4 +38,4 @@ jobs:
           git add --all
           git commit -m 'build docs'
           ls
-          git push 'https://gmfe4code:${{secrets.PASSWORD}}@github.com/gmfe/gm-common-doc.git' master:master -f
+          git push 'https://gmfe4code:${{secrets.PASSWORD}}@github.com/gmfe/gm-common-doc.git' main:main -f
