@@ -4,7 +4,7 @@ name: doc
 on:
   push:
     branches:
-      - main
+      - master
 
 # 任务列表
 jobs:
