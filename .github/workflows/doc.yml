@@ -28,9 +28,9 @@ jobs:
           git config --global user.name "gmfe4code"
       - run: |
           pwd
-          git clone https://github.com/gmfe/gm-common-doc.git
+          git clone https://github.com/gmfe/gm-common.git
       - run: |
-          cd gm-common-doc
+          cd gm-common
           yarn install --ignore-engines
           npx lerna bootstrap
           npm run build
