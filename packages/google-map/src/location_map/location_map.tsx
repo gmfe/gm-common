@@ -142,31 +142,32 @@ const GLocationMap: FC<GLocationMapProps> = ({
     if (mapRef.current) {
       const center = mapRef.current.getCenter()
       setCenter(center)
-      const geocoder = new (window as any).google.maps.Geocoder()
-      geocoder.geocode({ location: center }, (res: any[], status: any) => {
-        if (status === 'OK' && res.length) {
-          setCenter(center)
-          setKeywords(res[0].formatted_address)
-        }
-      })
-
-      const service = new (window as any).google.maps.places.PlacesService(
-        mapRef.current,
-      )
-      service.nearbySearch(
-        {
-          location: center,
-          radius: 100,
-        },
-        (res: any, status: any) => {
-          if (status === 'OK') {
-            setTips(res)
-          }
-        },
-      )
     }
   }
 
+  const confirmApi = () => {
+    const geocoder = new (window as any).google.maps.Geocoder()
+    geocoder.geocode({ location: center }, (res: any[], status: any) => {
+      if (status === 'OK' && res.length) {
+        setCenter(center)
+        setKeywords(res[0].formatted_address)
+      }
+    })
+    const service = new (window as any).google.maps.places.PlacesService(
+      mapRef.current,
+    )
+    service.nearbySearch(
+      {
+        location: center,
+        radius: 100,
+      },
+      (res: any, status: any) => {
+        if (status === 'OK') {
+          setTips(res)
+        }
+      },
+    )
+  }
   const handleMapClick = () => {
     setTips([])
   }
@@ -235,6 +236,17 @@ const GLocationMap: FC<GLocationMapProps> = ({
           </div>
         </div>
       ) : null}
+      <div className='c-g-location-map-confirm'>
+        <button
+          className={classNames('c-g-location-map-button', {
+            'c-g-location-map-button-disabled': mask && isLoaded,
+          })}
+          onClick={confirmApi}
+          disabled={mask && isLoaded}
+        >
+          确定定位
+        </button>
+      </div>
     </div>
   )
 }
