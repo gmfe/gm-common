@@ -10,7 +10,6 @@ import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api'
 import classNames from 'classnames'
 import SvgClose from '../svg/close.svg'
 import _ from 'lodash'
-import { Button, Flex } from '@gm-pc/react'
 
 interface GLocationData {
   lat?: number
@@ -237,12 +236,16 @@ const GLocationMap: FC<GLocationMapProps> = ({
           </div>
         </div>
       ) : null}
-      <Flex justifyEnd alignCenter className='gm-margin-10'>
-        <div className='gm-margin-right-10'>拖动修改后，请点击确定按钮</div>
-        <Button type='primary' onClick={adc} disabled={mask && isLoaded}>
+      <div className='c-g-location-map-confirm'>
+        <div className='c-g-location-map-desc'>拖动修改后，请点击确定按钮</div>
+        <button
+          className='c-g-location-map-button'
+          onClick={adc}
+          disabled={mask && isLoaded}
+        >
           确定
-        </Button>
-      </Flex>
+        </button>
+      </div>
     </div>
   )
 }
