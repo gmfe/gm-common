@@ -1,6 +1,6 @@
 {
   "name": "@gm-common/request",
-  "version": "2.9.21-beta4",
+  "version": "2.9.21-beta5",
   "description": "",
   "author": "liyatang <liyatang@qq.com>",
   "homepage": "https://github.com/gmfe/gm-common#readme",
@@ -21,10 +21,10 @@
     "url": "https://github.com/gmfe/gm-common/issues"
   },
   "dependencies": {
-    "@gm-common/analyse": "^2.9.21-beta4",
-    "@gm-common/fingerprint": "^2.9.21-beta4",
-    "@gm-common/locales": "^2.9.21-beta4",
-    "@gm-common/tool": "^2.9.21-beta4",
+    "@gm-common/analyse": "^2.9.21-beta5",
+    "@gm-common/fingerprint": "^2.9.21-beta5",
+    "@gm-common/locales": "^2.9.21-beta5",
+    "@gm-common/tool": "^2.9.21-beta5",
     "axios": "^0.21.0",
     "lodash": "^4.17.20"
   }
