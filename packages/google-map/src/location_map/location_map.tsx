@@ -239,7 +239,9 @@ const GLocationMap: FC<GLocationMapProps> = ({
       <div className='c-g-location-map-confirm'>
         <div className='c-g-location-map-desc'>拖动修改后，请点击确定按钮</div>
         <button
-          className='c-g-location-map-button'
+          className={classNames('c-g-location-map-button', {
+            'c-g-location-map-button-disabled': mask && isLoaded,
+          })}
           onClick={adc}
           disabled={mask && isLoaded}
         >
