@@ -1,6 +1,6 @@
 {
   "name": "@gm-common/qiniup",
-  "version": "2.9.20",
+  "version": "2.9.21-beta6",
   "description": "> TODO: description",
   "author": "zhongsink <zhongink@gmail.com>",
   "homepage": "https://github.com/gmfe/gm-common#readme",
@@ -21,7 +21,7 @@
     "url": "https://github.com/gmfe/gm-common/issues"
   },
   "dependencies": {
-    "@gm-common/tool": "^2.9.20",
+    "@gm-common/tool": "^2.9.21-beta6",
     "axios": "^0.21.0",
     "lodash": "^4.17.19"
   }
