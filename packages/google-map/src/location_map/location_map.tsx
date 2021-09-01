@@ -145,7 +145,7 @@ const GLocationMap: FC<GLocationMapProps> = ({
     }
   }
 
-  const adc = () => {
+  const confirmApi = () => {
     const geocoder = new (window as any).google.maps.Geocoder()
     geocoder.geocode({ location: center }, (res: any[], status: any) => {
       if (status === 'OK' && res.length) {
@@ -237,15 +237,14 @@ const GLocationMap: FC<GLocationMapProps> = ({
         </div>
       ) : null}
       <div className='c-g-location-map-confirm'>
-        <div className='c-g-location-map-desc'>拖动修改后，请点击确定按钮</div>
         <button
           className={classNames('c-g-location-map-button', {
             'c-g-location-map-button-disabled': mask && isLoaded,
           })}
-          onClick={adc}
+          onClick={confirmApi}
           disabled={mask && isLoaded}
         >
-          确定
+          确认定位
         </button>
       </div>
     </div>
