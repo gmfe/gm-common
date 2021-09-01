@@ -10,6 +10,7 @@ import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api'
 import classNames from 'classnames'
 import SvgClose from '../svg/close.svg'
 import _ from 'lodash'
+import { Button, Flex } from '@gm-pc/react'
 
 interface GLocationData {
   lat?: number
@@ -142,31 +143,32 @@ const GLocationMap: FC<GLocationMapProps> = ({
     if (mapRef.current) {
       const center = mapRef.current.getCenter()
       setCenter(center)
-      const geocoder = new (window as any).google.maps.Geocoder()
-      geocoder.geocode({ location: center }, (res: any[], status: any) => {
-        if (status === 'OK' && res.length) {
-          setCenter(center)
-          setKeywords(res[0].formatted_address)
-        }
-      })
-
-      const service = new (window as any).google.maps.places.PlacesService(
-        mapRef.current,
-      )
-      service.nearbySearch(
-        {
-          location: center,
-          radius: 100,
-        },
-        (res: any, status: any) => {
-          if (status === 'OK') {
-            setTips(res)
-          }
-        },
-      )
     }
   }
 
+  const adc = () => {
+    const geocoder = new (window as any).google.maps.Geocoder()
+    geocoder.geocode({ location: center }, (res: any[], status: any) => {
+      if (status === 'OK' && res.length) {
+        setCenter(center)
+        setKeywords(res[0].formatted_address)
+      }
+    })
+    const service = new (window as any).google.maps.places.PlacesService(
+      mapRef.current,
+    )
+    service.nearbySearch(
+      {
+        location: center,
+        radius: 100,
+      },
+      (res: any, status: any) => {
+        if (status === 'OK') {
+          setTips(res)
+        }
+      },
+    )
+  }
   const handleMapClick = () => {
     setTips([])
   }
@@ -235,6 +237,12 @@ const GLocationMap: FC<GLocationMapProps> = ({
           </div>
         </div>
       ) : null}
+      <Flex justifyEnd alignCenter className='gm-margin-10'>
+        <div className='gm-margin-right-10'>拖动修改后，请点击确定按钮</div>
+        <Button type='primary' onClick={adc} disabled={mask && isLoaded}>
+          确定
+        </Button>
+      </Flex>
     </div>
   )
 }
