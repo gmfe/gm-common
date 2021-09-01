@@ -1,6 +1,6 @@
 .c-g-location-map {
   width: 100%;
-  height: 100%;
+  height: 95%;
   position: relative;
 }
 
@@ -78,5 +78,28 @@
   .c-g-location-map-mask-tip {
     font-size: 1.4em;
     color: #2c9feb;
+  }
+}
+.c-g-location-map-confirm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  .c-g-location-map-button {
+    width: 17%;
+    height: 30px;
+    color: white;
+    background-color: #56a3f2;
+    padding: 0 10px;
+    border: none;
+    &:hover {
+      background-color: #2789ee;
+    }
+  }
+  .c-g-location-map-button-disabled {
+    background-color: #b2d5ff;
+    &:hover {
+      background-color: #b2d5ff;
+    }
   }
 }
