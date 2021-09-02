@@ -145,7 +145,8 @@ const GLocationMap: FC<GLocationMapProps> = ({
     }
   }
 
-  const confirmApi = () => {
+  const confirmApi = (e: { preventDefault: () => void }) => {
+    e.preventDefault()
     const geocoder = new (window as any).google.maps.Geocoder()
     geocoder.geocode({ location: center }, (res: any[], status: any) => {
       if (status === 'OK' && res.length) {
