@@ -39,6 +39,8 @@ interface UsePaginationResult<P = any, D = any> {
     paging: UsePaginationPaging
     onChange: (paging: PagingReq) => Promise<D>
   }
+  /** 对应删除的刷新，如果当前页有10条数据，一次性删除了10条，那么会调用run跳到第一条，否则调用refresh刷新当前页 */
+  refreshAfterDelete: (list: any[], delNum: number) => Promise<D>
 }
 
 export type {
