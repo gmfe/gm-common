@@ -137,6 +137,12 @@ function usePagination<P extends Params = any, D extends Data = any>(
     return runChangePaging({})
   }
 
+  const refreshAfterDelete = (list: any[], delNum = 1) => {
+    if (list.length <= delNum) {
+      return run()
+    }
+    return refresh()
+  }
   return {
     data: asyncResult.data,
     params: asyncResult.params,
@@ -146,6 +152,7 @@ function usePagination<P extends Params = any, D extends Data = any>(
     run,
     refresh,
     runChangePaging,
+    refreshAfterDelete,
     pagination: {
       paging: refState.current,
       onChange: runChangePaging,
