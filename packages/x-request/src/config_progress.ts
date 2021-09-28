@@ -1,20 +1,20 @@
 import { instance } from './request'
 
 function configProgress(
-  startCallback: () => void,
-  doneCallback: () => void,
+  startCallback?: (config) => void,
+  doneCallback?: (response) => void,
 ): void {
   instance.interceptors.request.use((config) => {
-    startCallback()
+    startCallback && startCallback(config)
     return config
   })
   instance.interceptors.response.use(
     (response) => {
-      doneCallback()
+      doneCallback && doneCallback(response)
       return response
     },
     (error) => {
-      doneCallback()
+      doneCallback && doneCallback(error)
       return Promise.reject(error)
     },
   )
