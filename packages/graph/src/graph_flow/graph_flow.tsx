@@ -1,5 +1,6 @@
 import React, { FC, useRef, useEffect } from 'react'
-import { Graph } from '@antv/g6'
+// import { Graph } from '@antv/g6'
+import Graph from '@antv/g6'
 import { IGraph } from '@antv/g6/lib/interface/graph'
 import { merge } from 'lodash'
 import { NodeConfig, EdgeConfig, GraphOptions } from '@antv/g6/lib/types'
