@@ -1,3 +1,6 @@
 {
-  "extends": "ts-config-gm-react-app/tsconfig"
+  "extends": "ts-config-gm-react-app/tsconfig",
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true
+  }
 }
