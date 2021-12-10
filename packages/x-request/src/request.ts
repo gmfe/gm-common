@@ -50,12 +50,12 @@ class RequestBase<Data> {
       // formatToResponse 不能再中间件做，中间件不更改数据
       const formatRes = formatToResponse<Data>(res)
 
-      // log 在这里做，不能在 formatToResponse，因为它可能被调用多次
-      console.groupCollapsed(`request ${res.config.url}`)
-      console.log('code', formatRes.code)
-      console.log('message.description', formatRes.message.description)
-      console.log('message.detail', formatRes.message.detail)
-      console.groupEnd()
+      // // log 在这里做，不能在 formatToResponse，因为它可能被调用多次
+      // console.groupCollapsed(`request ${res.config.url}`)
+      // console.log('code', formatRes.code)
+      // console.log('message.description', formatRes.message.description)
+      // console.log('message.detail', formatRes.message.detail)
+      // console.groupEnd()
 
       return formatRes
     })
