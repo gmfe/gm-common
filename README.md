@@ -95,3 +95,7 @@ yarn publish-latest
 ```bash
 yarn publish-latest-beta
 ```
+
+#### CHANGELOG
+
+见[CHANGELOG](./CHANGELOG.md)
