@@ -105,7 +105,7 @@ export interface AutoRouterProps {
   navRouteMap?: NavRouteMapType
   NoMatch?: React.ComponentType<RouteComponentProps>
   Loading?: React.ComponentType<LoadingComponentProps>
-  children?: React.ReactElement
+  children?: React.ReactElement | React.ReactElement[]
 }
 
 /**
