@@ -38,7 +38,7 @@ function configHeaders(): void {
      config.headers = {
       ...config.headers,
       'X-Request-Id': UUID.generate(),
-      'X-GroupId-Id': groupId,
+      'X-Group-Id': groupId,
     }
 
     return config
