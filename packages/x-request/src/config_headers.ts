@@ -9,6 +9,14 @@ function configHeaders(): void {
 
   const clientName = __CLIENT_NAME__ // eslint-disable-line
   const version = __VERSION__ // eslint-disable-line
+  const groupId =
+  document.cookie.split(';').reduce((all, next) => {
+    const data = next.split('=')
+    all[data[0].trim()] = data[1]
+    return all
+  }, {} as Record<string, string>)?.[
+    `gm_${location.pathname.split('/')[1]}_group_id`
+  ] || 0
 
   // 没有的时候在异步获取，获取到就设置
   if (!getCacheFingerPrint()) {
@@ -27,7 +35,11 @@ function configHeaders(): void {
   }
 
   instance.interceptors.request.use((config) => {
-    config.headers['X-Request-Id'] = UUID.generate()
+     config.headers = {
+      ...config.headers,
+      'X-Request-Id': UUID.generate(),
+      'X-Group-Id': groupId,
+    }
 
     return config
   })
