@@ -2,7 +2,7 @@ import { UUID } from '@gm-common/tool'
 import { getFingerPrint, getCacheFingerPrint } from '@gm-common/fingerprint'
 import { instance } from './request'
 
-function configHeaders(): void {
+function configHeaders(pathname?:string): void {
   // 没有没能立马获得指纹，则用 UUID 代替。
   // 一般第一次才可能没有获得指纹，后续都会被cache
   let clientId = getCacheFingerPrint() || UUID.generate()
@@ -15,7 +15,7 @@ function configHeaders(): void {
     all[data[0].trim()] = data[1]
     return all
   }, {} as Record<string, string>)?.[
-    `gm_${location.pathname.split('/')[1]}_group_id`
+    `gm_${pathname || location.pathname.split('/')[1]}_group_id`
   ] || 0
 
   // 没有的时候在异步获取，获取到就设置
