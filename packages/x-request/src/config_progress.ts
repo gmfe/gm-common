@@ -7,14 +7,16 @@ function configProgress(
   excludedRequest: string[] = [],
 ): void {
   instance.interceptors.request.use((config) => {
-    if (excludedRequest?.every((url) => !url.includes(config.url!)))
+    if (excludedRequest?.every((url) => !config.url?.includes(url))) {
       startCallback()
+    }
     return config
   })
   instance.interceptors.response.use(
     (response) => {
-      if (excludedRequest.every((url) => !url.includes(response.config.url!)))
+      if (excludedRequest.every((url) => !response.config.url?.includes(url))) {
         doneCallback()
+      }
       return response
     },
     (error) => {
