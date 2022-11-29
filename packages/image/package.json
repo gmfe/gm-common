@@ -1,6 +1,6 @@
 {
   "name": "@gm-common/image",
-  "version": "2.13.0",
+  "version": "2.13.1-beta.0",
   "description": "",
   "author": "zhongsink <zhongink@gmail.com>",
   "homepage": "https://github.com/gmfe/gm-common#readme",
@@ -21,10 +21,10 @@
     "url": "https://github.com/gmfe/gm-common/issues"
   },
   "dependencies": {
-    "@gm-common/qiniup": "^2.13.0",
+    "@gm-common/qiniup": "^2.13.1-beta.0",
     "lodash": "^4.17.20"
   },
   "devDependencies": {
-    "@gm-common/x-request": "^2.13.0"
+    "@gm-common/x-request": "^2.13.1-beta.0"
   }
 }
