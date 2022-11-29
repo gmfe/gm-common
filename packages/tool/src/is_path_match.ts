@@ -8,7 +8,7 @@ function isPathMatch(pathname: string, link: string): boolean {
 
   const pArr = pathname.split('/')
   const lArr = link.split('/')
-  return filter(lArr, (v, i) => pArr.indexOf(v) === i).length === lArr.length
+  return filter(lArr, (v, i) => v === pArr[i]).length === lArr.length
 }
 
 export default isPathMatch
