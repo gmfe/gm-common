@@ -1,8 +1,13 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
 import { LoadingComponentProps } from 'react-loadable'
 
 const Loading: FC<LoadingComponentProps> = (props) => {
   const { retry, error } = props
+
+  useEffect(()=>{
+    if(error) console.error(error)
+  },[])
+  
   if (error) {
     return (
       <div
