@@ -6,7 +6,7 @@ import configTrace from './config_trace'
 import configError from './config_error'
 import configProgress from './config_progress'
 import configRetry from './config_retry'
-
+import autoCancel from './auto_cancel'
 export {
   instance,
   Request,
@@ -15,4 +15,5 @@ export {
   configError,
   configProgress,
   configRetry,
+  autoCancel,
 }
