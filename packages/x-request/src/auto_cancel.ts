@@ -39,6 +39,7 @@ function autoCancel<T extends RequestFn>(request: T): AutoCancelReturn<T> {
     }
     return request({ _axiosConfig, ...restArgs }, codes)
   }
+  proxyRequest.cancel = cancel
   return proxyRequest as T & { cancel(): void }
 }
 
