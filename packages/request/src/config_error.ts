@@ -8,6 +8,7 @@ import {
   isProduction,
 } from './util'
 import { report } from '@gm-common/analyse'
+import axios from 'axios'
 
 function configError(errorCallback: (msg: string, res?: any) => void): void {
   instance.interceptors.response.use(
@@ -37,7 +38,9 @@ function configError(errorCallback: (msg: string, res?: any) => void): void {
         }
         report(requestUrl + platform, data)
       }
-      errorCallback(getErrorMessage(error))
+      // 如果是取消请求抛出的error，则不调用errorCallback
+      const isCancelError = axios.isCancel(error)
+      if (!isCancelError) errorCallback(getErrorMessage(error))
       return Promise.reject(error)
     },
   )
