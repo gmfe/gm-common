@@ -18,7 +18,7 @@ function getErrorMessage(error: { [key: string]: any }): string {
     message = `${error.response.status} ${error.response.statusText}`
   } else if (error.request) {
     if (error.message && error.message.includes('timeout')) {
-      message = getLocale('连接超时')
+      message = getLocale('请求超时，请稍后再试')
     } else {
       message = getLocale('服务器错误')
     }
