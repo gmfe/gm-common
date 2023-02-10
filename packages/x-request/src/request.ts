@@ -9,6 +9,9 @@ const instance = axios.create({
     'Content-Type': 'application/json',
     'X-Timeout': '30000',
     'X-Success-Code': '0',
+    get 'X-Timestamp'() {
+      return Date.now()
+    },
   },
 })
 
