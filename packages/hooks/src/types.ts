@@ -9,7 +9,7 @@ interface PagingReq {
 
 // 后台返回的
 interface PagingRes {
-  has_more: boolean
+  has_more?: boolean
   count?: number
 }
 
