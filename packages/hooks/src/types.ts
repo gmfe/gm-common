@@ -10,7 +10,7 @@ interface PagingReq {
 // 后台返回的
 interface PagingRes {
   has_more?: boolean
-  count?: number
+  count?: string
 }
 
 export type { PagingReq, PagingRes }
