@@ -200,7 +200,7 @@ LocationMap.defaultProps = {
   // zoom 表示地图显示的缩放级别。在PC上，取值范围为[3-18]。在移动设备上,取值范围[3-19]。
   zoom: 16,
   // 高德地图的key
-  amapkey: 'e805d5ba2ef44393f20bc9176c3821a2',
+  amapkey: '0ad6fc3840dcb69ead7807ddbc02e6a2',
 }
 
 export type { LocationMapProps, LocationParams }
