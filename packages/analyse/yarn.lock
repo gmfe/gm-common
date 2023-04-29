@@ -2,6 +2,27 @@
 # yarn lockfile v1
 
 
+"@gm-common/fingerprint@^2.13.0":
+  version "2.13.0"
+  resolved "https://registry.yarnpkg.com/@gm-common/fingerprint/-/fingerprint-2.13.0.tgz#14dd6133b5205fef0c1d6b8e9491fc0a1d2b409f"
+  integrity sha512-JAAmjIjJ7YP31VbCHFSa5e7MGkigikL32xrGKtHD4f6UsilnXg17480VcZqjr2Rfx69f+xoMLm1wQWr8RE9ZGA==
+  dependencies:
+    "@gm-common/tool" "^2.13.0"
+    "@types/fingerprintjs2" "^2.0.0"
+    fingerprintjs2 "^2.1.2"
+
+"@gm-common/tool@^2.13.0":
+  version "2.13.0"
+  resolved "https://registry.yarnpkg.com/@gm-common/tool/-/tool-2.13.0.tgz#96d65ce0cb93401af7f651a81da8fa1dca67cf97"
+  integrity sha512-08R1voO0fRhGvDwHcaqupGQspst7FQyKiGqZXA9Tsdxra/uKLoJ/tViOAXKg4q3viU5494+T0l8a4FioOQ6jjg==
+  dependencies:
+    lodash "^4.17.20"
+
+"@types/fingerprintjs2@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@types/fingerprintjs2/-/fingerprintjs2-2.0.0.tgz#3af76e165416fa75261bbce4393f5445fca4cadd"
+  integrity sha512-isSTwNnW5I6zGZnpkinmVcV9pJqr7cLELns+tXDYzskIOAb2J+iCQ0mQJ9bRjHJhZfdlTFXZoCYK9ZgT3oMWXQ==
+
 axios@^0.21.0:
   version "0.21.0"
   resolved "https://registry.npm.taobao.org/axios/download/axios-0.21.0.tgz?cache=0&sync_timestamp=1603469130017&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Faxios%2Fdownload%2Faxios-0.21.0.tgz#26df088803a2350dff2c27f96fef99fe49442aca"
@@ -10,14 +31,24 @@ axios@^0.21.0:
     follow-redirects "^1.10.0"
 
 decode-uri-component@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.npm.taobao.org/decode-uri-component/download/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
-  integrity sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.2.tgz#e69dbe25d37941171dd540e024c444cd5188e1e9"
+  integrity sha512-FqUYQ+8o158GyGTrMFJms9qh3CqTKvAqgqsTnkLI8sKu0028orqBhxNMFkFen0zGyg6epACD32pjVk58ngIErQ==
+
+fingerprintjs2@^2.1.2:
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/fingerprintjs2/-/fingerprintjs2-2.1.4.tgz#a39deb947aa187c098306a0b5dd41ceaa2e15fc5"
+  integrity sha512-veP2yVsnYvjDVkzZMyIEwpqCAQfsBLH+U4PK5MlFAnLjZrttbdRqEArE1fPcnJFz5oS5CrdONbsV7J6FGpIJEQ==
 
 follow-redirects@^1.10.0:
   version "1.13.0"
   resolved "https://registry.npm.taobao.org/follow-redirects/download/follow-redirects-1.13.0.tgz?cache=0&sync_timestamp=1597058039887&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ffollow-redirects%2Fdownload%2Ffollow-redirects-1.13.0.tgz#b42e8d93a2a7eea5ed88633676d6597bc8e384db"
   integrity sha1-tC6Nk6Kn7qXtiGM2dtZZe8jjhNs=
+
+lodash@^4.17.20:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
 query-string@^6.13.6:
   version "6.13.6"
