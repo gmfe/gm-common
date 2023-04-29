@@ -2,6 +2,41 @@
 # yarn lockfile v1
 
 
+"@gm-common/analyse@^2.11.1":
+  version "2.11.1"
+  resolved "https://registry.yarnpkg.com/@gm-common/analyse/-/analyse-2.11.1.tgz#2277e98ab48261083dc683eeeecf6eec9be0232b"
+  integrity sha512-b61X7Cxh3vdjSSXWpoiSQ+O9aGTrm7uaxAyAKzHQxoaLHRw4BlUXewsewvaW6YH/w73dvAzHDXPkwVgisGu2Sg==
+  dependencies:
+    "@gm-common/fingerprint" "^2.11.1"
+    axios "^0.21.0"
+    query-string "^6.13.6"
+
+"@gm-common/fingerprint@^2.11.1":
+  version "2.11.1"
+  resolved "https://registry.yarnpkg.com/@gm-common/fingerprint/-/fingerprint-2.11.1.tgz#71257215b8308ea560f4d1762e37bfa76108a7ca"
+  integrity sha512-4fZXR0g2Yb98HZu3rBaTndNZTvulithqBXECxOLcW9pnIITw0FyBQEX93IfWqs0JuVdY4MZocE5cM/zRaAVlXA==
+  dependencies:
+    "@gm-common/tool" "^2.11.1"
+    "@types/fingerprintjs2" "^2.0.0"
+    fingerprintjs2 "^2.1.2"
+
+"@gm-common/locales@^2.11.1":
+  version "2.11.1"
+  resolved "https://registry.yarnpkg.com/@gm-common/locales/-/locales-2.11.1.tgz#dcd1d8d9dfc18960209a549deef7409bbd4499c6"
+  integrity sha512-23WERPXIH9RfL8wZNu1P+EmsO9JOyRfjVuYHWBTnTaahc+LjqGFOmpjcmlKd8xXZBivrVT2nf3qaqQb8IlAH7A==
+
+"@gm-common/tool@^2.11.1":
+  version "2.11.1"
+  resolved "https://registry.yarnpkg.com/@gm-common/tool/-/tool-2.11.1.tgz#194a74449efc4812dd348bdeba3618187a80e9c7"
+  integrity sha512-xYTDczawGjw8h4v6Ro+0zHv6WuVrI4zo643QKDWhTZpaDqJ+2TNSDMjUvdMiKemNHlBt9roIFqOtc6Dp0yMoYQ==
+  dependencies:
+    lodash "^4.17.20"
+
+"@types/fingerprintjs2@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@types/fingerprintjs2/-/fingerprintjs2-2.0.0.tgz#3af76e165416fa75261bbce4393f5445fca4cadd"
+  integrity sha512-isSTwNnW5I6zGZnpkinmVcV9pJqr7cLELns+tXDYzskIOAb2J+iCQ0mQJ9bRjHJhZfdlTFXZoCYK9ZgT3oMWXQ==
+
 axios@^0.21.0:
   version "0.21.0"
   resolved "https://registry.npm.taobao.org/axios/download/axios-0.21.0.tgz?cache=0&sync_timestamp=1603469130017&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Faxios%2Fdownload%2Faxios-0.21.0.tgz#26df088803a2350dff2c27f96fef99fe49442aca"
@@ -9,12 +44,47 @@ axios@^0.21.0:
   dependencies:
     follow-redirects "^1.10.0"
 
+decode-uri-component@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
+  integrity sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=
+
+filter-obj@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/filter-obj/-/filter-obj-1.1.0.tgz#9b311112bc6c6127a16e016c6c5d7f19e0805c5b"
+  integrity sha1-mzERErxsYSehbgFsbF1/GeCAXFs=
+
+fingerprintjs2@^2.1.2:
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/fingerprintjs2/-/fingerprintjs2-2.1.4.tgz#a39deb947aa187c098306a0b5dd41ceaa2e15fc5"
+  integrity sha512-veP2yVsnYvjDVkzZMyIEwpqCAQfsBLH+U4PK5MlFAnLjZrttbdRqEArE1fPcnJFz5oS5CrdONbsV7J6FGpIJEQ==
+
 follow-redirects@^1.10.0:
-  version "1.13.0"
-  resolved "https://registry.npm.taobao.org/follow-redirects/download/follow-redirects-1.13.0.tgz?cache=0&sync_timestamp=1597058039887&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ffollow-redirects%2Fdownload%2Ffollow-redirects-1.13.0.tgz#b42e8d93a2a7eea5ed88633676d6597bc8e384db"
-  integrity sha1-tC6Nk6Kn7qXtiGM2dtZZe8jjhNs=
+  version "1.14.8"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.8.tgz#016996fb9a11a100566398b1c6839337d7bfa8fc"
+  integrity sha512-1x0S9UVJHsQprFcEC/qnNzBLcIxsjAV905f/UkQxbclCsoTWlacCNOpQa/anodLl2uaEKFhfWOvM2Qg77+15zA==
 
 lodash@^4.17.20:
   version "4.17.20"
   resolved "https://registry.npm.taobao.org/lodash/download/lodash-4.17.20.tgz?cache=0&sync_timestamp=1597337964525&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Flodash%2Fdownload%2Flodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
   integrity sha1-tEqbYpe8tpjxxRo1RaKzs2jVnFI=
+
+query-string@^6.13.6:
+  version "6.14.1"
+  resolved "https://registry.yarnpkg.com/query-string/-/query-string-6.14.1.tgz#7ac2dca46da7f309449ba0f86b1fd28255b0c86a"
+  integrity sha512-XDxAeVmpfu1/6IjyT/gXHOl+S0vQ9owggJ30hhWKdHAsNPOcasn5o9BW0eejZqL2e4vMjhAxoW3jVHcD6mbcYw==
+  dependencies:
+    decode-uri-component "^0.2.0"
+    filter-obj "^1.1.0"
+    split-on-first "^1.0.0"
+    strict-uri-encode "^2.0.0"
+
+split-on-first@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/split-on-first/-/split-on-first-1.1.0.tgz#f610afeee3b12bce1d0c30425e76398b78249a5f"
+  integrity sha512-43ZssAJaMusuKWL8sKUBQXHWOpq8d6CfN/u1p4gUzfJkM05C8rxTmYrkIPTXapZpORA6LkkzcUulJ8FqA7Uudw==
+
+strict-uri-encode@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/strict-uri-encode/-/strict-uri-encode-2.0.0.tgz#b9c7330c7042862f6b142dc274bbcc5866ce3546"
+  integrity sha1-ucczDHBChi9rFC3CdLvMWGbONUY=
