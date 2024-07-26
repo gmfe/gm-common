@@ -24,5 +24,6 @@
     "@gm-common/fingerprint": "^2.14.8",
     "axios": "^0.21.0",
     "query-string": "^6.13.6"
-  }
+  },
+  "gitHead": "9f7689a5dd20cd025f78e30a0aec65cf19aed3dc"
 }

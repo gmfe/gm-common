@@ -24,5 +24,6 @@
     "@types/big.js": "^6.0.0",
     "big.js": "^6.0.1",
     "lodash": "^4.17.20"
-  }
+  },
+  "gitHead": "9f7689a5dd20cd025f78e30a0aec65cf19aed3dc"
 }

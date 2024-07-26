@@ -23,5 +23,6 @@
   "dependencies": {
     "@gm-common/tool": "^2.14.8",
     "ts-config-gm-react-app": "^3.4.5"
-  }
+  },
+  "gitHead": "9f7689a5dd20cd025f78e30a0aec65cf19aed3dc"
 }

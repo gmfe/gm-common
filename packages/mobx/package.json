@@ -24,5 +24,6 @@
     "@gm-common/tool": "^2.14.8",
     "lodash": "^4.17.20",
     "mobx": "^6.0.1"
-  }
+  },
+  "gitHead": "9f7689a5dd20cd025f78e30a0aec65cf19aed3dc"
 }

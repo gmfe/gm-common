@@ -28,5 +28,6 @@
     "axios": "^0.21.0",
     "js-base64": "^3.6.0",
     "lodash": "^4.17.19"
-  }
+  },
+  "gitHead": "9f7689a5dd20cd025f78e30a0aec65cf19aed3dc"
 }

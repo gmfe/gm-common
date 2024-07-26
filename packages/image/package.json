@@ -26,5 +26,6 @@
   },
   "devDependencies": {
     "@gm-common/x-request": "^2.14.8"
-  }
+  },
+  "gitHead": "9f7689a5dd20cd025f78e30a0aec65cf19aed3dc"
 }
