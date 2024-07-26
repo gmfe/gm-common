@@ -73,15 +73,15 @@ function doInterceptors(options: { [key: string]: any } = {}): void {
 }
 
 function configTrace(options?: { [key: string]: any }): void {
-  if (!isProduction) {
-    return
-  }
-
+  // if (!isProduction) {
+  //   return
+  // }
+  //TODO trace.guanmai.cn停用了，所以不用再请求了
   // 首次上报
-  report(requestEnvUrl + platform, {})
+  // report(requestEnvUrl + platform, {})
 
   // 添加中间件
-  doInterceptors(options)
+  // doInterceptors(options)
 }
 
 export default configTrace
