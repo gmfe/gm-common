@@ -29,7 +29,7 @@ function wrap(
   // 如果错误了
   if (_.isNaN(code) || !sucCode.includes(code + '')) {
     if (code) {
-      message = `${getLocale('未知错误')}: ${code}`
+      message = `${getLocale('未知错误')}`
     }
 
     errorCallback(message, wrapRes)
