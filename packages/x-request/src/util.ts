@@ -55,6 +55,7 @@ function parseResponseHeaders(response: AxiosResponse) {
     gRPCStatus: isNaN ? -1 : gRPCStatus,
   }
 }
+
 function formatToResponse<T>(response: AxiosResponse<T>) {
   const { gRPCMessageDetail, gRPCMessage, gRPCStatus } = parseResponseHeaders(
     response,
@@ -106,14 +107,27 @@ function requestTrim(obj: { [key: string]: any }) {
 function formatErrorMessage(
   message: string,
   statusCodeMap: Record<string, string>,
-  response?: AxiosResponse
+  response?: AxiosResponse,
 ): string {
+  const formatDate = (timestamp: number) => {
+    const date = new Date(timestamp)
+    const year = date.getFullYear()
+    const month = String(date.getMonth() + 1).padStart(2, '0')
+    const day = String(date.getDate()).padStart(2, '0')
+    const hours = String(date.getHours()).padStart(2, '0')
+    const minutes = String(date.getMinutes()).padStart(2, '0')
+    const seconds = String(date.getSeconds()).padStart(2, '0')
+
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
+  }
+
   const code = response?.data?.code || 0
   let customizeReason = response?.data.message.detail?.reason
   const codeMessage = statusCodeMap[code]
   const rid = response?.config.headers['X-Request-Id']
   const timestamp =
     response?.config.headers['X-Timestamp'] || new Date().valueOf()
+  const formatedDate = formatDate(Number(timestamp))
 
   const isGrpcStatusCode = code < 2000
 
@@ -124,7 +138,7 @@ function formatErrorMessage(
   let reason = `${code} ${customizeReason}`
 
   if (isGrpcStatusCode) {
-    reason += ` rid: ${rid} 日期: ${timestamp}`
+    reason += ` rid: ${rid} 日期: ${formatedDate}`
   }
 
   return reason
