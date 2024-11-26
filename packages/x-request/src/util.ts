@@ -137,7 +137,8 @@ function formatErrorMessage(
 
   let reason = `${code} ${customizeReason}`
 
-  if (isGrpcStatusCode) {
+  // 服务异常没有 rid
+  if (isGrpcStatusCode && customizeReason !== '服务异常') {
     reason += ` rid: ${rid} 日期: ${formatedDate}`
   }
 
