@@ -17,4 +17,5 @@ export {
   clearAuth,
   setAccessToken,
 }
+export { formatErrorMessage } from './util'
 export type { Response } from './types'
