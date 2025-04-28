@@ -71,6 +71,7 @@ function processPostData(data: any) {
 
 function getErrorMessage(error: { [key: string]: any }): string {
   let message
+  const requestId = error?.config?.headers?.['X-Guanmai-Request-Id']
   if (error.response) {
     message = `${error.response.status} ${error.response.statusText}`
   } else if (error.request) {
@@ -83,7 +84,7 @@ function getErrorMessage(error: { [key: string]: any }): string {
     message = error.message
   }
 
-  return message
+  return `${message}${requestId ? `\nrequestId:${requestId}` : ''}`
 }
 
 function getEntryTiming(entry: { [key: string]: any }) {

@@ -12,13 +12,15 @@ import { report } from '@gm-common/analyse'
 function configError(errorCallback: (msg: string, res?: any) => void): void {
   instance.interceptors.response.use(
     (response) => {
+      const requestId = response?.config?.headers?.['X-Guanmai-Request-Id']
       const sucCode = response.config.headers['X-Guanmai-Success-Code'].split(
         ',',
       )
       const json = response.data
 
       if (!sucCode.includes(json.code + '')) {
-        const msg = json.msg || getLocale('未知错误')
+        let msg = json.msg || getLocale('未知错误')
+        msg = `${msg}${requestId ? `\nrequestId:${requestId}` : ''}`
         errorCallback(msg, response)
       }
 
@@ -37,7 +39,7 @@ function configError(errorCallback: (msg: string, res?: any) => void): void {
         }
         report(requestUrl + platform, data)
       }
-      errorCallback(getErrorMessage(error))
+      errorCallback(getErrorMessage(error), error)
       return Promise.reject(error)
     },
   )
