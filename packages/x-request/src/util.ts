@@ -121,6 +121,9 @@ function formatErrorMessage(
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
   }
 
+  const result = (response.headers['grpc-message'] || '').split('|')
+  const gRPCMessageDetail: string = atob(result.slice(1).join('|'))
+
   const code = response?.data?.code || 0
   let customizeReason = response?.data.message.detail?.reason
   const codeMessage = statusCodeMap[code]
@@ -132,14 +135,18 @@ function formatErrorMessage(
   const isGrpcStatusCode = code < 2000
 
   if (!customizeReason) {
-    customizeReason = codeMessage || message || '服务异常'
+    customizeReason =
+      gRPCMessageDetail || codeMessage || message || getLocale('服务异常')
   }
 
   let reason = `${code} ${customizeReason}`
 
   // 服务异常没有 rid
-  if (isGrpcStatusCode && customizeReason !== '服务异常') {
-    reason += ` rid: ${rid} 日期: ${formatedDate}`
+  if (isGrpcStatusCode) {
+    if (rid) {
+      reason += ` rid: ${rid}`
+    }
+    reason += ` 日期: ${formatedDate}`
   }
 
   return reason
