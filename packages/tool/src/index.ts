@@ -14,9 +14,6 @@ import {
   SessionStorage,
 } from './storage'
 
-import pinyin from './pinyin'
-import pinYinFilter from './pinyin_filter'
-
 import { devWarnForHook, devWarn, warn } from './warn'
 
 import UUID from './uuid'
@@ -36,6 +33,13 @@ import promiseTaskOrder from './promise_task_order'
 import filterGroupList from './filter_group_list'
 import filterGroupListLeaf from './filter_group_list_leaf'
 
+const pinyin = () => {
+  return ''
+}
+const pinyinFilter = (list) => {
+  return list
+}
+
 export {
   isElementInViewport,
   isElementOverViewport,
@@ -51,13 +55,12 @@ export {
   LocalStorage,
   SessionStorage,
   pinyin,
-  pinYinFilter,
+  pinyinFilter,
   devWarn,
   devWarnForHook,
   warn,
   UUID,
   md5,
-  is,
   createChainedFunction,
   groupByWithIndex,
   sortByWithIndex,
