@@ -1,3 +1,4 @@
+import { config } from './../../../node_modules/rxjs/src/internal/config'
 import { getLocale } from '@gm-common/locales'
 import _ from 'lodash'
 import {
@@ -11,6 +12,12 @@ import axios, { AxiosResponse } from 'axios'
 import { report } from '@gm-common/analyse'
 import { instance } from './request'
 import { ErrorCallback } from './types'
+
+function wrapErrorCallBack(err: any, fn) {
+  return function (arg1, arg2) {
+    return fn(arg1, arg2, err?.config)
+  }
+}
 
 function wrap(
   response: AxiosResponse,
@@ -53,7 +60,7 @@ function configError(errorCallback: ErrorCallback): void {
   instance.interceptors.response.use(
     (response) => {
       try {
-        wrap(response, errorCallback)
+        wrap(response, wrapErrorCallBack({}, errorCallback))
       } catch (error) {
         // 要转错误
         return Promise.reject(error)
@@ -77,7 +84,7 @@ function configError(errorCallback: ErrorCallback): void {
 
       if (error.response) {
         try {
-          wrap(error.response, errorCallback, message)
+          wrap(error.response, wrapErrorCallBack(error, errorCallback), message)
         } catch (error) {
           return Promise.reject(error)
         }
@@ -87,7 +94,7 @@ function configError(errorCallback: ErrorCallback): void {
       } else {
         // 如果是取消请求抛出的error，则不调用errorCallback
         const isCancelError = axios.isCancel(error)
-        if (!isCancelError) errorCallback(message)
+        if (!isCancelError) errorCallback(message, error.response, error.config)
         return Promise.reject(error)
       }
     },
