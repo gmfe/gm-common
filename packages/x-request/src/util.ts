@@ -19,6 +19,8 @@ function getErrorMessage(error: { [key: string]: any }): string {
   } else if (error.request) {
     if (error.message && error.message.includes('timeout')) {
       message = getLocale('请求超时，请稍后再试')
+    } else if (error.message && error.message.includes('Network Error')) {
+      message = getLocale('网络连接异常，请检查网络设置')
     } else {
       message = getLocale('服务器错误')
     }
@@ -109,6 +111,9 @@ function formatErrorMessage(
   statusCodeMap: Record<string, string>,
   response?: AxiosResponse,
 ): string {
+  if (message === '网络连接异常，请检查网络设置') {
+    return message
+  }
   const formatDate = (timestamp: number) => {
     const date = new Date(timestamp)
     const year = date.getFullYear()
