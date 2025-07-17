@@ -127,7 +127,7 @@ function formatErrorMessage(
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
   }
 
-  const result = (response.headers['grpc-message'] || '').split('|')
+  const result = (response?.headers?.['grpc-message'] || '').split('|')
   const gRPCMessageDetail: string = atob(result.slice(1).join('|'))
 
   const code = response?.data?.code || 0
