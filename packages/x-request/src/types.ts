@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios'
+import { AxiosResponse, AxiosRequestConfig } from 'axios'
 
 interface Response<T> {
   code: number
@@ -9,6 +9,6 @@ interface Response<T> {
   response: T
 }
 
-type ErrorCallback = (msg: string, res?: AxiosResponse<Response<any>>) => void
+type ErrorCallback = (msg: string, res?: AxiosResponse<Response<any>>, req?: AxiosRequestConfig) => void
 
 export type { Response, ErrorCallback }

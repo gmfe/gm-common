@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { getLocale } from '@gm-common/locales'
-import { AxiosResponse } from 'axios'
+import { AxiosResponse, AxiosRequestConfig } from 'axios'
 import { decode } from 'js-base64'
 
 const platform = __NAME__ // eslint-disable-line
@@ -110,6 +110,7 @@ function formatErrorMessage(
   message: string,
   statusCodeMap: Record<string, string>,
   response?: AxiosResponse,
+  req?: AxiosRequestConfig,
 ): string {
   if (message === '网络连接异常，请检查网络设置') {
     return message
@@ -126,15 +127,19 @@ function formatErrorMessage(
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
   }
 
-  const result = (response.headers['grpc-message'] || '').split('|')
+  const result = (response?.headers?.['grpc-message'] || '').split('|')
   const gRPCMessageDetail: string = atob(result.slice(1).join('|'))
 
   const code = response?.data?.code || 0
   let customizeReason = response?.data.message.detail?.reason
   const codeMessage = statusCodeMap[code]
-  const rid = response?.config.headers['X-Request-Id']
+  const rid =
+    response?.config?.headers?.['X-Request-Id'] ||
+    req?.headers?.['X-Request-Id']
   const timestamp =
-    response?.config.headers['X-Timestamp'] || new Date().valueOf()
+    response?.config?.headers?.['X-Timestamp'] ||
+    req?.headers?.['X-Timestamp'] ||
+    new Date().valueOf()
   const formatedDate = formatDate(Number(timestamp))
 
   const isGrpcStatusCode = code < 2000
