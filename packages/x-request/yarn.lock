@@ -2,16 +2,66 @@
 # yarn lockfile v1
 
 
+"@gm-common/analyse@^2.14.15-alpha.3":
+  version "2.14.15-alpha.3"
+  resolved "https://registry.npmjs.org/@gm-common/analyse/-/analyse-2.14.15-alpha.3.tgz#2900c45ee8b019130395fcb7bae9c159fae40125"
+  integrity sha512-P4FzFzqDcXG+ZOCICNNRTPlbG1rtta1Dh/toOjHIeOwGYUBljBEluCNkRKvCV8OqrvM7NSEwGRaKOYa4Z6a2Tw==
+  dependencies:
+    "@gm-common/fingerprint" "^2.14.15-alpha.3"
+    axios "^0.21.0"
+    query-string "^6.13.6"
+
+"@gm-common/fingerprint@^2.14.15-alpha.3":
+  version "2.14.15-alpha.3"
+  resolved "https://registry.npmjs.org/@gm-common/fingerprint/-/fingerprint-2.14.15-alpha.3.tgz#2ea56ba91bd8b982423605a5f255fa8ce727876a"
+  integrity sha512-qWPxPO8gVivKcDnsxgq37epqczpANrwzAurnqqqOT7WgK/4oQtXpQENrakYplMw/M1ZOvavodUH10SzkWBlH9w==
+  dependencies:
+    "@gm-common/tool" "^2.14.15-alpha.3"
+    "@types/fingerprintjs2" "^2.0.0"
+    fingerprintjs2 "^2.1.2"
+
+"@gm-common/locales@^2.14.15-alpha.3":
+  version "2.14.15-alpha.3"
+  resolved "https://registry.npmjs.org/@gm-common/locales/-/locales-2.14.15-alpha.3.tgz#3d085b852930e7ef9e6f35220cd7f5d6b9034509"
+  integrity sha512-IyrLRQy+pq8n24NPIN9XbkDWjAFLdGmGZf0+m7vDi5PEzy1rekch2N31umDLrgLi7GUS1aqBFNa4c4syMTPm8A==
+
+"@gm-common/tool@^2.14.15-alpha.3":
+  version "2.14.15-alpha.3"
+  resolved "https://registry.npmjs.org/@gm-common/tool/-/tool-2.14.15-alpha.3.tgz#5a6b0f0eba323199eafba6aba87d7910c5e46a07"
+  integrity sha512-0ndJuE1c+oHEYU8Wka9WZxS6Go6/PZY6NyG1crvS6/iOoNCSLjiYov/rZ2sEZH4pM2SQ14WICRqEH8DeA/BCeA==
+  dependencies:
+    lodash "^4.17.20"
+
+"@types/fingerprintjs2@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/@types/fingerprintjs2/-/fingerprintjs2-2.0.0.tgz#3af76e165416fa75261bbce4393f5445fca4cadd"
+  integrity sha512-isSTwNnW5I6zGZnpkinmVcV9pJqr7cLELns+tXDYzskIOAb2J+iCQ0mQJ9bRjHJhZfdlTFXZoCYK9ZgT3oMWXQ==
+
 axios@^0.21.0:
   version "0.21.0"
-  resolved "https://registry.npm.taobao.org/axios/download/axios-0.21.0.tgz?cache=0&sync_timestamp=1603469130017&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Faxios%2Fdownload%2Faxios-0.21.0.tgz#26df088803a2350dff2c27f96fef99fe49442aca"
+  resolved "https://registry.npmmirror.com/axios/download/axios-0.21.0.tgz?cache=0&sync_timestamp=1603469130017&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Faxios%2Fdownload%2Faxios-0.21.0.tgz#26df088803a2350dff2c27f96fef99fe49442aca"
   integrity sha1-Jt8IiAOiNQ3/LCf5b++Z/klEKso=
   dependencies:
     follow-redirects "^1.10.0"
 
+decode-uri-component@^0.2.0:
+  version "0.2.2"
+  resolved "https://registry.npmjs.org/decode-uri-component/-/decode-uri-component-0.2.2.tgz#e69dbe25d37941171dd540e024c444cd5188e1e9"
+  integrity sha512-FqUYQ+8o158GyGTrMFJms9qh3CqTKvAqgqsTnkLI8sKu0028orqBhxNMFkFen0zGyg6epACD32pjVk58ngIErQ==
+
+filter-obj@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/filter-obj/-/filter-obj-1.1.0.tgz#9b311112bc6c6127a16e016c6c5d7f19e0805c5b"
+  integrity sha512-8rXg1ZnX7xzy2NGDVkBVaAy+lSlPNwad13BtgSlLuxfIslyt5Vg64U7tFcCt4WS1R0hvtnQybT/IyCkGZ3DpXQ==
+
+fingerprintjs2@^2.1.2:
+  version "2.1.4"
+  resolved "https://registry.npmjs.org/fingerprintjs2/-/fingerprintjs2-2.1.4.tgz#a39deb947aa187c098306a0b5dd41ceaa2e15fc5"
+  integrity sha512-veP2yVsnYvjDVkzZMyIEwpqCAQfsBLH+U4PK5MlFAnLjZrttbdRqEArE1fPcnJFz5oS5CrdONbsV7J6FGpIJEQ==
+
 follow-redirects@^1.10.0:
   version "1.13.0"
-  resolved "https://registry.npm.taobao.org/follow-redirects/download/follow-redirects-1.13.0.tgz?cache=0&sync_timestamp=1597058039887&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ffollow-redirects%2Fdownload%2Ffollow-redirects-1.13.0.tgz#b42e8d93a2a7eea5ed88633676d6597bc8e384db"
+  resolved "https://registry.npmmirror.com/follow-redirects/download/follow-redirects-1.13.0.tgz?cache=0&sync_timestamp=1597058039887&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ffollow-redirects%2Fdownload%2Ffollow-redirects-1.13.0.tgz#b42e8d93a2a7eea5ed88633676d6597bc8e384db"
   integrity sha1-tC6Nk6Kn7qXtiGM2dtZZe8jjhNs=
 
 js-base64@^3.6.0:
@@ -21,5 +71,30 @@ js-base64@^3.6.0:
 
 lodash@^4.17.19:
   version "4.17.20"
-  resolved "https://registry.npm.taobao.org/lodash/download/lodash-4.17.20.tgz?cache=0&sync_timestamp=1597337964525&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Flodash%2Fdownload%2Flodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
+  resolved "https://registry.npmmirror.com/lodash/download/lodash-4.17.20.tgz?cache=0&sync_timestamp=1597337964525&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Flodash%2Fdownload%2Flodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
   integrity sha1-tEqbYpe8tpjxxRo1RaKzs2jVnFI=
+
+lodash@^4.17.20:
+  version "4.17.21"
+  resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
+
+query-string@^6.13.6:
+  version "6.14.1"
+  resolved "https://registry.npmjs.org/query-string/-/query-string-6.14.1.tgz#7ac2dca46da7f309449ba0f86b1fd28255b0c86a"
+  integrity sha512-XDxAeVmpfu1/6IjyT/gXHOl+S0vQ9owggJ30hhWKdHAsNPOcasn5o9BW0eejZqL2e4vMjhAxoW3jVHcD6mbcYw==
+  dependencies:
+    decode-uri-component "^0.2.0"
+    filter-obj "^1.1.0"
+    split-on-first "^1.0.0"
+    strict-uri-encode "^2.0.0"
+
+split-on-first@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/split-on-first/-/split-on-first-1.1.0.tgz#f610afeee3b12bce1d0c30425e76398b78249a5f"
+  integrity sha512-43ZssAJaMusuKWL8sKUBQXHWOpq8d6CfN/u1p4gUzfJkM05C8rxTmYrkIPTXapZpORA6LkkzcUulJ8FqA7Uudw==
+
+strict-uri-encode@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/strict-uri-encode/-/strict-uri-encode-2.0.0.tgz#b9c7330c7042862f6b142dc274bbcc5866ce3546"
+  integrity sha512-QwiXZgpRcKkhTj2Scnn++4PKtWsH0kpzZ62L2R6c/LUVYv7hVnZqcg2+sMuT6R7Jusu1vviK/MFsu6kNJfWlEQ==
