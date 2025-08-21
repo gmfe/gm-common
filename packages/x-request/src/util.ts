@@ -144,6 +144,12 @@ function formatErrorMessage(
 
   const isGrpcStatusCode = code < 2000
 
+  if (gRPCMessageDetail && /^\{.*\}$/.test(gRPCMessageDetail)) {
+    try {
+      const json = JSON.parse(gRPCMessageDetail)
+      customizeReason = json.detail
+    } catch {}
+  }
   if (!customizeReason) {
     customizeReason =
       gRPCMessageDetail || codeMessage || message || getLocale('服务异常')
