@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import _, { isObject } from 'lodash'
 import { getLocale } from '@gm-common/locales'
 import { AxiosResponse, AxiosRequestConfig } from 'axios'
 import { decode } from 'js-base64'
@@ -144,12 +144,13 @@ function formatErrorMessage(
 
   const isGrpcStatusCode = code < 2000
 
-  if (gRPCMessageDetail && /^\{.*\}$/.test(gRPCMessageDetail)) {
+  if (gRPCMessageDetail && isObject(gRPCMessageDetail)) {
     try {
-      const json = JSON.parse(gRPCMessageDetail)
-      customizeReason = json.detail
+      customizeReason = codeMessage
+      customizeReason += ` ${JSON.stringify(gRPCMessageDetail)}`
     } catch {}
   }
+
   if (!customizeReason) {
     customizeReason =
       gRPCMessageDetail || codeMessage || message || getLocale('服务异常')
