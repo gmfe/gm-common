@@ -1,6 +1,6 @@
 {
   "name": "@gm-common/image",
-  "version": "2.14.18-alpha.1",
+  "version": "2.14.18-alpha.2",
   "description": "",
   "author": "zhongsink <zhongink@gmail.com>",
   "homepage": "https://github.com/gmfe/gm-common#readme",
@@ -21,11 +21,11 @@
     "url": "https://github.com/gmfe/gm-common/issues"
   },
   "dependencies": {
-    "@gm-common/qiniup": "^2.14.18-alpha.1",
+    "@gm-common/qiniup": "^2.14.18-alpha.2",
     "lodash": "^4.17.20"
   },
   "devDependencies": {
-    "@gm-common/x-request": "^2.14.18-alpha.1"
+    "@gm-common/x-request": "^2.14.18-alpha.2"
   },
   "gitHead": "9f7689a5dd20cd025f78e30a0aec65cf19aed3dc"
 }
