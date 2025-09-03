@@ -158,8 +158,7 @@ function formatErrorMessage(
   } catch {}
 
   if (!customizeReason) {
-    customizeReason =
-      gRPCMessageDetail || codeMessage || message || getLocale('服务异常')
+    customizeReason = codeMessage || message || getLocale('服务异常')
   }
 
   let reason = `${code} ${customizeReason}`
