@@ -1,4 +1,4 @@
-import _, { isObject } from 'lodash'
+import _, { isObject, isString } from 'lodash'
 import { getLocale } from '@gm-common/locales'
 import { AxiosResponse, AxiosRequestConfig } from 'axios'
 import { decode } from 'js-base64'
@@ -145,12 +145,15 @@ function formatErrorMessage(
   const isGrpcStatusCode = code < 2000
 
   try {
+    // 这里专门处理错误详情
     if (
       gRPCMessageDetail &&
       isObject(gRPCMessageDetail) &&
       (gRPCMessageDetail as any)?.reason
     ) {
       customizeReason = (gRPCMessageDetail as any).reason
+    } else if (gRPCMessageDetail && isString(gRPCMessageDetail)) {
+      customizeReason = gRPCMessageDetail
     }
   } catch {}
 
