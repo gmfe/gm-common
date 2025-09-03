@@ -144,12 +144,15 @@ function formatErrorMessage(
 
   const isGrpcStatusCode = code < 2000
 
-  if (gRPCMessageDetail && isObject(gRPCMessageDetail)) {
-    try {
-      customizeReason = codeMessage
-      customizeReason += ` ${JSON.stringify(gRPCMessageDetail)}`
-    } catch {}
-  }
+  try {
+    if (
+      gRPCMessageDetail &&
+      isObject(gRPCMessageDetail) &&
+      (gRPCMessageDetail as any)?.reason
+    ) {
+      customizeReason = (gRPCMessageDetail as any).reason
+    }
+  } catch {}
 
   if (!customizeReason) {
     customizeReason =
