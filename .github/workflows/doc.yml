@@ -40,6 +40,7 @@ jobs:
         run: |
           cd gm-common
           yarn config set registry https://registry.npmjs.org/
+          yarn cache clean
           yarn install --ignore-engines --network-timeout 100000
           npx lerna bootstrap --npm-client=yarn -- --network-timeout=100000
           npm run build
