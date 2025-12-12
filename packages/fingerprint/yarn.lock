@@ -4,10 +4,10 @@
 
 "@types/fingerprintjs2@^2.0.0":
   version "2.0.0"
-  resolved "https://registry.npm.taobao.org/@types/fingerprintjs2/download/@types/fingerprintjs2-2.0.0.tgz#3af76e165416fa75261bbce4393f5445fca4cadd"
+  resolved "https://registry.npmmirror.com/@types/fingerprintjs2/download/@types/fingerprintjs2-2.0.0.tgz#3af76e165416fa75261bbce4393f5445fca4cadd"
   integrity sha1-OvduFlQW+nUmG7zkOT9URfykyt0=
 
 fingerprintjs2@^2.1.2:
   version "2.1.2"
-  resolved "https://registry.npm.taobao.org/fingerprintjs2/download/fingerprintjs2-2.1.2.tgz#d4812e627356f04b279c63b995b72591b2ab5ed5"
+  resolved "https://registry.npmmirror.com/fingerprintjs2/download/fingerprintjs2-2.1.2.tgz#d4812e627356f04b279c63b995b72591b2ab5ed5"
   integrity sha1-1IEuYnNW8EsnnGO5lbclkbKrXtU=
