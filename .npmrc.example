@@ -1,0 +1,8 @@
+# 此文件是示例文件
+# 实际使用时，token 通过环境变量 NPM_TOKEN 设置
+# 发布命令会自动生成 .npmrc 文件（已添加到 .gitignore）
+
+# 使用方法：
+# export NPM_TOKEN=your_token_here
+# npm run publish-latest-token
+

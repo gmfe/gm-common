@@ -12,3 +12,6 @@ config/local.js
 build/
 
 packages/qiniu-image/node/token.js
+
+# npm token (使用环境变量，不要提交到仓库)
+.npmrc

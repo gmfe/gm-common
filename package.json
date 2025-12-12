@@ -7,6 +7,7 @@
     "build": "build-storybook -c .storybook -o docs",
     "prebuild": "rm -rf docs; mkdir docs;",
     "publish-latest": "lerna publish --force-publish --registry https://registry.npmjs.org/",
+    "publish-latest-token": "echo \"//registry.npmjs.org/:_authToken=${NPM_TOKEN}\" > .npmrc && lerna publish patch --force-publish --yes --registry https://registry.npmjs.org/ && rm .npmrc",
     "publish-beta": "lerna publish --force-publish --dist-tag beta --registry https://registry.npmjs.org/",
     "link": "cd packages/image; yarn link; cd ../locales; yarn link; cd ../request; yarn link; cd ../router;  yarn link; cd ../tool; yarn link; cd ../x-request; yarn link; cd ../hooks; yarn link;"
   },

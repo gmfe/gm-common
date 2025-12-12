@@ -84,17 +84,32 @@ yarn start
 - 公测版本(beta)
 - 正式版本
 
-发布正式版本
+**发布正式版本（使用 token，推荐）**
+
+```bash
+# 1. 设置 NPM_TOKEN 环境变量（首次需要）
+export NPM_TOKEN=your_npm_token_here
+
+# 2. 设置代理（如果需要）
+export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890
+
+# 3. 执行发布（自动 patch 版本）
+npm run publish-latest-token
+```
+
+**发布正式版本（交互式，手动选择版本）**
 
 ```bash
 yarn publish-latest
 ```
 
-发布 beta 版本
+**发布 beta 版本**
 
 ```bash
-yarn publish-latest-beta
+yarn publish-beta
 ```
+
+> 📝 **详细发布文档**：请查看 [PUBLISH.md](./PUBLISH.md)
 
 #### CHANGELOG
 
