@@ -1,6 +1,6 @@
 {
   "name": "root",
-  "version": "2.15.9-beta.1",
+  "version": "2.15.9-beta.2",
   "private": true,
   "license": "ISC",
   "scripts": {
@@ -56,7 +56,7 @@
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.0.6",
     "babel-preset-gm-react-app": "^3.4.5",
-    "bumpp": "^10.3.2",
+    "bumpp": "^9.2",
     "crypto-js": "^4.0.0",
     "eslint-plugin-gm-react-app": "^3.3.1",
     "fingerprintjs2": "^2.1.2",
