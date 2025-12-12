@@ -39,14 +39,18 @@ jobs:
       - name: Install and Build
         run: |
           cd gm-common
+          yarn config set registry https://registry.npmjs.org/
           yarn install --ignore-engines --network-timeout 100000
           npx lerna bootstrap --npm-client=yarn -- --network-timeout=100000
           npm run build
         env:
           NODE_TLS_REJECT_UNAUTHORIZED: '0'
 
-      - name: Publish to NPM
-        run: npm publish --registry='https://registry.npmjs.org'
+      # 发布 monorepo packages 到 npm（使用 lerna）
+      - name: Publish packages
+        run: |
+          cd gm-common
+          npm run publish-latest
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
