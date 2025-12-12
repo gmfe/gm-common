@@ -32,11 +32,11 @@ jobs:
   
       - name: Install
         run: |
-          yarn install 
-          npx lerna bootstrap 
+          yarn install --frozen-lockfile
+          npx lerna bootstrap
   
       - name: Release
         run: |
-          npx lerna publish from-git --yes
+          yarn lerna publish from-package --force-publish --skip-git  --yes 
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
