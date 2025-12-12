@@ -1,6 +1,7 @@
 {
   "name": "root",
   "private": true,
+  "license": "ISC",
   "scripts": {
     "start": "start-storybook -p 7001",
     "build": "build-storybook -c .storybook -o docs",
