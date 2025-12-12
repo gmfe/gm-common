@@ -1,41 +1,56 @@
 name: doc
 
-# event type（此处我们选择 push，且仅当 push 到 master 分支触发）
 on:
   push:
     branches:
       - master
 
-# 任务列表
 jobs:
-  # 任务名称
   release:
-    # 在何种平台执行，可选 windows-latest/ubuntu-latest/macOS-latest 等
     runs-on: ubuntu-latest
 
-    # 为了加速构建，我们使用同一个包含 Node.js 的容器运行所有命令
-    container:
-      image: thonatos/github-actions-nodejs
-
-    # 这里定义了任务运行过程中的各个步骤
     steps:
-      # 环境
-      - run: |
-          npm -v
-          node -v
-          yarn -v
+      # 拉取仓库代码
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      # 设置 Node 环境（必需：用于 npm publish + token）
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          registry-url: 'https://registry.npmjs.org/'
+          always-auth: true
+
+      # 设置 git 用户信息
+      - name: Setup Git user
+        run: |
           git config --global user.email "gmfe4code@163.com"
           git config --global user.name "gmfe4code"
-      - run: |
-          pwd
+
+      # 克隆 gm-common
+      - name: Clone gm-common
+        run: |
           git clone https://github.com/gmfe/gm-common.git
-      - run: |
+
+      # 安装依赖与构建
+      - name: Install and Build
+        run: |
           cd gm-common
           yarn install --ignore-engines
           npx lerna bootstrap
           npm run build
-          rm -rf .github && rm -rf .storybook && rm -rf packages
+
+      # 清理文件
+      - name: Cleanup
+        run: |
+          cd gm-common
+          rm -rf .github .storybook packages
           git add --all
-          git commit -m 'build docs'
-          ls
-          git push 'https://gmfe4code:${{secrets.PASSWORD}}@github.com/gmfe/gm-common-doc.git' HEAD:main -f
+          git commit -m 'build docs' || echo "No changes to commit"
+
+      # 推送文档到 gm-common-doc
+      - name: Push to gm-common-doc
+        run: |
+          cd gm-common
+          git push "https://gmfe4code:${{ secrets.PASSWORD }}@github.com/gmfe/gm-common-doc.git" HEAD:main -f
