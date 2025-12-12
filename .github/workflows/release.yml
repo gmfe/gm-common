@@ -37,6 +37,6 @@ jobs:
       - name: Release
         run: |
           git checkout .
-          yarn lerna publish from-package --force-publish --no-git-tag-version --no-push  --yes 
+          npm run publish-latest
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
