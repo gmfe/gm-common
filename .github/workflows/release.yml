@@ -37,12 +37,6 @@ jobs:
   
       - name: Release
         run: |
-          if [[ ${{ github.ref }} == *refs/tags/*-beta* ]]; then
-            npx lerna publish --dist-tag beta
-          elif [[ ${{ github.ref }} == *refs/tags/*-alpha* ]]; then
-            npx lerna publish --dist-tag alpha
-          else
-            npx lerna publish
-          fi
+          npx lerna publish from-git --yes
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
