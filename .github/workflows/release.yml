@@ -38,9 +38,9 @@ jobs:
       - name: Release
         run: |
           if [[ ${{ github.ref }} == *refs/tags/*-beta* ]]; then
-            npx lerna publish --tag beta
+            npx lerna publish --dist-tag beta
           elif [[ ${{ github.ref }} == *refs/tags/*-alpha* ]]; then
-            npx lerna publish --tag alpha
+            npx lerna publish --dist-tag alpha
           else
             npx lerna publish
           fi
