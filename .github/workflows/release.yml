@@ -18,11 +18,17 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set node
-        uses: actions/setup-node@v4
+      - name: Setup Node.js 16
+        uses: actions/setup-node@v3
         with:
           node-version: '16.20.2'
           registry-url: 'https://registry.npmjs.org'
+      
+      - name: Verify environment
+        run: |
+          echo "Node version: $(node --version)"
+          echo "NODE_OPTIONS: $NODE_OPTIONS"
+          echo "PATH: $PATH"
 
       # - name: ChangeLog
       #   run: npx changelogithub
