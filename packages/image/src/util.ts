@@ -19,6 +19,10 @@ function getOptionWithSafeBase64Encode(options: Options) {
 
 function getFunStr(url: string | null, fun: string, options: Options): string {
   let funStr = fun
+  const hasAutoOrient = funStr?.includes('auto-orient')
+  if (!hasAutoOrient) {
+    funStr = `${funStr}/auto-orient`
+  }
 
   const { mode, ...rest } = options
 
@@ -28,6 +32,9 @@ function getFunStr(url: string | null, fun: string, options: Options): string {
   }
 
   for (const key in rest) {
+    if (key === 'auto-orient' && !hasAutoOrient) {
+      continue
+    }
     if (options[key] === true) {
       // 案例 auto-orient or
       funStr += `/${key}`
