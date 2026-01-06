@@ -10,17 +10,18 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
+    env:
+      NODE_OPTIONS: --openssl-legacy-provider
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
       - name: Set node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 16.x
+          node-version: '16.20.2'
           registry-url: 'https://registry.npmjs.org'
 
       # - name: ChangeLog
@@ -31,6 +32,8 @@ jobs:
       - name: Install
         run: |
           yarn install --frozen-lockfile
+        env:
+          NODE_OPTIONS: --openssl-legacy-provider
   
       - name: Release
         run: |
@@ -38,3 +41,4 @@ jobs:
           yarn lerna publish from-package --force-publish --no-git-tag-version --no-push  --yes --registry https://registry.npmjs.org
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_OPTIONS: --openssl-legacy-provider
